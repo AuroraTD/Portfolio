@@ -1,0 +1,11 @@
+abcdefghijklmnopqrstuvwxyz
+7
+14
+21
+35
+42
+56
+63
+77
+84
+91

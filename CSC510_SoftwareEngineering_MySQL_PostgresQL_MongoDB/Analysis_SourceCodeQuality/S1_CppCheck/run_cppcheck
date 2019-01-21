@@ -1,0 +1,51 @@
+####################################################################################
+# FILE:         run_cppcheck
+#
+# AUTHORS:      attiffan    Aurora T. Tiffany-Davis
+#
+# DESCRIPTION:  A script to aid in cppcheck static analysis.
+#               CppCheck version used when this was developed: 1.84
+#               Cloc version used when this was developed: 1.74
+#
+# TO RUN:       ./run_cppcheck [path on which you want to run cpp check recursively]
+#               (you must first install cppcheck and cloc)
+#
+# NOTES:        To enable downloading of source code with apt-get:
+#                   Open Ubuntu "Software and Updates" Manager.
+#                   In "Ubuntu Software" tab, check "Source" checkbox and click "Close".
+#               To prepare:
+#                   Open a terminal and navigate to the "CppCheck" directory.
+#               MySQL:
+#                   To get source code:
+#                       apt-get source mysql-server
+#                       apt-get source mysql-client
+#                   Details on downloaded code:
+#                       Version: 5.7.24
+#               PostgresQL:
+#                   To get source code:
+#                       https://www.postgresql.org/ftp/source/v11.0/
+#                       [get *.tar.gz and unzip with tar xvf]
+#                   Details on downloaded code:
+#                       Version: 11.0
+#               MongoDB:
+#                   To get source code:
+#                       apt-get source mongodb
+#                   Details on downloaded code:
+#                       Version: 3.6.3
+####################################################################################
+
+#!/bin/bash
+
+# cppcheck -                                            Run cpp check
+# $1 -                                                  On the path provided as arg to this script
+# --enable=warning,style,performance,portability -      Enable all reporting
+# --template="{file}\t{line}\t{severity}\t{message}" -  Tab delimit for easy analysis
+# 2> cpp_check_results.txt -                            Print output to file
+
+cppcheck $1 --enable=warning,style,performance,portability --template="{file}\t{line}\t{severity}\t{message}" 2> cpp_check_results.txt
+
+# cloc -                                                Run cloc (produces info on LOC - lines of code)
+# $1 -                                                  On the path provided as arg to this script
+# > cloc_results.txt -                            Print output to file
+
+cloc $1 > cloc_results.txt

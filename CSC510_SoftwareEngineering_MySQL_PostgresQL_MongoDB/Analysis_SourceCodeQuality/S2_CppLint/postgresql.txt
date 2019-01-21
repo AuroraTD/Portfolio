@@ -1,0 +1,26 @@
+Category 'build/header_guard' errors found: 1490
+Category 'build/include_order' errors found: 13
+Category 'build/include_subdir' errors found: 142
+Category 'build/include_what_you_use' errors found: 13
+Category 'legal/copyright' errors found: 212
+Category 'readability/alt_tokens' errors found: 29
+Category 'readability/braces' errors found: 18
+Category 'readability/casting' errors found: 498
+Category 'readability/multiline_comment' errors found: 464
+Category 'readability/multiline_string' errors found: 2
+Category 'runtime/casting' errors found: 1
+Category 'runtime/int' errors found: 236
+Category 'runtime/printf' errors found: 8
+Category 'runtime/references' errors found: 75
+Category 'whitespace/blank_line' errors found: 13
+Category 'whitespace/braces' errors found: 2558
+Category 'whitespace/comma' errors found: 438
+Category 'whitespace/comments' errors found: 78
+Category 'whitespace/indent' errors found: 57
+Category 'whitespace/line_length' errors found: 75
+Category 'whitespace/newline' errors found: 49
+Category 'whitespace/operators' errors found: 33
+Category 'whitespace/parens' errors found: 330
+Category 'whitespace/semicolon' errors found: 15
+Category 'whitespace/tab' errors found: 37983
+Total errors found: 44830

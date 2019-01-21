@@ -1,0 +1,1116 @@
+2018-11-20 13:30:40.309	Starting up
+2018-11-20 13:30:40.387	Running on Linux
+2018-11-20 13:30:40.387	Installing MySQL
+2018-11-20 13:30:40.604		CPU 22.2% RAM 52.0% HDD 80%
+2018-11-20 13:30:40.901		CPU 22.2% RAM 52.3% HDD 80%
+2018-11-20 13:30:41.201		CPU 22.2% RAM 52.6% HDD 80%
+2018-11-20 13:30:41.506		CPU 22.2% RAM 52.8% HDD 80%
+2018-11-20 13:30:41.823		CPU 22.2% RAM 53.0% HDD 80%
+2018-11-20 13:30:42.126		CPU 22.2% RAM 53.1% HDD 80%
+2018-11-20 13:30:42.437		CPU 22.2% RAM 53.2% HDD 80%
+2018-11-20 13:30:42.743		CPU 22.2% RAM 53.3% HDD 80%
+2018-11-20 13:30:42.864		Reading package lists...
+2018-11-20 13:30:43.042		CPU 22.2% RAM 53.5% HDD 80%
+2018-11-20 13:30:43.341		CPU 22.2% RAM 53.5% HDD 80%
+2018-11-20 13:30:43.342		Building dependency tree...
+2018-11-20 13:30:43.344		Reading state information...
+2018-11-20 13:30:43.648		CPU 22.2% RAM 53.5% HDD 80%
+2018-11-20 13:30:43.764		0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+2018-11-20 13:30:43.954		CPU 22.2% RAM 52.0% HDD 80%
+2018-11-20 13:30:44.274		CPU 22.3% RAM 52.0% HDD 80%
+2018-11-20 13:30:44.619		CPU 22.3% RAM 52.1% HDD 80%
+2018-11-20 13:30:44.924		CPU 22.3% RAM 52.1% HDD 80%
+2018-11-20 13:30:45.24		CPU 22.3% RAM 52.1% HDD 80%
+2018-11-20 13:30:45.598		CPU 22.3% RAM 52.1% HDD 80%
+2018-11-20 13:30:45.912		CPU 22.3% RAM 52.1% HDD 80%
+2018-11-20 13:30:46.24		CPU 22.3% RAM 52.4% HDD 80%
+2018-11-20 13:30:46.562		CPU 22.3% RAM 52.3% HDD 80%
+2018-11-20 13:30:46.879		CPU 22.3% RAM 52.3% HDD 80%
+2018-11-20 13:30:47.184		CPU 22.3% RAM 52.3% HDD 80%
+2018-11-20 13:30:47.487		CPU 22.3% RAM 52.3% HDD 80%
+2018-11-20 13:30:47.787		CPU 22.3% RAM 52.3% HDD 80%
+2018-11-20 13:30:48.094		CPU 22.3% RAM 52.4% HDD 80%
+2018-11-20 13:30:48.18		Reading package lists...
+2018-11-20 13:30:48.386		CPU 22.3% RAM 52.6% HDD 80%
+2018-11-20 13:30:48.499		Building dependency tree...
+2018-11-20 13:30:48.5		Reading state information...
+2018-11-20 13:30:48.674		CPU 22.4% RAM 52.6% HDD 80%
+2018-11-20 13:30:48.792		The following additional packages will be installed:
+2018-11-20 13:30:48.793		  libevent-core-2.1-6 libgdal20 libmysqlclient20 libmysqlcppconn7v5
+2018-11-20 13:30:48.795		Suggested packages:
+2018-11-20 13:30:48.795		  default-libmysqlclient-dev | libmysqlclient-dev mailx tinyca
+2018-11-20 13:30:48.835		The following NEW packages will be installed:
+2018-11-20 13:30:48.836		  libevent-core-2.1-6 libgdal20 libmysqlclient20 libmysqlcppconn7v5
+2018-11-20 13:30:48.836		  mysql-client mysql-client-5.7 mysql-client-core-5.7 mysql-common
+2018-11-20 13:30:48.836		  mysql-sandbox mysql-server mysql-server-5.7 mysql-server-core-5.7
+2018-11-20 13:30:48.836		  mysql-source-5.7 mysql-testsuite mysql-testsuite-5.7 mysql-utilities
+2018-11-20 13:30:48.837		  mysql-workbench mysql-workbench-data mysqltcl mysqltuner
+2018-11-20 13:30:48.96		CPU 22.4% RAM 52.8% HDD 80%
+2018-11-20 13:30:48.969		0 upgraded, 20 newly installed, 0 to remove and 0 not upgraded.
+2018-11-20 13:30:48.969		Need to get 109 MB of archives.
+2018-11-20 13:30:48.969		After this operation, 621 MB of additional disk space will be used.
+2018-11-20 13:30:48.969		Get:1 http://us.archive.ubuntu.com/ubuntu bionic/main amd64 mysql-common all 5.8+1.0.4 [7,308 B]
+2018-11-20 13:30:49.017		Get:2 http://us.archive.ubuntu.com/ubuntu bionic-updates/main amd64 mysql-client-core-5.7 amd64 5.7.24-0ubuntu0.18.04.1 [6,988 kB]
+2018-11-20 13:30:49.245		CPU 22.4% RAM 52.8% HDD 80%
+2018-11-20 13:30:49.53		CPU 22.3% RAM 52.8% HDD 80%
+2018-11-20 13:30:49.825		CPU 22.3% RAM 52.8% HDD 80%
+2018-11-20 13:30:49.974		Get:3 http://us.archive.ubuntu.com/ubuntu bionic-updates/main amd64 mysql-client-5.7 amd64 5.7.24-0ubuntu0.18.04.1 [2,312 kB]
+2018-11-20 13:30:50.128		CPU 22.3% RAM 52.8% HDD 80%
+2018-11-20 13:30:50.129		Get:4 http://us.archive.ubuntu.com/ubuntu bionic-updates/main amd64 mysql-server-core-5.7 amd64 5.7.24-0ubuntu0.18.04.1 [7,777 kB]
+2018-11-20 13:30:50.427		CPU 22.3% RAM 52.9% HDD 80%
+2018-11-20 13:30:50.726		CPU 22.3% RAM 52.8% HDD 80%
+2018-11-20 13:30:51.032		CPU 22.3% RAM 52.8% HDD 80%
+2018-11-20 13:30:51.192		Get:5 http://us.archive.ubuntu.com/ubuntu bionic/main amd64 libevent-core-2.1-6 amd64 2.1.8-stable-4build1 [85.9 kB]
+2018-11-20 13:30:51.198		Get:6 http://us.archive.ubuntu.com/ubuntu bionic-updates/main amd64 mysql-server-5.7 amd64 5.7.24-0ubuntu0.18.04.1 [3,193 kB]
+2018-11-20 13:30:51.35		CPU 22.3% RAM 52.8% HDD 80%
+2018-11-20 13:30:51.587		Get:7 http://us.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libmysqlclient20 amd64 5.7.24-0ubuntu0.18.04.1 [817 kB]
+2018-11-20 13:30:51.646		Get:8 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 libgdal20 amd64 2.2.3+dfsg-2 [5,099 kB]
+2018-11-20 13:30:51.668		CPU 22.3% RAM 52.9% HDD 80%
+2018-11-20 13:30:51.993		CPU 22.3% RAM 52.8% HDD 80%
+2018-11-20 13:30:52.31		CPU 22.4% RAM 52.9% HDD 80%
+2018-11-20 13:30:52.44		Get:9 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 libmysqlcppconn7v5 amd64 1.1.9-1 [173 kB]
+2018-11-20 13:30:52.449		Get:10 http://us.archive.ubuntu.com/ubuntu bionic-updates/main amd64 mysql-client all 5.7.24-0ubuntu0.18.04.1 [9,828 B]
+2018-11-20 13:30:52.45		Get:11 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 mysql-sandbox all 3.2.05-1 [105 kB]
+2018-11-20 13:30:52.458		Get:12 http://us.archive.ubuntu.com/ubuntu bionic-updates/main amd64 mysql-server all 5.7.24-0ubuntu0.18.04.1 [9,948 B]
+2018-11-20 13:30:52.458		Get:13 http://us.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 mysql-source-5.7 amd64 5.7.24-0ubuntu0.18.04.1 [49.1 MB]
+2018-11-20 13:30:52.622		CPU 22.4% RAM 52.9% HDD 81%
+2018-11-20 13:30:52.917		CPU 22.4% RAM 52.9% HDD 81%
+2018-11-20 13:30:53.2		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:53.481		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:53.768		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:54.053		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:54.341		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:54.648		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:54.954		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:55.252		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:55.553		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:55.856		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:56.145		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:56.431		CPU 22.3% RAM 52.9% HDD 81%
+2018-11-20 13:30:56.719		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:30:57.006		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:30:57.294		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:30:57.587		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:30:57.892		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:30:58.204		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:30:58.513		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:30:58.62		Get:14 http://us.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 mysql-testsuite-5.7 amd64 5.7.24-0ubuntu0.18.04.1 [22.8 MB]
+2018-11-20 13:30:58.823		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:30:59.127		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:30:59.43		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:30:59.744		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:31:00.055		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:31:00.369		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:31:00.74		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:31:01.057		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:31:01.245		Get:15 http://us.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 mysql-testsuite all 5.7.24-0ubuntu0.18.04.1 [9,804 B]
+2018-11-20 13:31:01.245		Get:16 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 mysql-utilities all 1.6.4-1 [461 kB]
+2018-11-20 13:31:01.275		Get:17 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 mysql-workbench-data all 6.3.8+dfsg-1build3 [1,281 kB]
+2018-11-20 13:31:01.363		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:31:01.406		Get:18 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 mysql-workbench amd64 6.3.8+dfsg-1build3 [8,628 kB]
+2018-11-20 13:31:01.678		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:31:01.981		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:31:02.293		CPU 22.3% RAM 53.0% HDD 81%
+2018-11-20 13:31:02.385		Get:19 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 mysqltcl amd64 3.052-2 [33.8 kB]
+2018-11-20 13:31:02.388		Get:20 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 mysqltuner all 1.7.2-1 [107 kB]
+2018-11-20 13:31:02.599		CPU 22.3% RAM 53.3% HDD 81%
+2018-11-20 13:31:02.936		CPU 22.3% RAM 53.1% HDD 81%
+2018-11-20 13:31:03.265		CPU 22.3% RAM 53.3% HDD 81%
+2018-11-20 13:31:03.557		Preconfiguring packages ...
+2018-11-20 13:31:03.645		CPU 22.3% RAM 53.3% HDD 81%
+2018-11-20 13:31:03.892		Fetched 109 MB in 14s (8,045 kB/s)
+2018-11-20 13:31:04.035		CPU 22.3% RAM 53.1% HDD 81%
+2018-11-20 13:31:04.049		Selecting previously unselected package mysql-common.
+2018-11-20 13:31:04.05		(Reading database ... 
+2018-11-20 13:31:04.067		(Reading database ... 5%
+2018-11-20 13:31:04.067		(Reading database ... 10%
+2018-11-20 13:31:04.067		(Reading database ... 15%
+2018-11-20 13:31:04.067		(Reading database ... 20%
+2018-11-20 13:31:04.069		(Reading database ... 25%
+2018-11-20 13:31:04.069		(Reading database ... 30%
+2018-11-20 13:31:04.069		(Reading database ... 35%
+2018-11-20 13:31:04.069		(Reading database ... 40%
+2018-11-20 13:31:04.069		(Reading database ... 45%
+2018-11-20 13:31:04.07		(Reading database ... 50%
+2018-11-20 13:31:04.08		(Reading database ... 55%
+2018-11-20 13:31:04.129		(Reading database ... 60%
+2018-11-20 13:31:04.143		(Reading database ... 65%
+2018-11-20 13:31:04.163		(Reading database ... 70%
+2018-11-20 13:31:04.168		(Reading database ... 75%
+2018-11-20 13:31:04.174		(Reading database ... 80%
+2018-11-20 13:31:04.178		(Reading database ... 85%
+2018-11-20 13:31:04.196		(Reading database ... 90%
+2018-11-20 13:31:04.234		(Reading database ... 95%
+2018-11-20 13:31:04.31		(Reading database ... 100%
+2018-11-20 13:31:04.31		(Reading database ... 216778 files and directories currently installed.)
+2018-11-20 13:31:04.337		Preparing to unpack .../mysql-common_5.8+1.0.4_all.deb ...
+2018-11-20 13:31:04.368		Unpacking mysql-common (5.8+1.0.4) ...
+2018-11-20 13:31:04.378		CPU 22.3% RAM 54.0% HDD 81%
+2018-11-20 13:31:04.429		Selecting previously unselected package mysql-client-core-5.7.
+2018-11-20 13:31:04.467		Preparing to unpack .../mysql-client-core-5.7_5.7.24-0ubuntu0.18.04.1_amd64.deb ...
+2018-11-20 13:31:04.47		Unpacking mysql-client-core-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:04.743		CPU 22.3% RAM 54.1% HDD 81%
+2018-11-20 13:31:05.075		CPU 22.3% RAM 54.2% HDD 81%
+2018-11-20 13:31:05.416		CPU 22.3% RAM 54.2% HDD 81%
+2018-11-20 13:31:05.762		CPU 22.4% RAM 54.2% HDD 81%
+2018-11-20 13:31:06.091		CPU 22.4% RAM 54.2% HDD 81%
+2018-11-20 13:31:06.295		Selecting previously unselected package mysql-client-5.7.
+2018-11-20 13:31:06.329		Preparing to unpack .../mysql-client-5.7_5.7.24-0ubuntu0.18.04.1_amd64.deb ...
+2018-11-20 13:31:06.332		Unpacking mysql-client-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:06.439		CPU 22.4% RAM 54.0% HDD 81%
+2018-11-20 13:31:06.785		CPU 22.4% RAM 54.2% HDD 81%
+2018-11-20 13:31:07.129		CPU 22.4% RAM 54.2% HDD 81%
+2018-11-20 13:31:07.226		Selecting previously unselected package mysql-server-core-5.7.
+2018-11-20 13:31:07.268		Preparing to unpack .../mysql-server-core-5.7_5.7.24-0ubuntu0.18.04.1_amd64.deb ...
+2018-11-20 13:31:07.276		Unpacking mysql-server-core-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:07.543		CPU 22.4% RAM 54.1% HDD 81%
+2018-11-20 13:31:07.883		CPU 22.4% RAM 54.2% HDD 81%
+2018-11-20 13:31:08.233		CPU 22.4% RAM 54.2% HDD 81%
+2018-11-20 13:31:08.599		CPU 22.4% RAM 54.2% HDD 81%
+2018-11-20 13:31:08.946		CPU 22.4% RAM 54.2% HDD 81%
+2018-11-20 13:31:09.286		CPU 22.4% RAM 54.0% HDD 81%
+2018-11-20 13:31:09.329		Selecting previously unselected package libevent-core-2.1-6:amd64.
+2018-11-20 13:31:09.366		Preparing to unpack .../libevent-core-2.1-6_2.1.8-stable-4build1_amd64.deb ...
+2018-11-20 13:31:09.37		Unpacking libevent-core-2.1-6:amd64 (2.1.8-stable-4build1) ...
+2018-11-20 13:31:09.583		Setting up mysql-common (5.8+1.0.4) ...
+2018-11-20 13:31:09.621		CPU 22.4% RAM 53.2% HDD 81%
+2018-11-20 13:31:09.634		update-alternatives: warning: alternative /etc/mysql/mysql.cnf (part of link group my.cnf) doesn't exist; removing from list of alternatives
+2018-11-20 13:31:09.635		update-alternatives: warning: /etc/alternatives/my.cnf is dangling; it will be updated with best choice
+2018-11-20 13:31:09.635		update-alternatives: using /etc/mysql/my.cnf.fallback to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+2018-11-20 13:31:09.802		Selecting previously unselected package mysql-server-5.7.
+2018-11-20 13:31:09.802		(Reading database ... 
+2018-11-20 13:31:09.82		(Reading database ... 5%
+2018-11-20 13:31:09.82		(Reading database ... 10%
+2018-11-20 13:31:09.821		(Reading database ... 15%
+2018-11-20 13:31:09.821		(Reading database ... 20%
+2018-11-20 13:31:09.821		(Reading database ... 25%
+2018-11-20 13:31:09.821		(Reading database ... 30%
+2018-11-20 13:31:09.822		(Reading database ... 35%
+2018-11-20 13:31:09.822		(Reading database ... 40%
+2018-11-20 13:31:09.822		(Reading database ... 45%
+2018-11-20 13:31:09.822		(Reading database ... 50%
+2018-11-20 13:31:09.835		(Reading database ... 55%
+2018-11-20 13:31:09.866		(Reading database ... 60%
+2018-11-20 13:31:09.881		(Reading database ... 65%
+2018-11-20 13:31:09.904		(Reading database ... 70%
+2018-11-20 13:31:09.909		(Reading database ... 75%
+2018-11-20 13:31:09.914		(Reading database ... 80%
+2018-11-20 13:31:09.92		(Reading database ... 85%
+2018-11-20 13:31:09.931		(Reading database ... 90%
+2018-11-20 13:31:09.949		CPU 22.4% RAM 53.7% HDD 81%
+2018-11-20 13:31:09.965		(Reading database ... 95%
+2018-11-20 13:31:10.025		(Reading database ... 100%
+2018-11-20 13:31:10.025		(Reading database ... 216939 files and directories currently installed.)
+2018-11-20 13:31:10.043		Preparing to unpack .../00-mysql-server-5.7_5.7.24-0ubuntu0.18.04.1_amd64.deb ...
+2018-11-20 13:31:10.291		CPU 22.4% RAM 54.3% HDD 81%
+2018-11-20 13:31:10.411		Unpacking mysql-server-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:10.658		CPU 22.4% RAM 54.1% HDD 81%
+2018-11-20 13:31:10.984		CPU 22.4% RAM 54.2% HDD 82%
+2018-11-20 13:31:11.305		CPU 22.4% RAM 54.2% HDD 82%
+2018-11-20 13:31:11.454		Selecting previously unselected package libmysqlclient20:amd64.
+2018-11-20 13:31:11.487		Preparing to unpack .../01-libmysqlclient20_5.7.24-0ubuntu0.18.04.1_amd64.deb ...
+2018-11-20 13:31:11.491		Unpacking libmysqlclient20:amd64 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:11.643		CPU 22.4% RAM 54.1% HDD 82%
+2018-11-20 13:31:11.809		Selecting previously unselected package libgdal20.
+2018-11-20 13:31:11.841		Preparing to unpack .../02-libgdal20_2.2.3+dfsg-2_amd64.deb ...
+2018-11-20 13:31:11.843		Unpacking libgdal20 (2.2.3+dfsg-2) ...
+2018-11-20 13:31:11.976		CPU 22.4% RAM 54.1% HDD 82%
+2018-11-20 13:31:12.363		CPU 22.4% RAM 54.2% HDD 82%
+2018-11-20 13:31:12.708		CPU 22.4% RAM 54.4% HDD 82%
+2018-11-20 13:31:13.046		CPU 22.4% RAM 54.5% HDD 82%
+2018-11-20 13:31:13.147		Selecting previously unselected package libmysqlcppconn7v5:amd64.
+2018-11-20 13:31:13.185		Preparing to unpack .../03-libmysqlcppconn7v5_1.1.9-1_amd64.deb ...
+2018-11-20 13:31:13.19		Unpacking libmysqlcppconn7v5:amd64 (1.1.9-1) ...
+2018-11-20 13:31:13.31		Selecting previously unselected package mysql-client.
+2018-11-20 13:31:13.361		Preparing to unpack .../04-mysql-client_5.7.24-0ubuntu0.18.04.1_all.deb ...
+2018-11-20 13:31:13.368		Unpacking mysql-client (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:13.399		CPU 22.5% RAM 54.3% HDD 82%
+2018-11-20 13:31:13.445		Selecting previously unselected package mysql-sandbox.
+2018-11-20 13:31:13.506		Preparing to unpack .../05-mysql-sandbox_3.2.05-1_all.deb ...
+2018-11-20 13:31:13.513		Unpacking mysql-sandbox (3.2.05-1) ...
+2018-11-20 13:31:13.63		Selecting previously unselected package mysql-server.
+2018-11-20 13:31:13.674		Preparing to unpack .../06-mysql-server_5.7.24-0ubuntu0.18.04.1_all.deb ...
+2018-11-20 13:31:13.842		CPU 22.5% RAM 55.8% HDD 82%
+2018-11-20 13:31:13.983		Unpacking mysql-server (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:14.038		Selecting previously unselected package mysql-source-5.7.
+2018-11-20 13:31:14.075		Preparing to unpack .../07-mysql-source-5.7_5.7.24-0ubuntu0.18.04.1_amd64.deb ...
+2018-11-20 13:31:14.078		Unpacking mysql-source-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:14.207		CPU 22.5% RAM 55.9% HDD 82%
+2018-11-20 13:31:14.665		CPU 22.5% RAM 56.0% HDD 82%
+2018-11-20 13:31:15.008		CPU 22.5% RAM 55.8% HDD 82%
+2018-11-20 13:31:15.353		CPU 22.5% RAM 55.8% HDD 82%
+2018-11-20 13:31:15.693		CPU 22.5% RAM 55.8% HDD 82%
+2018-11-20 13:31:16.043		CPU 22.5% RAM 55.9% HDD 82%
+2018-11-20 13:31:16.408		CPU 22.6% RAM 57.0% HDD 82%
+2018-11-20 13:31:16.802		CPU 22.6% RAM 57.3% HDD 82%
+2018-11-20 13:31:17.145		CPU 22.6% RAM 57.3% HDD 82%
+2018-11-20 13:31:17.525		CPU 22.6% RAM 57.3% HDD 82%
+2018-11-20 13:31:17.906		CPU 22.6% RAM 57.4% HDD 82%
+2018-11-20 13:31:18.262		CPU 22.6% RAM 57.4% HDD 82%
+2018-11-20 13:31:18.597		CPU 22.6% RAM 53.9% HDD 82%
+2018-11-20 13:31:18.845		Selecting previously unselected package mysql-testsuite-5.7.
+2018-11-20 13:31:18.876		Preparing to unpack .../08-mysql-testsuite-5.7_5.7.24-0ubuntu0.18.04.1_amd64.deb ...
+2018-11-20 13:31:18.878		Unpacking mysql-testsuite-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:18.944		CPU 22.6% RAM 54.0% HDD 82%
+2018-11-20 13:31:19.302		CPU 22.6% RAM 54.1% HDD 82%
+2018-11-20 13:31:19.659		CPU 22.6% RAM 54.1% HDD 82%
+2018-11-20 13:31:19.99		CPU 22.6% RAM 54.1% HDD 82%
+2018-11-20 13:31:20.322		CPU 22.6% RAM 54.1% HDD 82%
+2018-11-20 13:31:20.643		CPU 22.6% RAM 54.1% HDD 82%
+2018-11-20 13:31:20.975		CPU 22.6% RAM 54.1% HDD 82%
+2018-11-20 13:31:21.31		CPU 22.6% RAM 54.1% HDD 82%
+2018-11-20 13:31:21.641		CPU 22.6% RAM 54.1% HDD 82%
+2018-11-20 13:31:21.98		CPU 22.6% RAM 54.1% HDD 82%
+2018-11-20 13:31:22.325		CPU 22.7% RAM 54.1% HDD 82%
+2018-11-20 13:31:22.653		CPU 22.7% RAM 54.2% HDD 82%
+2018-11-20 13:31:23.006		CPU 22.7% RAM 54.2% HDD 82%
+2018-11-20 13:31:23.319		CPU 22.7% RAM 54.2% HDD 82%
+2018-11-20 13:31:23.635		CPU 22.7% RAM 54.2% HDD 83%
+2018-11-20 13:31:23.946		CPU 22.7% RAM 54.2% HDD 83%
+2018-11-20 13:31:24.259		CPU 22.7% RAM 54.2% HDD 83%
+2018-11-20 13:31:24.574		CPU 22.7% RAM 54.2% HDD 83%
+2018-11-20 13:31:24.897		CPU 22.7% RAM 54.2% HDD 83%
+2018-11-20 13:31:25.256		CPU 22.7% RAM 54.2% HDD 83%
+2018-11-20 13:31:25.597		CPU 22.7% RAM 54.2% HDD 83%
+2018-11-20 13:31:25.913		CPU 22.7% RAM 54.2% HDD 83%
+2018-11-20 13:31:26.257		CPU 22.7% RAM 54.2% HDD 83%
+2018-11-20 13:31:26.594		CPU 22.7% RAM 54.2% HDD 83%
+2018-11-20 13:31:26.922		CPU 22.7% RAM 54.2% HDD 83%
+2018-11-20 13:31:27.247		CPU 22.7% RAM 54.3% HDD 83%
+2018-11-20 13:31:27.564		CPU 22.7% RAM 54.3% HDD 83%
+2018-11-20 13:31:27.887		CPU 22.7% RAM 54.3% HDD 83%
+2018-11-20 13:31:28.202		CPU 22.7% RAM 54.3% HDD 83%
+2018-11-20 13:31:28.521		CPU 22.7% RAM 54.3% HDD 83%
+2018-11-20 13:31:28.867		CPU 22.7% RAM 54.3% HDD 83%
+2018-11-20 13:31:29.201		CPU 22.7% RAM 54.3% HDD 84%
+2018-11-20 13:31:29.582		CPU 22.7% RAM 54.1% HDD 84%
+2018-11-20 13:31:29.916		CPU 22.7% RAM 54.1% HDD 84%
+2018-11-20 13:31:30.221		Selecting previously unselected package mysql-testsuite.
+2018-11-20 13:31:30.244		CPU 22.7% RAM 54.1% HDD 84%
+2018-11-20 13:31:30.264		Preparing to unpack .../09-mysql-testsuite_5.7.24-0ubuntu0.18.04.1_all.deb ...
+2018-11-20 13:31:30.267		Unpacking mysql-testsuite (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:30.312		Selecting previously unselected package mysql-utilities.
+2018-11-20 13:31:30.338		Preparing to unpack .../10-mysql-utilities_1.6.4-1_all.deb ...
+2018-11-20 13:31:30.364		Unpacking mysql-utilities (1.6.4-1) ...
+2018-11-20 13:31:30.528		Selecting previously unselected package mysql-workbench-data.
+2018-11-20 13:31:30.563		Preparing to unpack .../11-mysql-workbench-data_6.3.8+dfsg-1build3_all.deb ...
+2018-11-20 13:31:30.565		Unpacking mysql-workbench-data (6.3.8+dfsg-1build3) ...
+2018-11-20 13:31:30.586		CPU 22.7% RAM 54.1% HDD 84%
+2018-11-20 13:31:30.928		CPU 22.8% RAM 54.2% HDD 84%
+2018-11-20 13:31:31.194		Selecting previously unselected package mysql-workbench.
+2018-11-20 13:31:31.227		Preparing to unpack .../12-mysql-workbench_6.3.8+dfsg-1build3_amd64.deb ...
+2018-11-20 13:31:31.229		Unpacking mysql-workbench (6.3.8+dfsg-1build3) ...
+2018-11-20 13:31:31.261		CPU 22.8% RAM 54.2% HDD 84%
+2018-11-20 13:31:31.605		CPU 22.8% RAM 54.3% HDD 84%
+2018-11-20 13:31:31.948		CPU 22.8% RAM 54.3% HDD 84%
+2018-11-20 13:31:32.305		CPU 22.8% RAM 54.4% HDD 84%
+2018-11-20 13:31:32.63		CPU 22.8% RAM 54.4% HDD 84%
+2018-11-20 13:31:32.977		CPU 22.8% RAM 54.4% HDD 84%
+2018-11-20 13:31:33.322		CPU 22.8% RAM 54.4% HDD 84%
+2018-11-20 13:31:33.646		CPU 22.8% RAM 54.4% HDD 84%
+2018-11-20 13:31:33.98		CPU 22.8% RAM 54.2% HDD 84%
+2018-11-20 13:31:34.026		Selecting previously unselected package mysqltcl.
+2018-11-20 13:31:34.059		Preparing to unpack .../13-mysqltcl_3.052-2_amd64.deb ...
+2018-11-20 13:31:34.061		Unpacking mysqltcl (3.052-2) ...
+2018-11-20 13:31:34.119		Selecting previously unselected package mysqltuner.
+2018-11-20 13:31:34.151		Preparing to unpack .../14-mysqltuner_1.7.2-1_all.deb ...
+2018-11-20 13:31:34.153		Unpacking mysqltuner (1.7.2-1) ...
+2018-11-20 13:31:34.301		CPU 22.8% RAM 53.2% HDD 84%
+2018-11-20 13:31:34.309		Setting up mysqltuner (1.7.2-1) ...
+2018-11-20 13:31:34.316		Setting up libevent-core-2.1-6:amd64 (2.1.8-stable-4build1) ...
+2018-11-20 13:31:34.322		Processing triggers for mime-support (3.60ubuntu1) ...
+2018-11-20 13:31:34.623		CPU 22.8% RAM 53.2% HDD 84%
+2018-11-20 13:31:34.636		Processing triggers for ureadahead (0.100.0-20) ...
+2018-11-20 13:31:34.911		Processing triggers for desktop-file-utils (0.23-1ubuntu3.18.04.1) ...
+2018-11-20 13:31:34.957		Setting up mysql-server-core-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:34.962		CPU 22.8% RAM 53.2% HDD 84%
+2018-11-20 13:31:34.962		Setting up mysql-source-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:34.968		Setting up mysql-sandbox (3.2.05-1) ...
+2018-11-20 13:31:34.974		Setting up mysql-utilities (1.6.4-1) ...
+2018-11-20 13:31:35.274		CPU 22.8% RAM 53.4% HDD 84%
+2018-11-20 13:31:35.434		Processing triggers for libc-bin (2.27-3ubuntu1) ...
+2018-11-20 13:31:35.513		Processing triggers for systemd (237-3ubuntu10.9) ...
+2018-11-20 13:31:35.597		CPU 22.8% RAM 53.2% HDD 84%
+2018-11-20 13:31:35.947		Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+2018-11-20 13:31:36.148		CPU 22.8% RAM 53.3% HDD 84%
+2018-11-20 13:31:36.506		CPU 22.8% RAM 53.3% HDD 84%
+2018-11-20 13:31:36.87		CPU 22.8% RAM 53.3% HDD 84%
+2018-11-20 13:31:37.215		CPU 22.8% RAM 53.3% HDD 84%
+2018-11-20 13:31:37.558		CPU 22.9% RAM 53.3% HDD 84%
+2018-11-20 13:31:37.899		CPU 22.9% RAM 53.3% HDD 84%
+2018-11-20 13:31:38.235		CPU 22.9% RAM 53.3% HDD 84%
+2018-11-20 13:31:38.576		CPU 22.9% RAM 53.3% HDD 84%
+2018-11-20 13:31:38.914		CPU 22.9% RAM 53.3% HDD 84%
+2018-11-20 13:31:39.241		CPU 22.9% RAM 53.3% HDD 84%
+2018-11-20 13:31:39.621		CPU 22.9% RAM 53.3% HDD 84%
+2018-11-20 13:31:39.983		CPU 22.9% RAM 53.3% HDD 84%
+2018-11-20 13:31:40.327		CPU 22.9% RAM 53.3% HDD 84%
+2018-11-20 13:31:40.739		CPU 22.9% RAM 53.3% HDD 84%
+2018-11-20 13:31:41.095		CPU 22.9% RAM 53.3% HDD 84%
+2018-11-20 13:31:41.254		Processing triggers for shared-mime-info (1.9-2) ...
+2018-11-20 13:31:41.421		CPU 23% RAM 53.6% HDD 84%
+2018-11-20 13:31:41.765		CPU 23% RAM 54.3% HDD 84%
+2018-11-20 13:31:42.143		CPU 23% RAM 54.5% HDD 84%
+2018-11-20 13:31:42.5		CPU 23% RAM 54.5% HDD 84%
+2018-11-20 13:31:42.827		CPU 23% RAM 54.5% HDD 84%
+2018-11-20 13:31:43.103		Setting up libmysqlclient20:amd64 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:43.111		Processing triggers for gnome-menus (3.13.3-11ubuntu1.1) ...
+2018-11-20 13:31:43.114		Setting up mysql-client-core-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:43.119		Processing triggers for hicolor-icon-theme (0.17-2) ...
+2018-11-20 13:31:43.137		CPU 23% RAM 53.3% HDD 84%
+2018-11-20 13:31:43.168		Setting up mysql-workbench-data (6.3.8+dfsg-1build3) ...
+2018-11-20 13:31:43.174		Setting up libgdal20 (2.2.3+dfsg-2) ...
+2018-11-20 13:31:43.181		Setting up libmysqlcppconn7v5:amd64 (1.1.9-1) ...
+2018-11-20 13:31:43.188		Setting up mysqltcl (3.052-2) ...
+2018-11-20 13:31:43.195		Setting up mysql-workbench (6.3.8+dfsg-1build3) ...
+2018-11-20 13:31:43.472		CPU 23% RAM 53.5% HDD 84%
+2018-11-20 13:31:43.799		CPU 23% RAM 53.6% HDD 84%
+2018-11-20 13:31:44.112		CPU 23% RAM 53.6% HDD 84%
+2018-11-20 13:31:44.168		Setting up mysql-client-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:44.173		Setting up mysql-client (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:44.177		Setting up mysql-server-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:44.463		CPU 23% RAM 53.5% HDD 84%
+2018-11-20 13:31:45.013		update-alternatives: using /etc/mysql/mysql.cnf to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+2018-11-20 13:31:45.069		Renaming removed key_buffer and myisam-recover options (if present)
+2018-11-20 13:31:45.089		CPU 23% RAM 53.7% HDD 84%
+2018-11-20 13:31:45.415		CPU 23% RAM 53.9% HDD 85%
+2018-11-20 13:31:45.777		CPU 23% RAM 54.0% HDD 85%
+2018-11-20 13:31:46.11		CPU 23% RAM 54.1% HDD 85%
+2018-11-20 13:31:46.418		CPU 23% RAM 54.2% HDD 85%
+2018-11-20 13:31:46.725		CPU 23% RAM 54.3% HDD 85%
+2018-11-20 13:31:47.02		CPU 23% RAM 54.3% HDD 85%
+2018-11-20 13:31:47.321		CPU 23% RAM 54.3% HDD 85%
+2018-11-20 13:31:47.632		CPU 23% RAM 54.3% HDD 85%
+2018-11-20 13:31:47.931		CPU 23% RAM 54.3% HDD 85%
+2018-11-20 13:31:48.232		CPU 23% RAM 54.3% HDD 85%
+2018-11-20 13:31:48.533		CPU 23% RAM 54.3% HDD 85%
+2018-11-20 13:31:48.845		CPU 23% RAM 54.3% HDD 85%
+2018-11-20 13:31:49.143		CPU 23% RAM 54.3% HDD 85%
+2018-11-20 13:31:49.442		CPU 23% RAM 54.3% HDD 85%
+2018-11-20 13:31:49.755		CPU 23% RAM 54.3% HDD 85%
+2018-11-20 13:31:50.058		CPU 23% RAM 53.6% HDD 85%
+2018-11-20 13:31:50.381		CPU 23% RAM 55.7% HDD 85%
+2018-11-20 13:31:50.688		CPU 23% RAM 57.2% HDD 85%
+2018-11-20 13:31:50.986		CPU 23% RAM 57.1% HDD 85%
+2018-11-20 13:31:51.288		CPU 23% RAM 57.1% HDD 85%
+2018-11-20 13:31:51.585		CPU 23% RAM 57.1% HDD 85%
+2018-11-20 13:31:51.884		CPU 22.9% RAM 57.1% HDD 85%
+2018-11-20 13:31:52.183		CPU 22.9% RAM 57.1% HDD 85%
+2018-11-20 13:31:52.484		CPU 22.9% RAM 53.6% HDD 85%
+2018-11-20 13:31:52.802		CPU 22.9% RAM 53.6% HDD 85%
+2018-11-20 13:31:53.105		CPU 22.9% RAM 54.2% HDD 85%
+2018-11-20 13:31:53.423		CPU 22.9% RAM 57.1% HDD 85%
+2018-11-20 13:31:53.721		CPU 22.9% RAM 57.1% HDD 85%
+2018-11-20 13:31:54.017		CPU 22.9% RAM 57.1% HDD 85%
+2018-11-20 13:31:54.316		CPU 22.9% RAM 57.1% HDD 85%
+2018-11-20 13:31:54.614		CPU 22.9% RAM 57.1% HDD 85%
+2018-11-20 13:31:54.932		CPU 22.9% RAM 57.1% HDD 85%
+2018-11-20 13:31:55.025		AppArmor parser error for /etc/apparmor.d/usr.sbin.mysqld in /etc/apparmor.d/usr.sbin.mysqld at line 9: Could not open 'abstractions/mysql'
+2018-11-20 13:31:55.214		Created symlink /etc/systemd/system/multi-user.target.wants/mysql.service → /lib/systemd/system/mysql.service.
+2018-11-20 13:31:55.241		CPU 22.9% RAM 53.8% HDD 85%
+2018-11-20 13:31:55.662		CPU 22.9% RAM 53.7% HDD 85%
+2018-11-20 13:31:56.218		CPU 22.9% RAM 53.7% HDD 85%
+2018-11-20 13:31:56.445		Setting up mysql-server (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:56.45		Setting up mysql-testsuite-5.7 (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:56.455		Setting up mysql-testsuite (5.7.24-0ubuntu0.18.04.1) ...
+2018-11-20 13:31:56.46		Processing triggers for libc-bin (2.27-3ubuntu1) ...
+2018-11-20 13:31:56.513		Processing triggers for systemd (237-3ubuntu10.9) ...
+2018-11-20 13:31:56.522		CPU 22.9% RAM 56.9% HDD 85%
+2018-11-20 13:31:56.783		Processing triggers for ureadahead (0.100.0-20) ...
+2018-11-20 13:31:56.973		CPU 22.9% RAM 57.0% HDD 85%
+2018-11-20 13:31:57.278		CPU 22.9% RAM 57.9% HDD 85%
+2018-11-20 13:31:57.603		CPU 23% RAM 56.8% HDD 85%
+2018-11-20 13:31:57.933		CPU 23% RAM 57.1% HDD 85%
+2018-11-20 13:31:58.24		CPU 23% RAM 57.4% HDD 85%
+2018-11-20 13:31:58.555		CPU 23% RAM 57.4% HDD 85%
+2018-11-20 13:31:58.886		CPU 23% RAM 57.4% HDD 85%
+2018-11-20 13:31:59.201		CPU 23% RAM 57.4% HDD 85%
+2018-11-20 13:31:59.525		CPU 23% RAM 57.5% HDD 85%
+2018-11-20 13:31:59.834		CPU 23% RAM 57.8% HDD 85%
+2018-11-20 13:32:00.137		CPU 23% RAM 57.8% HDD 85%
+2018-11-20 13:32:00.44		CPU 23% RAM 56.2% HDD 85%
+2018-11-20 13:32:00.549		Reading package lists...
+2018-11-20 13:32:00.743		CPU 23% RAM 56.6% HDD 85%
+2018-11-20 13:32:01.005		Building dependency tree...
+2018-11-20 13:32:01.006		Reading state information...
+2018-11-20 13:32:01.065		CPU 23% RAM 56.6% HDD 85%
+2018-11-20 13:32:01.374		CPU 23% RAM 56.6% HDD 85%
+2018-11-20 13:32:01.469		0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+2018-11-20 13:32:01.478		mysql  Ver 14.14 Distrib 5.7.24, for Linux (x86_64) using  EditLine wrapper
+2018-11-20 13:32:01.478	Starting MySQL
+2018-11-20 13:32:01.68		CPU 23% RAM 56.2% HDD 85%
+2018-11-20 13:32:02.444		CPU 23% RAM 56.2% HDD 85%
+2018-11-20 13:32:02.467	Stopping MySQL
+2018-11-20 13:32:03.481		CPU 23% RAM 56.2% HDD 85%
+2018-11-20 13:32:03.781		CPU 23% RAM 56.2% HDD 85%
+2018-11-20 13:32:04.08		CPU 23% RAM 56.2% HDD 85%
+2018-11-20 13:32:04.376		CPU 23% RAM 56.2% HDD 85%
+2018-11-20 13:32:04.679		CPU 23% RAM 56.2% HDD 85%
+2018-11-20 13:32:04.969		CPU 23% RAM 56.2% HDD 85%
+2018-11-20 13:32:05.263		CPU 23% RAM 56.2% HDD 85%
+2018-11-20 13:32:05.367	Uninstalling MySQL
+2018-11-20 13:32:05.567		CPU 23% RAM 52.8% HDD 85%
+2018-11-20 13:32:05.864		CPU 23% RAM 52.8% HDD 85%
+2018-11-20 13:32:06.163		CPU 23% RAM 52.8% HDD 85%
+2018-11-20 13:32:06.458		CPU 23% RAM 52.8% HDD 85%
+2018-11-20 13:32:06.762		CPU 23% RAM 52.8% HDD 85%
+2018-11-20 13:32:07.07		CPU 23% RAM 52.8% HDD 85%
+2018-11-20 13:32:07.373		CPU 23% RAM 52.8% HDD 85%
+2018-11-20 13:32:07.656		CPU 23% RAM 52.8% HDD 85%
+2018-11-20 13:32:07.937		CPU 23% RAM 52.8% HDD 85%
+2018-11-20 13:32:08.223		CPU 23% RAM 52.8% HDD 85%
+2018-11-20 13:32:08.506		CPU 22.9% RAM 52.8% HDD 85%
+2018-11-20 13:32:08.794		CPU 22.9% RAM 52.8% HDD 85%
+2018-11-20 13:32:09.082		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:09.372		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:09.654		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:09.934		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:10.215		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:10.507		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:10.804		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:11.107		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:11.409		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:11.71		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:12.006		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:12.302		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:12.598		CPU 22.9% RAM 52.9% HDD 85%
+2018-11-20 13:32:12.898		CPU 22.9% RAM 53.3% HDD 85%
+2018-11-20 13:32:13.203		CPU 22.9% RAM 53.3% HDD 85%
+2018-11-20 13:32:13.521		CPU 22.9% RAM 53.3% HDD 85%
+2018-11-20 13:32:13.833		CPU 22.9% RAM 53.3% HDD 85%
+2018-11-20 13:32:14.132		CPU 22.9% RAM 53.8% HDD 85%
+2018-11-20 13:32:14.433		CPU 22.9% RAM 53.5% HDD 85%
+2018-11-20 13:32:14.738		CPU 22.9% RAM 53.9% HDD 85%
+2018-11-20 13:32:15.058		CPU 22.9% RAM 54.5% HDD 84%
+2018-11-20 13:32:15.36		CPU 22.9% RAM 54.5% HDD 84%
+2018-11-20 13:32:15.695		CPU 22.9% RAM 54.5% HDD 84%
+2018-11-20 13:32:16.009		CPU 22.9% RAM 54.5% HDD 83%
+2018-11-20 13:32:16.309		CPU 23% RAM 54.8% HDD 83%
+2018-11-20 13:32:16.617		CPU 23% RAM 54.8% HDD 82%
+2018-11-20 13:32:17.107		CPU 23% RAM 55.1% HDD 82%
+2018-11-20 13:32:17.467		CPU 23% RAM 54.6% HDD 82%
+2018-11-20 13:32:17.772		CPU 23% RAM 54.7% HDD 81%
+2018-11-20 13:32:18.071		CPU 23% RAM 53.7% HDD 81%
+2018-11-20 13:32:18.397		CPU 23% RAM 53.7% HDD 81%
+2018-11-20 13:32:18.707		CPU 23% RAM 53.8% HDD 81%
+2018-11-20 13:32:19.014		CPU 23% RAM 53.7% HDD 81%
+2018-11-20 13:32:19.325		CPU 23% RAM 53.7% HDD 81%
+2018-11-20 13:32:19.639		CPU 23% RAM 53.7% HDD 81%
+2018-11-20 13:32:19.955		CPU 23% RAM 53.7% HDD 81%
+2018-11-20 13:32:20.264		CPU 23% RAM 53.7% HDD 81%
+2018-11-20 13:32:20.587		CPU 23% RAM 53.7% HDD 81%
+2018-11-20 13:32:20.908		CPU 23% RAM 53.8% HDD 81%
+2018-11-20 13:32:21.232		CPU 23% RAM 53.8% HDD 81%
+2018-11-20 13:32:21.553		CPU 23% RAM 53.8% HDD 81%
+2018-11-20 13:32:21.869		CPU 23% RAM 53.8% HDD 81%
+2018-11-20 13:32:22.172		CPU 23% RAM 54.5% HDD 81%
+2018-11-20 13:32:22.478		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:22.787		CPU 23.1% RAM 54.9% HDD 81%
+2018-11-20 13:32:23.073		CPU 23.1% RAM 55.0% HDD 81%
+2018-11-20 13:32:23.358		CPU 23.1% RAM 54.3% HDD 81%
+2018-11-20 13:32:23.652		CPU 23.1% RAM 54.8% HDD 81%
+2018-11-20 13:32:23.934		CPU 23.1% RAM 54.8% HDD 81%
+2018-11-20 13:32:24.215		CPU 23% RAM 54.8% HDD 81%
+2018-11-20 13:32:24.504		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:24.802		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:25.112		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:25.409		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:25.712		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:26.014		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:26.316		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:26.617		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:26.914		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:27.214		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:27.503		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:27.785		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:28.068		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:28.349		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:28.633		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:28.915		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:29.207		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:29.504		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:29.8		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:30.098		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:30.41		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:30.705		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:30.988		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:31.269		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:31.549		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:31.833		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:32.118		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:32.416		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:32.713		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:33.01		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:33.307		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:33.603		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:33.892		CPU 23% RAM 54.9% HDD 81%
+2018-11-20 13:32:34.173		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:34.454		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:34.735		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:35.016		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:35.304		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:35.6		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:35.896		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:36.199		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:36.514		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:36.803		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:37.085		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:37.367		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:37.649		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:37.933		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:38.217		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:38.518		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:38.831		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:39.128		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:39.436		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:39.74		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:40.03		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:40.31		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:40.589		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:40.871		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:41.156		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:41.446		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:41.742		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:42.04		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:32:42.338		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:42.638		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:42.935		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:43.214		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:43.495		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:43.776		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:44.056		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:44.336		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:44.624		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:44.923		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:45.219		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:45.521		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:45.818		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:46.107		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:46.39		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:46.67		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:46.952		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:47.236		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:47.515		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:47.818		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:48.122		CPU 22.8% RAM 54.9% HDD 81%
+2018-11-20 13:32:48.42		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:32:48.716		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:32:49.013		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:32:49.302		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:32:49.584		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:32:49.865		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:32:50.146		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:32:50.428		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:32:50.717		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:51.017		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:51.32		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:51.628		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:51.939		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:52.239		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:52.523		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:52.815		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:53.096		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:53.379		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:53.661		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:53.953		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:54.252		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:54.555		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:54.855		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:55.176		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:55.47		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:55.754		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:56.044		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:56.329		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:56.611		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:56.894		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:57.195		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:57.493		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:57.799		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:58.097		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:58.4		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:58.685		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:58.969		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:59.254		CPU 22.7% RAM 55.0% HDD 81%
+2018-11-20 13:32:59.538		CPU 22.7% RAM 55.1% HDD 81%
+2018-11-20 13:32:59.988		CPU 22.7% RAM 55.1% HDD 81%
+2018-11-20 13:33:00.291		CPU 22.7% RAM 55.2% HDD 81%
+2018-11-20 13:33:00.632		CPU 22.7% RAM 53.9% HDD 81%
+2018-11-20 13:33:00.937		CPU 22.7% RAM 53.9% HDD 81%
+2018-11-20 13:33:01.257		CPU 22.7% RAM 53.8% HDD 81%
+2018-11-20 13:33:01.572		CPU 22.7% RAM 53.8% HDD 81%
+2018-11-20 13:33:01.873		CPU 22.7% RAM 54.0% HDD 81%
+2018-11-20 13:33:02.172		CPU 22.7% RAM 54.3% HDD 81%
+2018-11-20 13:33:02.476		CPU 22.7% RAM 54.4% HDD 81%
+2018-11-20 13:33:02.774		CPU 22.7% RAM 54.4% HDD 81%
+2018-11-20 13:33:03.08		CPU 22.7% RAM 54.7% HDD 81%
+2018-11-20 13:33:03.365		CPU 22.7% RAM 54.7% HDD 81%
+2018-11-20 13:33:03.657		CPU 22.7% RAM 53.1% HDD 80%
+2018-11-20 13:33:03.955		CPU 22.7% RAM 53.3% HDD 80%
+2018-11-20 13:33:04.244		CPU 22.7% RAM 53.7% HDD 80%
+2018-11-20 13:33:04.543		CPU 22.7% RAM 53.9% HDD 80%
+2018-11-20 13:33:04.871		CPU 22.7% RAM 54.1% HDD 80%
+2018-11-20 13:33:05.178		CPU 22.7% RAM 54.3% HDD 80%
+2018-11-20 13:33:05.482		CPU 22.7% RAM 54.3% HDD 80%
+2018-11-20 13:33:05.572		Reading package lists...
+2018-11-20 13:33:05.783		CPU 22.7% RAM 54.6% HDD 80%
+2018-11-20 13:33:06.09		CPU 22.7% RAM 54.6% HDD 80%
+2018-11-20 13:33:06.092		Building dependency tree...
+2018-11-20 13:33:06.093		Reading state information...
+2018-11-20 13:33:06.399		CPU 22.7% RAM 54.6% HDD 80%
+2018-11-20 13:33:06.564		The following packages will be REMOVED:
+2018-11-20 13:33:06.565		  libevent-core-2.1-6*
+2018-11-20 13:33:06.707		CPU 22.7% RAM 55.0% HDD 80%
+2018-11-20 13:33:07.012		CPU 22.7% RAM 54.7% HDD 80%
+2018-11-20 13:33:07.317		CPU 22.7% RAM 54.8% HDD 80%
+2018-11-20 13:33:07.356		0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+2018-11-20 13:33:07.356		After this operation, 251 kB disk space will be freed.
+2018-11-20 13:33:07.409		(Reading database ... 
+2018-11-20 13:33:07.418		(Reading database ... 5%
+2018-11-20 13:33:07.418		(Reading database ... 10%
+2018-11-20 13:33:07.418		(Reading database ... 15%
+2018-11-20 13:33:07.419		(Reading database ... 20%
+2018-11-20 13:33:07.419		(Reading database ... 25%
+2018-11-20 13:33:07.419		(Reading database ... 30%
+2018-11-20 13:33:07.419		(Reading database ... 35%
+2018-11-20 13:33:07.419		(Reading database ... 40%
+2018-11-20 13:33:07.419		(Reading database ... 45%
+2018-11-20 13:33:07.419		(Reading database ... 50%
+2018-11-20 13:33:07.427		(Reading database ... 55%
+2018-11-20 13:33:07.448		(Reading database ... 60%
+2018-11-20 13:33:07.456		(Reading database ... 65%
+2018-11-20 13:33:07.468		(Reading database ... 70%
+2018-11-20 13:33:07.472		(Reading database ... 75%
+2018-11-20 13:33:07.476		(Reading database ... 80%
+2018-11-20 13:33:07.48		(Reading database ... 85%
+2018-11-20 13:33:07.49		(Reading database ... 90%
+2018-11-20 13:33:07.514		(Reading database ... 95%
+2018-11-20 13:33:07.554		(Reading database ... 100%
+2018-11-20 13:33:07.554		(Reading database ... 216780 files and directories currently installed.)
+2018-11-20 13:33:07.566		Removing libevent-core-2.1-6:amd64 (2.1.8-stable-4build1) ...
+2018-11-20 13:33:07.621		CPU 22.7% RAM 54.7% HDD 80%
+2018-11-20 13:33:07.668		Processing triggers for libc-bin (2.27-3ubuntu1) ...
+2018-11-20 13:33:07.912		CPU 22.7% RAM 54.8% HDD 80%
+2018-11-20 13:33:08.203		CPU 22.7% RAM 55.0% HDD 80%
+2018-11-20 13:33:08.489		CPU 22.7% RAM 55.4% HDD 80%
+2018-11-20 13:33:08.773		CPU 22.7% RAM 55.4% HDD 80%
+2018-11-20 13:33:09.063		CPU 22.7% RAM 55.4% HDD 80%
+2018-11-20 13:33:09.347		CPU 22.7% RAM 55.8% HDD 80%
+2018-11-20 13:33:09.646		CPU 22.7% RAM 55.8% HDD 80%
+2018-11-20 13:33:09.945		CPU 22.7% RAM 53.1% HDD 80%
+2018-11-20 13:33:10.244		CPU 22.7% RAM 53.1% HDD 80%
+2018-11-20 13:33:10.548		CPU 22.7% RAM 53.1% HDD 80%
+2018-11-20 13:33:10.848		CPU 22.7% RAM 53.1% HDD 80%
+2018-11-20 13:33:11.176		CPU 22.8% RAM 53.1% HDD 80%
+2018-11-20 13:33:11.475		CPU 22.8% RAM 53.1% HDD 80%
+2018-11-20 13:33:11.788		CPU 22.8% RAM 53.1% HDD 80%
+2018-11-20 13:33:12.09		CPU 22.8% RAM 53.1% HDD 80%
+2018-11-20 13:33:12.398		CPU 22.8% RAM 53.1% HDD 80%
+2018-11-20 13:33:12.683		CPU 22.8% RAM 53.2% HDD 80%
+2018-11-20 13:33:12.97		CPU 22.8% RAM 53.2% HDD 80%
+2018-11-20 13:33:13.257		CPU 22.8% RAM 53.2% HDD 80%
+2018-11-20 13:33:13.542		CPU 22.8% RAM 53.1% HDD 80%
+2018-11-20 13:33:13.831		CPU 22.8% RAM 53.1% HDD 80%
+2018-11-20 13:33:14.121		CPU 22.8% RAM 53.1% HDD 80%
+2018-11-20 13:33:14.43		CPU 22.8% RAM 53.1% HDD 80%
+2018-11-20 13:33:14.74		CPU 22.8% RAM 53.1% HDD 80%
+2018-11-20 13:33:14.82	Installing PostgresQL
+2018-11-20 13:33:15.04		CPU 22.8% RAM 53.2% HDD 80%
+2018-11-20 13:33:15.338		CPU 22.8% RAM 53.4% HDD 80%
+2018-11-20 13:33:15.637		CPU 22.8% RAM 53.7% HDD 80%
+2018-11-20 13:33:15.944		CPU 22.8% RAM 53.9% HDD 80%
+2018-11-20 13:33:16.255		CPU 22.8% RAM 54.1% HDD 80%
+2018-11-20 13:33:16.558		CPU 22.8% RAM 54.2% HDD 80%
+2018-11-20 13:33:16.868		CPU 22.8% RAM 54.4% HDD 80%
+2018-11-20 13:33:17.146		Reading package lists...
+2018-11-20 13:33:17.159		CPU 22.8% RAM 54.5% HDD 80%
+2018-11-20 13:33:17.445		CPU 22.8% RAM 54.6% HDD 80%
+2018-11-20 13:33:17.458		Building dependency tree...
+2018-11-20 13:33:17.459		Reading state information...
+2018-11-20 13:33:17.731		CPU 22.8% RAM 54.7% HDD 80%
+2018-11-20 13:33:17.742		0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+2018-11-20 13:33:17.894		Reading package lists...
+2018-11-20 13:33:18.014		CPU 22.8% RAM 53.5% HDD 80%
+2018-11-20 13:33:18.176		Building dependency tree...
+2018-11-20 13:33:18.177		Reading state information...
+2018-11-20 13:33:18.297		CPU 22.8% RAM 53.5% HDD 80%
+2018-11-20 13:33:18.451		Suggested packages:
+2018-11-20 13:33:18.451		  postgresql-doc
+2018-11-20 13:33:18.477		The following NEW packages will be installed:
+2018-11-20 13:33:18.477		  postgresql
+2018-11-20 13:33:18.578		CPU 22.8% RAM 53.7% HDD 80%
+2018-11-20 13:33:18.643		0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+2018-11-20 13:33:18.643		Need to get 5,784 B of archives.
+2018-11-20 13:33:18.643		After this operation, 63.5 kB of additional disk space will be used.
+2018-11-20 13:33:18.643		Get:1 http://us.archive.ubuntu.com/ubuntu bionic/main amd64 postgresql all 10+190 [5,784 B]
+2018-11-20 13:33:18.878		CPU 22.8% RAM 54.0% HDD 80%
+2018-11-20 13:33:19.18		CPU 22.8% RAM 53.9% HDD 80%
+2018-11-20 13:33:19.483		CPU 22.8% RAM 53.8% HDD 80%
+2018-11-20 13:33:19.518		Fetched 5,784 B in 0s (39.0 kB/s)
+2018-11-20 13:33:19.576		Selecting previously unselected package postgresql.
+2018-11-20 13:33:19.576		(Reading database ... 
+2018-11-20 13:33:19.589		(Reading database ... 5%
+2018-11-20 13:33:19.589		(Reading database ... 10%
+2018-11-20 13:33:19.589		(Reading database ... 15%
+2018-11-20 13:33:19.589		(Reading database ... 20%
+2018-11-20 13:33:19.589		(Reading database ... 25%
+2018-11-20 13:33:19.589		(Reading database ... 30%
+2018-11-20 13:33:19.589		(Reading database ... 35%
+2018-11-20 13:33:19.589		(Reading database ... 40%
+2018-11-20 13:33:19.589		(Reading database ... 45%
+2018-11-20 13:33:19.589		(Reading database ... 50%
+2018-11-20 13:33:19.598		(Reading database ... 55%
+2018-11-20 13:33:19.619		(Reading database ... 60%
+2018-11-20 13:33:19.627		(Reading database ... 65%
+2018-11-20 13:33:19.641		(Reading database ... 70%
+2018-11-20 13:33:19.643		(Reading database ... 75%
+2018-11-20 13:33:19.647		(Reading database ... 80%
+2018-11-20 13:33:19.651		(Reading database ... 85%
+2018-11-20 13:33:19.659		(Reading database ... 90%
+2018-11-20 13:33:19.684		(Reading database ... 95%
+2018-11-20 13:33:19.727		(Reading database ... 100%
+2018-11-20 13:33:19.727		(Reading database ... 216778 files and directories currently installed.)
+2018-11-20 13:33:19.741		Preparing to unpack .../postgresql_10+190_all.deb ...
+2018-11-20 13:33:19.745		Unpacking postgresql (10+190) ...
+2018-11-20 13:33:19.795		CPU 22.8% RAM 54.7% HDD 80%
+2018-11-20 13:33:19.856		Setting up postgresql (10+190) ...
+2018-11-20 13:33:20.094		CPU 22.8% RAM 54.6% HDD 80%
+2018-11-20 13:33:20.41		CPU 22.8% RAM 53.8% HDD 80%
+2018-11-20 13:33:20.711		CPU 22.8% RAM 54.0% HDD 80%
+2018-11-20 13:33:21.014		CPU 22.8% RAM 54.3% HDD 80%
+2018-11-20 13:33:21.319		CPU 22.8% RAM 54.3% HDD 80%
+2018-11-20 13:33:21.623		CPU 22.8% RAM 54.4% HDD 80%
+2018-11-20 13:33:21.909		CPU 22.8% RAM 54.7% HDD 80%
+2018-11-20 13:33:22.193		CPU 22.8% RAM 54.8% HDD 80%
+2018-11-20 13:33:22.433		Reading package lists...
+2018-11-20 13:33:22.477		CPU 22.8% RAM 53.5% HDD 80%
+2018-11-20 13:33:22.725		Building dependency tree...
+2018-11-20 13:33:22.726		Reading state information...
+2018-11-20 13:33:22.76		CPU 22.8% RAM 53.5% HDD 80%
+2018-11-20 13:33:23.031		0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+2018-11-20 13:33:23.034	Starting PostgresQL
+2018-11-20 13:33:23.043		CPU 22.8% RAM 53.2% HDD 80%
+2018-11-20 13:33:23.863		CPU 22.8% RAM 53.2% HDD 80%
+2018-11-20 13:33:23.87	Stopping PostgresQL
+2018-11-20 13:33:24.757	Uninstalling PostgresQL
+2018-11-20 13:33:24.791		CPU 22.8% RAM 53.2% HDD 80%
+2018-11-20 13:33:24.907		Reading package lists...
+2018-11-20 13:33:25.073		CPU 22.8% RAM 53.5% HDD 80%
+2018-11-20 13:33:25.2		Building dependency tree...
+2018-11-20 13:33:25.2		Reading state information...
+2018-11-20 13:33:25.358		CPU 22.8% RAM 53.6% HDD 80%
+2018-11-20 13:33:25.509		The following packages will be REMOVED:
+2018-11-20 13:33:25.509		  postgresql*
+2018-11-20 13:33:25.653		CPU 22.8% RAM 54.1% HDD 80%
+2018-11-20 13:33:25.935		CPU 22.8% RAM 53.9% HDD 80%
+2018-11-20 13:33:25.997		0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.
+2018-11-20 13:33:25.997		After this operation, 63.5 kB disk space will be freed.
+2018-11-20 13:33:26.032		(Reading database ... 
+2018-11-20 13:33:26.038		(Reading database ... 5%
+2018-11-20 13:33:26.038		(Reading database ... 10%
+2018-11-20 13:33:26.038		(Reading database ... 15%
+2018-11-20 13:33:26.038		(Reading database ... 20%
+2018-11-20 13:33:26.038		(Reading database ... 25%
+2018-11-20 13:33:26.038		(Reading database ... 30%
+2018-11-20 13:33:26.038		(Reading database ... 35%
+2018-11-20 13:33:26.039		(Reading database ... 40%
+2018-11-20 13:33:26.039		(Reading database ... 45%
+2018-11-20 13:33:26.039		(Reading database ... 50%
+2018-11-20 13:33:26.043		(Reading database ... 55%
+2018-11-20 13:33:26.057		(Reading database ... 60%
+2018-11-20 13:33:26.062		(Reading database ... 65%
+2018-11-20 13:33:26.07		(Reading database ... 70%
+2018-11-20 13:33:26.071		(Reading database ... 75%
+2018-11-20 13:33:26.073		(Reading database ... 80%
+2018-11-20 13:33:26.075		(Reading database ... 85%
+2018-11-20 13:33:26.08		(Reading database ... 90%
+2018-11-20 13:33:26.094		(Reading database ... 95%
+2018-11-20 13:33:26.118		(Reading database ... 100%
+2018-11-20 13:33:26.119		(Reading database ... 216778 files and directories currently installed.)
+2018-11-20 13:33:26.127		Removing postgresql (10+190) ...
+2018-11-20 13:33:26.218		CPU 22.8% RAM 53.8% HDD 80%
+2018-11-20 13:33:26.51		CPU 22.9% RAM 54.9% HDD 80%
+2018-11-20 13:33:26.811		CPU 22.9% RAM 54.1% HDD 80%
+2018-11-20 13:33:27.116		CPU 22.9% RAM 54.4% HDD 80%
+2018-11-20 13:33:27.424		CPU 22.9% RAM 54.4% HDD 80%
+2018-11-20 13:33:27.729		CPU 22.9% RAM 54.4% HDD 80%
+2018-11-20 13:33:28.02		CPU 22.9% RAM 54.5% HDD 80%
+2018-11-20 13:33:28.308		CPU 22.9% RAM 54.8% HDD 80%
+2018-11-20 13:33:28.593		CPU 22.9% RAM 54.1% HDD 80%
+2018-11-20 13:33:28.888		CPU 22.9% RAM 53.4% HDD 80%
+2018-11-20 13:33:29.174		CPU 22.9% RAM 53.7% HDD 80%
+2018-11-20 13:33:29.466		CPU 22.9% RAM 54.1% HDD 80%
+2018-11-20 13:33:29.769		CPU 22.9% RAM 54.3% HDD 80%
+2018-11-20 13:33:30.078		CPU 22.9% RAM 54.4% HDD 80%
+2018-11-20 13:33:30.377		CPU 22.9% RAM 54.5% HDD 80%
+2018-11-20 13:33:30.52		Reading package lists...
+2018-11-20 13:33:30.677		CPU 22.9% RAM 54.7% HDD 80%
+2018-11-20 13:33:30.977		CPU 22.9% RAM 54.7% HDD 80%
+2018-11-20 13:33:31.037		Building dependency tree...
+2018-11-20 13:33:31.038		Reading state information...
+2018-11-20 13:33:31.281		CPU 22.9% RAM 54.8% HDD 80%
+2018-11-20 13:33:31.468		0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+2018-11-20 13:33:31.524	Installing MongoDB
+2018-11-20 13:33:31.582		CPU 22.9% RAM 53.2% HDD 80%
+2018-11-20 13:33:31.881		CPU 22.9% RAM 53.4% HDD 80%
+2018-11-20 13:33:32.181		CPU 22.9% RAM 53.6% HDD 80%
+2018-11-20 13:33:32.485		CPU 22.9% RAM 53.9% HDD 80%
+2018-11-20 13:33:32.783		CPU 22.9% RAM 54.1% HDD 80%
+2018-11-20 13:33:33.079		CPU 22.9% RAM 54.4% HDD 80%
+2018-11-20 13:33:33.367		CPU 22.9% RAM 54.5% HDD 80%
+2018-11-20 13:33:33.468		Reading package lists...
+2018-11-20 13:33:33.655		CPU 22.9% RAM 54.8% HDD 80%
+2018-11-20 13:33:33.798		Building dependency tree...
+2018-11-20 13:33:33.799		Reading state information...
+2018-11-20 13:33:33.938		CPU 22.9% RAM 54.8% HDD 80%
+2018-11-20 13:33:34.083		0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+2018-11-20 13:33:34.217		Reading package lists...
+2018-11-20 13:33:34.232		CPU 22.9% RAM 53.5% HDD 80%
+2018-11-20 13:33:34.531		CPU 22.9% RAM 53.7% HDD 80%
+2018-11-20 13:33:34.674		Building dependency tree...
+2018-11-20 13:33:34.674		Reading state information...
+2018-11-20 13:33:34.83		CPU 22.9% RAM 53.7% HDD 80%
+2018-11-20 13:33:35.124		The following NEW packages will be installed:
+2018-11-20 13:33:35.125		  mongodb mongodb-clients mongodb-dev mongodb-server mongodb-server-core
+2018-11-20 13:33:35.133		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:35.276		0 upgraded, 5 newly installed, 0 to remove and 0 not upgraded.
+2018-11-20 13:33:35.276		Need to get 40.5 MB of archives.
+2018-11-20 13:33:35.276		After this operation, 145 MB of additional disk space will be used.
+2018-11-20 13:33:35.276		Get:1 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 mongodb-clients amd64 1:3.6.3-0ubuntu1 [20.2 MB]
+2018-11-20 13:33:35.435		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:35.739		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:36.026		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:36.308		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:36.592		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:36.877		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:37.167		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:37.463		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:37.772		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:38.078		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:38.383		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:38.684		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:38.973		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:39.255		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:39.539		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:39.828		CPU 22.9% RAM 53.8% HDD 80%
+2018-11-20 13:33:40.113		CPU 22.8% RAM 53.8% HDD 80%
+2018-11-20 13:33:40.409		CPU 22.8% RAM 53.9% HDD 80%
+2018-11-20 13:33:40.719		CPU 22.8% RAM 53.8% HDD 80%
+2018-11-20 13:33:40.819		Get:2 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 mongodb-server-core amd64 1:3.6.3-0ubuntu1 [20.3 MB]
+2018-11-20 13:33:41.022		CPU 22.8% RAM 53.9% HDD 80%
+2018-11-20 13:33:41.325		CPU 22.8% RAM 53.8% HDD 80%
+2018-11-20 13:33:41.633		CPU 22.8% RAM 53.8% HDD 80%
+2018-11-20 13:33:41.938		CPU 22.8% RAM 53.8% HDD 80%
+2018-11-20 13:33:42.224		CPU 22.8% RAM 53.8% HDD 80%
+2018-11-20 13:33:42.342		Get:3 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 mongodb-server all 1:3.6.3-0ubuntu1 [12.6 kB]
+2018-11-20 13:33:42.342		Get:4 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 mongodb amd64 1:3.6.3-0ubuntu1 [9,892 B]
+2018-11-20 13:33:42.343		Get:5 http://us.archive.ubuntu.com/ubuntu bionic/universe amd64 mongodb-dev all 2:1.1.2-6ubuntu3 [15.0 kB]
+2018-11-20 13:33:42.51		CPU 22.8% RAM 54.2% HDD 80%
+2018-11-20 13:33:42.792		CPU 22.8% RAM 54.1% HDD 80%
+2018-11-20 13:33:42.879		Fetched 40.5 MB in 7s (5,630 kB/s)
+2018-11-20 13:33:42.922		Selecting previously unselected package mongodb-clients.
+2018-11-20 13:33:42.922		(Reading database ... 
+2018-11-20 13:33:42.928		(Reading database ... 5%
+2018-11-20 13:33:42.928		(Reading database ... 10%
+2018-11-20 13:33:42.928		(Reading database ... 15%
+2018-11-20 13:33:42.928		(Reading database ... 20%
+2018-11-20 13:33:42.928		(Reading database ... 25%
+2018-11-20 13:33:42.928		(Reading database ... 30%
+2018-11-20 13:33:42.928		(Reading database ... 35%
+2018-11-20 13:33:42.928		(Reading database ... 40%
+2018-11-20 13:33:42.928		(Reading database ... 45%
+2018-11-20 13:33:42.928		(Reading database ... 50%
+2018-11-20 13:33:42.933		(Reading database ... 55%
+2018-11-20 13:33:42.945		(Reading database ... 60%
+2018-11-20 13:33:42.95		(Reading database ... 65%
+2018-11-20 13:33:42.959		(Reading database ... 70%
+2018-11-20 13:33:42.96		(Reading database ... 75%
+2018-11-20 13:33:42.962		(Reading database ... 80%
+2018-11-20 13:33:42.964		(Reading database ... 85%
+2018-11-20 13:33:42.969		(Reading database ... 90%
+2018-11-20 13:33:42.983		(Reading database ... 95%
+2018-11-20 13:33:43.01		(Reading database ... 100%
+2018-11-20 13:33:43.01		(Reading database ... 216778 files and directories currently installed.)
+2018-11-20 13:33:43.021		Preparing to unpack .../mongodb-clients_1%3a3.6.3-0ubuntu1_amd64.deb ...
+2018-11-20 13:33:43.022		Unpacking mongodb-clients (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:33:43.078		CPU 22.8% RAM 54.9% HDD 80%
+2018-11-20 13:33:43.361		CPU 22.8% RAM 55.0% HDD 80%
+2018-11-20 13:33:43.668		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:33:43.982		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:33:44.287		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:33:44.612		CPU 22.8% RAM 55.0% HDD 81%
+2018-11-20 13:33:44.918		CPU 22.9% RAM 55.0% HDD 81%
+2018-11-20 13:33:45.227		CPU 22.9% RAM 55.0% HDD 81%
+2018-11-20 13:33:45.528		CPU 22.9% RAM 55.0% HDD 81%
+2018-11-20 13:33:45.828		CPU 22.9% RAM 54.8% HDD 81%
+2018-11-20 13:33:45.909		Selecting previously unselected package mongodb-server-core.
+2018-11-20 13:33:45.932		Preparing to unpack .../mongodb-server-core_1%3a3.6.3-0ubuntu1_amd64.deb ...
+2018-11-20 13:33:45.935		Unpacking mongodb-server-core (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:33:46.13		CPU 22.9% RAM 55.0% HDD 81%
+2018-11-20 13:33:46.444		CPU 22.9% RAM 55.0% HDD 81%
+2018-11-20 13:33:46.74		CPU 22.9% RAM 55.0% HDD 81%
+2018-11-20 13:33:47.029		CPU 22.9% RAM 55.0% HDD 81%
+2018-11-20 13:33:47.321		CPU 22.9% RAM 55.0% HDD 81%
+2018-11-20 13:33:47.613		CPU 22.9% RAM 55.0% HDD 81%
+2018-11-20 13:33:47.896		CPU 22.9% RAM 55.0% HDD 81%
+2018-11-20 13:33:48.192		CPU 22.9% RAM 55.0% HDD 81%
+2018-11-20 13:33:48.499		Selecting previously unselected package mongodb-server.
+2018-11-20 13:33:48.506		CPU 22.9% RAM 54.9% HDD 81%
+2018-11-20 13:33:48.526		Preparing to unpack .../mongodb-server_1%3a3.6.3-0ubuntu1_all.deb ...
+2018-11-20 13:33:48.527		Unpacking mongodb-server (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:33:48.578		Selecting previously unselected package mongodb.
+2018-11-20 13:33:48.604		Preparing to unpack .../mongodb_1%3a3.6.3-0ubuntu1_amd64.deb ...
+2018-11-20 13:33:48.606		Unpacking mongodb (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:33:48.648		Selecting previously unselected package mongodb-dev.
+2018-11-20 13:33:48.672		Preparing to unpack .../mongodb-dev_2%3a1.1.2-6ubuntu3_all.deb ...
+2018-11-20 13:33:48.673		Unpacking mongodb-dev (2:1.1.2-6ubuntu3) ...
+2018-11-20 13:33:48.776		Setting up mongodb-clients (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:33:48.783		Processing triggers for ureadahead (0.100.0-20) ...
+2018-11-20 13:33:48.824		CPU 22.9% RAM 54.0% HDD 81%
+2018-11-20 13:33:48.996		Setting up mongodb-dev (2:1.1.2-6ubuntu3) ...
+2018-11-20 13:33:49.002		Processing triggers for systemd (237-3ubuntu10.9) ...
+2018-11-20 13:33:49.132		CPU 22.9% RAM 54.0% HDD 81%
+2018-11-20 13:33:49.3		Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+2018-11-20 13:33:49.491		CPU 22.9% RAM 54.1% HDD 81%
+2018-11-20 13:33:49.8		CPU 22.9% RAM 54.1% HDD 81%
+2018-11-20 13:33:50.108		CPU 22.9% RAM 54.1% HDD 81%
+2018-11-20 13:33:50.43		CPU 22.9% RAM 54.1% HDD 81%
+2018-11-20 13:33:50.733		CPU 22.9% RAM 54.1% HDD 81%
+2018-11-20 13:33:51.037		CPU 22.9% RAM 54.1% HDD 81%
+2018-11-20 13:33:51.107		Setting up mongodb-server-core (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:33:51.115		Setting up mongodb-server (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:33:51.332		CPU 22.9% RAM 54.1% HDD 81%
+2018-11-20 13:33:51.737		Created symlink /etc/systemd/system/multi-user.target.wants/mongodb.service → /lib/systemd/system/mongodb.service.
+2018-11-20 13:33:51.757		CPU 22.9% RAM 54.3% HDD 81%
+2018-11-20 13:33:51.921		Setting up mongodb (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:33:51.924		Processing triggers for systemd (237-3ubuntu10.9) ...
+2018-11-20 13:33:52.106		CPU 22.9% RAM 54.2% HDD 81%
+2018-11-20 13:33:52.14		Processing triggers for ureadahead (0.100.0-20) ...
+2018-11-20 13:33:52.401		CPU 22.9% RAM 54.6% HDD 83%
+2018-11-20 13:33:52.696		CPU 22.9% RAM 54.7% HDD 83%
+2018-11-20 13:33:53.007		CPU 22.9% RAM 55.3% HDD 83%
+2018-11-20 13:33:53.316		CPU 22.9% RAM 55.3% HDD 83%
+2018-11-20 13:33:53.615		CPU 22.9% RAM 55.3% HDD 83%
+2018-11-20 13:33:53.915		CPU 22.9% RAM 55.3% HDD 83%
+2018-11-20 13:33:54.215		CPU 22.9% RAM 55.7% HDD 83%
+2018-11-20 13:33:54.522		CPU 22.9% RAM 55.7% HDD 83%
+2018-11-20 13:33:54.836		CPU 22.9% RAM 55.7% HDD 83%
+2018-11-20 13:33:55.135		Reading package lists...
+2018-11-20 13:33:55.146		CPU 22.9% RAM 54.4% HDD 83%
+2018-11-20 13:33:55.462		CPU 22.9% RAM 54.5% HDD 83%
+2018-11-20 13:33:55.652		Building dependency tree...
+2018-11-20 13:33:55.653		Reading state information...
+2018-11-20 13:33:55.777		CPU 23% RAM 54.5% HDD 83%
+2018-11-20 13:33:56.085		CPU 23% RAM 54.5% HDD 83%
+2018-11-20 13:33:56.138		0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+2018-11-20 13:33:56.142	Starting MongoDB
+2018-11-20 13:33:57.134		CPU 23% RAM 54.1% HDD 83%
+2018-11-20 13:33:57.18	Stopping MongoDB
+2018-11-20 13:33:58.256		CPU 23% RAM 54.1% HDD 83%
+2018-11-20 13:33:58.286	Uninstalling MongoDB
+2018-11-20 13:33:58.506		Reading package lists...
+2018-11-20 13:33:58.564		CPU 23% RAM 53.7% HDD 83%
+2018-11-20 13:33:58.87		CPU 23% RAM 53.7% HDD 83%
+2018-11-20 13:33:59.009		Building dependency tree...
+2018-11-20 13:33:59.01		Reading state information...
+2018-11-20 13:33:59.17		CPU 23% RAM 53.7% HDD 83%
+2018-11-20 13:33:59.495		The following packages will be REMOVED:
+2018-11-20 13:33:59.497		  mongodb* mongodb-clients* mongodb-dev* mongodb-server* mongodb-server-core*
+2018-11-20 13:33:59.498		CPU 23% RAM 53.9% HDD 83%
+2018-11-20 13:33:59.821		CPU 23% RAM 54.3% HDD 83%
+2018-11-20 13:34:00.148		CPU 23% RAM 54.1% HDD 83%
+2018-11-20 13:34:00.406		0 upgraded, 0 newly installed, 5 to remove and 0 not upgraded.
+2018-11-20 13:34:00.406		After this operation, 145 MB disk space will be freed.
+2018-11-20 13:34:00.461		CPU 23% RAM 54.1% HDD 83%
+2018-11-20 13:34:00.471		(Reading database ... 
+2018-11-20 13:34:00.481		(Reading database ... 5%
+2018-11-20 13:34:00.481		(Reading database ... 10%
+2018-11-20 13:34:00.481		(Reading database ... 15%
+2018-11-20 13:34:00.482		(Reading database ... 20%
+2018-11-20 13:34:00.482		(Reading database ... 25%
+2018-11-20 13:34:00.482		(Reading database ... 30%
+2018-11-20 13:34:00.482		(Reading database ... 35%
+2018-11-20 13:34:00.482		(Reading database ... 40%
+2018-11-20 13:34:00.482		(Reading database ... 45%
+2018-11-20 13:34:00.482		(Reading database ... 50%
+2018-11-20 13:34:00.49		(Reading database ... 55%
+2018-11-20 13:34:00.516		(Reading database ... 60%
+2018-11-20 13:34:00.524		(Reading database ... 65%
+2018-11-20 13:34:00.538		(Reading database ... 70%
+2018-11-20 13:34:00.541		(Reading database ... 75%
+2018-11-20 13:34:00.544		(Reading database ... 80%
+2018-11-20 13:34:00.546		(Reading database ... 85%
+2018-11-20 13:34:00.558		(Reading database ... 90%
+2018-11-20 13:34:00.588		(Reading database ... 95%
+2018-11-20 13:34:00.64		(Reading database ... 100%
+2018-11-20 13:34:00.64		(Reading database ... 216809 files and directories currently installed.)
+2018-11-20 13:34:00.656		Removing mongodb (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:34:00.7		Removing mongodb-server (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:34:00.798		CPU 23% RAM 54.9% HDD 83%
+2018-11-20 13:34:01.247		CPU 23% RAM 54.9% HDD 83%
+2018-11-20 13:34:01.564		CPU 23% RAM 55.1% HDD 83%
+2018-11-20 13:34:01.746		Removing mongodb-clients (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:34:01.801		Removing mongodb-dev (2:1.1.2-6ubuntu3) ...
+2018-11-20 13:34:01.842		Removing mongodb-server-core (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:34:01.896		CPU 23% RAM 54.9% HDD 82%
+2018-11-20 13:34:01.955		Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+2018-11-20 13:34:02.207		CPU 23% RAM 54.1% HDD 82%
+2018-11-20 13:34:02.52		CPU 23.1% RAM 54.1% HDD 82%
+2018-11-20 13:34:02.835		CPU 23.1% RAM 54.1% HDD 82%
+2018-11-20 13:34:03.143		CPU 23.1% RAM 54.1% HDD 82%
+2018-11-20 13:34:03.45		CPU 23.1% RAM 54.1% HDD 82%
+2018-11-20 13:34:03.752		CPU 23.1% RAM 54.1% HDD 82%
+2018-11-20 13:34:04.012		(Reading database ... 
+2018-11-20 13:34:04.02		(Reading database ... 5%
+2018-11-20 13:34:04.02		(Reading database ... 10%
+2018-11-20 13:34:04.02		(Reading database ... 15%
+2018-11-20 13:34:04.02		(Reading database ... 20%
+2018-11-20 13:34:04.02		(Reading database ... 25%
+2018-11-20 13:34:04.02		(Reading database ... 30%
+2018-11-20 13:34:04.02		(Reading database ... 35%
+2018-11-20 13:34:04.02		(Reading database ... 40%
+2018-11-20 13:34:04.02		(Reading database ... 45%
+2018-11-20 13:34:04.02		(Reading database ... 50%
+2018-11-20 13:34:04.025		(Reading database ... 55%
+2018-11-20 13:34:04.043		CPU 23.1% RAM 54.3% HDD 82%
+2018-11-20 13:34:04.043		(Reading database ... 60%
+2018-11-20 13:34:04.05		(Reading database ... 65%
+2018-11-20 13:34:04.061		(Reading database ... 70%
+2018-11-20 13:34:04.063		(Reading database ... 75%
+2018-11-20 13:34:04.066		(Reading database ... 80%
+2018-11-20 13:34:04.068		(Reading database ... 85%
+2018-11-20 13:34:04.074		(Reading database ... 90%
+2018-11-20 13:34:04.094		(Reading database ... 95%
+2018-11-20 13:34:04.132		(Reading database ... 100%
+2018-11-20 13:34:04.132		(Reading database ... 216780 files and directories currently installed.)
+2018-11-20 13:34:04.148		Purging configuration files for mongodb-server (1:3.6.3-0ubuntu1) ...
+2018-11-20 13:34:04.36		CPU 23.1% RAM 55.0% HDD 82%
+2018-11-20 13:34:04.817		CPU 23.1% RAM 55.1% HDD 82%
+2018-11-20 13:34:05.103		dpkg: warning: while removing mongodb-server, directory '/var/log/mongodb' not empty so not removed
+2018-11-20 13:34:05.103		dpkg: warning: while removing mongodb-server, directory '/var/lib/mongodb' not empty so not removed
+2018-11-20 13:34:05.171		Processing triggers for ureadahead (0.100.0-20) ...
+2018-11-20 13:34:05.284		CPU 23.1% RAM 54.1% HDD 82%
+2018-11-20 13:34:05.384		Processing triggers for systemd (237-3ubuntu10.9) ...
+2018-11-20 13:34:05.845		CPU 23.1% RAM 54.0% HDD 82%
+2018-11-20 13:34:06.148		CPU 23.1% RAM 54.0% HDD 82%
+2018-11-20 13:34:06.456		CPU 23.1% RAM 54.2% HDD 82%
+2018-11-20 13:34:06.757		CPU 23.1% RAM 54.6% HDD 82%
+2018-11-20 13:34:07.068		CPU 23.1% RAM 54.6% HDD 82%
+2018-11-20 13:34:07.379		CPU 23.1% RAM 54.6% HDD 82%
+2018-11-20 13:34:07.69		CPU 23.1% RAM 54.6% HDD 82%
+2018-11-20 13:34:07.995		CPU 23.1% RAM 55.0% HDD 82%
+2018-11-20 13:34:08.296		CPU 23.1% RAM 55.0% HDD 82%
+2018-11-20 13:34:08.588		CPU 23.1% RAM 53.4% HDD 82%
+2018-11-20 13:34:08.877		CPU 23.1% RAM 53.6% HDD 81%
+2018-11-20 13:34:09.162		CPU 23.1% RAM 54.0% HDD 81%
+2018-11-20 13:34:09.462		CPU 23.1% RAM 54.3% HDD 81%
+2018-11-20 13:34:09.761		CPU 23.1% RAM 54.5% HDD 81%
+2018-11-20 13:34:10.066		CPU 23.1% RAM 54.6% HDD 81%
+2018-11-20 13:34:10.375		CPU 23.1% RAM 54.7% HDD 81%
+2018-11-20 13:34:10.551		Reading package lists...
+2018-11-20 13:34:10.676		CPU 23.1% RAM 54.9% HDD 82%
+2018-11-20 13:34:11.004		CPU 23.1% RAM 54.9% HDD 82%
+2018-11-20 13:34:11.108		Building dependency tree...
+2018-11-20 13:34:11.109		Reading state information...
+2018-11-20 13:34:11.317		CPU 23.2% RAM 54.9% HDD 82%
+2018-11-20 13:34:11.589		0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+2018-11-20 13:34:11.617	Shutting down

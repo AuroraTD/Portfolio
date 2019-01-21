@@ -20,3 +20,9 @@ Description
     It is not complete.
         - It excludes work (mostly small assignments) that was not under source control and is now difficult to retrieve.
         - It excludes work that I have done for employers, out of concern for intellectual property rights.
+        
+Organization
+
+    Top-level directories are named as "[Course Number]_[Course Name]_[Software Languages and Libraries]".
+    Sub directories are named as "[Assignment Name]_[Software Languages and Libraries]".
+    Files are not further organized, curated, or explained yet.

@@ -1,0 +1,28 @@
+CSC 548     Homework 6, Problem 3 Report
+            Horovod
+
+Authors     attiffan    Aurora Therese Tiffany-Davis
+            ssbehera    Subhendu Sekhar Behera
+            wpmoore2    Wade Patrick Moore
+
+Execution Time (s) - Standard Case
+
+    Lake Size   Pebbles     Iterations      lake.py     lake-horo.py
+    512         40          400             24.1983     129.844 - 129.845
+
+Analysis
+
+    The Horovod implementation takes significantly longer than the original implementation.
+    The difference in the Horovod implementation is that there is an additional
+    boundary exchange (BE), involving N memory copies at every single step of the simulation.
+    The BE is the bottle neck of the overall execution time; Additionally we can say the cost of
+    the BE is O(2*n*i).  Where (2*n) is the size of each buffer, for both send and recv,
+    and (i) is the number of specified iterations (number of times the two buffers are exchanged).
+    The overall cost of the BE(s) depends on two parameters of the problem, as one increases,
+    the cost of the BE grows proportionally. However, as both n and i increase, the cost of the BE
+    grows in the second order. This could have a dramatic impact on overall execution time, and
+    highlights the importance of analyzing the needs of your application carefully before implementing
+    parallelization. As noted repeatedly in the lectures, everything in parallel computing is a
+    trade-off. In this specific case, we see the trade-off for using Horovod is that it is just not
+    worth it on a small scale.  Like MPI, Horovod should be use mainly when the problem can be
+    appropriately divided, ensuring each node is fully utilized.

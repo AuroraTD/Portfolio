@@ -1,0 +1,27 @@
+CSC 548     Homework 5, Problem 3 Report
+
+Authors     attiffan    Aurora Therese Tiffany-Davis
+            ssbehera    Subhendu Sekhar Behera
+            wpmoore2    Wade Patrick Moore
+
+Data Structures Placed in Persistent Memory
+
+    The following items were placed under PERM control.
+    
+    Time Value ("nTime")
+        - This must be checkpointed so that we can restart from the time value of the last checkpoint.
+    
+    Pebble Sizes ("aPebbleSizes")
+        - This must be checkpointed, as specifically required by 
+          https://moodle-courses1819.wolfware.ncsu.edu/mod/forum/discuss.php?d=125780
+          
+    Arrays Used in Simulation Steps ("aEnergyCurrent", "aEnergyOld", "aEnergyNew")
+        - These must be checkpointed because they are altered within the run_cpu while loop
+          which is the heart of the simulation that we wish to be able to restart
+    
+Overhead of Checkpointing
+
+    Running ./lake-perm, uninterrupted, with checkpointing in place, takes 35.535495 seconds.
+    Running ./lake-perm, uninterrupted, with checkpointing suppressed with "//", takes 0.722634 seconds.
+    Therefore the overhead of checkpointing is 34.812861 seconds or 97.9 % of our execution time!
+    

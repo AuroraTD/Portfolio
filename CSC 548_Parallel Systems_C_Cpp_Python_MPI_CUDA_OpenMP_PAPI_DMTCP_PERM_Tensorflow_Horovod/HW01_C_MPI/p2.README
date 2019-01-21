@@ -1,0 +1,280 @@
+CSC 548 - Homework 1, Problem 3 Report
+
+Authors:
+
+attiffan    Aurora Therese Tiffany-Davis
+ssbehera    Subhendu Sekhar Behera
+wpmoore2    Wade Patrick Moore
+
+
+Introduction
+
+  The purpose of this assignment is to parallelize an existing serial program for approximating the
+  derivative associated with a provided input function.  The parallelized solution is accomplished
+  using a message passing interface, specifically the MPI standard implemented in C.  The parallelized
+  solution provides difference strategies for message passing to demonstrate the performance of
+  various designs.  This report will discuss our overall design, and will provide an analysis of the
+  Performance and Accuracy seen while varying five different factors.
+
+
+Design
+
+  Description & Validation of Inputs
+
+    The program is run by providing at least one command line argument, the grid size. The full
+    usage of the program is defined as:
+
+      Usage: prun ./p2 <grid size> [<blocking flag>] [<gather strategy>]
+
+    grid size       - determines how many individual points will be used between the overall range (1-100).
+                      This must be a positive integer.  No default value for this argument, must be provided.
+    blocking flag   - determines whether or not to use blocking calls for exchanging boundary values
+                      between processes.
+                      ‘0’ is used to denote blocking
+                      ‘1’ for non-blocking
+                      By default ‘1’ will be used.
+    gather strategy - determines how to aggregate the final results.  
+                      ‘0’ for MPI_Gatherv
+                      ‘1’ for custom gather code
+                      with either blocking or non-blocking calls
+                      (blocking status determined by previous argument).
+                      By default the value ‘0’ will be used.
+
+    Before performing any calculation, the root process will parse and verify these arguments to
+    ensure proper and sufficient values have been provided.  The remaining processes wait for the
+    input validation status to be broadcasted by the root process.  Once the status has been reported,
+    each individual process either continues to calculate the derivative, or exits properly.  
+    The root process will print usage and error messages to the user.
+
+  Storage of values
+
+    The final output of the program is a *.dat file used by Gnuplot.  This file contains the domain,
+    or x values used based on grid size (X), the values of the specified function evaluated at each
+    x value (Y), and the derivative of said function evaluated at each x value (dY).  To organize
+    our code towards our final goal, we established 3 buffers on every task, for their own range’s
+    X, Y, and dY values.  On the root task, we also establish 3 buffers, for the complete grid
+    range’s X, Y, and dY values.
+
+  Handling Non-Uniform Distribution of Work
+
+    Before calculation of derivative, the grid is divided into as many local grids as the number of
+    Tasks/CPU's for parallel processing.
+    In most of the cases, a non-uniform distribution of grid points would be found where some of the
+    CPU's have an extra grid point to process. To facilitate this, the CPU’s with lower ranks are
+    given the responsibility of processing the extra grid point. Once all the CPU's receive their
+    quota (i.e. grid size / no. of CPU's), each of the remaining grid points (i.e. grid size % no. of
+    CPU's) is added to lower CPU’s (i.e. starting from rank 0) pool of grid points.
+
+    An alternative approach to this could be assigning the (grid size % no. of CPU's) grids to the
+    root CPU. We thought this approach would not be optimal in the case of large grid size and large
+    no. of CPU's. In this case the root CPU does the heavy lifting of processing a huge no. of grid
+    points while other CPU's finish processing and wait for the root CPU to gather their data.
+
+
+  Calculation of Derivative
+
+    Once the local grid points range is decided, the value of f(x) (the function whose derivative is
+    asked) is calculated for each grid point locally. Now, the derivative formula that is used is as
+    follows.
+                    df(x) = [f(x + h) - f(x - h)] / 2h
+
+    In order to be able to calculate the derivative at either boundary of a process's (task's) range,
+    we need the boundary values f(x + 1) and f(x - 1) from neighboring processes (by rank), if any.
+    This is accomplished using the C MPI message transfer APIs as described in the following section.
+
+
+  Boundary Exchange
+
+    The f(x) values at the boundary of each CPU's range are exchanged using two types of MPI send
+    APIs, blocking and non-blocking. The message exchange happens between two CPU's adjacent to each
+    other, i.e. between an odd-numbered CPU and an even-numbered CPU.  The first (root) and last
+    process will have to calculate the boundary value manually (without message passing) provided
+    no neighboring process available.
+
+    Blocking
+
+      The APIs that are used to exchange messages are MPI_Send and MPI_Recv.
+      To avoid any kind of deadlock situations, a four-stage boundary exchange takes place.
+
+      First, the even-numbered CPU's send their left boundary f(x) to their odd-numbered neighbor on
+       the left who is already blocked waiting to receive the value.
+      Second, the odd-numbered CPU sends its right boundary f(x) to its even-numbered neighbor on
+       the right which is on blocked wait.
+      Third, the right boundary value f(x) of even-numbered CPU are sent, and received at the
+       odd-numbered right-side neighbor.
+      Fourth, the left boundary f(x) of the odd-numbered CPU is sent to its left-side even-numbered CPU.
+
+      If the described order is not followed, then there is a high probability of deadlock on MPI-enabled
+      systems where internal buffer is not available.
+
+   Non-Blocking
+
+      The MPI API functions used are MPI_Isend and MPI_Irecv.
+      Each individual process will initiate sending its own boundaries and receiving those required.
+      The process can then calculate the other function values located between each boundary.
+      Before moving forward to calculate the derivative, the process will wait for the boundary
+      exchange to complete.
+      By initiating the exchange first, then allowing calculation of the other Y values before waiting,
+      fully utilizes each CPU.
+
+
+  Results Gathering
+
+    MPI_Gather
+
+      In this results gathering strategy, all tasks participate in a gather operation to send the
+      their respective X, Y, and dY values to the root task.
+      Because we are handling non-uniform distribution of work across tasks, the specific MPI
+      function used is not MPI_Gather, but rather MPI_Gatherv.  This function facilitates the
+      receipt of different result counts from different tasks.
+
+    Manual (Blocking)
+
+      In this results gathering strategy, the root task first copies its own range’s X, Y, and dY
+      values into the final buffers.
+      The root task then performs a blocking receive for every other task’s X, Y, and dY values.
+      The non-root tasks each perform blocking sends for their own range’s X, Y, and dY values.
+      The specific MPI function used is MPI_Ssend, to ensure synchronous behavior regardless of the
+      presence, or handling, of any system buffers.
+
+    Manual (Non-Blocking)
+
+      In this results gathering strategy, the root task first performs a non-blocking receive for
+      every other task’s X, Y, and dY values.
+      The root task then copies its own range’s X, Y, and dY values into the final buffers. This way,
+      the memory copy operation can happen while the root task is waiting for messages from other tasks.
+      The non-root tasks each perform non-blocking sends for their own range’s X, Y, and dY values.
+      The specific MPI function used is MPI_Ssend, to ensure synchronous behavior regardless of the
+      presence, or handling, of any system buffers.
+      Each task, only after all of its sends or receives are started, waits for all of its sends or
+      receives to complete.  In this way, each task’s multiple sends or receives may complete in any
+      order, without introducing unnecessary blocking.
+
+
+  Performance Evaluation
+
+    Introduction
+
+      As directed in the assignment, we compared performance by grid size, boundary exchange strategy,
+      and results gathering strategy.  We also compare performance by quantity of nodes / processors,
+      as this is a point of interest.
+      As also directed in the assignment, we compare accuracy based on grid size, and the input function.  
+      We chose only one comparison function to sin(x), namely x^2, to make the analysis straight-forward.
+      To compare accuracy, we calculated, at each grid point, the absolute value of the difference
+      between the approximated derivative and the actual value of the derivative function,
+      e.g. cos(x) for sin(x).  We then average this error over all grid points.
+      We refer to this as “average error”.
+
+    Standard Mode
+    
+      There are many variables that could affect the runtime and accuracy of our results:
+
+      - Grid Size a.k.a. Number of Slices
+      - Quantity of Nodes / Processors
+      - Boundary Exchange Strategy
+      - Results Gathering Strategy
+      - Input Function
+
+      In order to impose some order (and some limits) on our performance evaluation, we establish a
+      “standard mode” which will be referred to in the following sections.  This mode is defined as:
+
+      - Grid Size = 10,000 grid points a.k.a. number of slices
+      - Quantity of Nodes / Processors = 8 / 32
+      - Boundary Exchange Strategy = Non-Blocking
+      - Results Gathering Strategy = MPI_Gather
+      - Input Function = sin(x)
+
+   - Grid Size
+   
+      Three tests were performed.  Aside from grid size, all tests were run in “standard mode”.
+      
+        Test:
+          * 100
+          * 1,000
+          * 10,000
+        Performance (seconds to complete job):
+          * 0.016729
+          * 0.019507
+          * 0.019599
+        Accuracy (average error):
+          * 0.100505
+          * 0.001035
+          * 0.000010
+          
+    Conclusions: The job took longer for a larger grid size, as might be expected.  The approximation
+    function held true as the average error of the derivative approximation approached zero each
+    time the grid size was increased.
+
+ - Quantity of Nodes / Processors
+
+    Four tests were performed.  Aside from quantity of nodes / processors, all tests were run in standard mode.
+    
+      Test:
+        * 1N / 1P (effectively, a serial program)
+        * 1N / 4P (messages sent only within a node, never between nodes)
+        * 8N / 8P (messages sent only between nodes, never within a node)
+        * 8N / 32P (messages sent both between nodes, and within nodes)
+      Performance (seconds to complete job):
+        * 0.018466
+        * 0.016192
+        * 0.046614
+        * 0.046840
+        
+    Conclusions: The job took longer the more tasks were involved.  This was quite a surprising result.
+    Perhaps the overhead of messaging is not worth it, for the size of the job.  As a sanity check, the
+    test was re-run, this time with a grid size of 1,000,000.  Those results, shown below, were more in
+    line with our expectations.
+
+    Performance (seconds to complete job):
+      * 0.128330
+      * 0.059001
+      * 0.060349
+      * 0.065524
+
+  Boundary Exchange Strategy
+  
+    Two tests were performed.  Aside from boundary exchange strategy, all tests were run in standard mode.
+    
+      Tests:
+        * Blocking
+        * Non-Blocking
+      Performance (seconds to complete job):
+        * 0.042006
+        * 0.015270
+        
+    Conclusions: As expected, the performance was improved by using non-blocking, instead of blocking,
+    messages to exchange boundary values between tasks.
+
+  Results Gathering Strategy
+  
+    Three tests were performed.  Aside from results gathering strategy, all tests were run in standard mode.
+    
+      Tests:
+        * MPI_Gather
+        * Manual blocking gather
+        * Manual non-blocking gather
+      Performance (seconds to complete job):
+        * 0.009233
+        * 0.003078
+        * 0.002791
+        
+    Conclusions: As expected, manual results gathering performance was improved by using non-blocking
+    messages. The relatively poor performance of MPI_Gather was surprising.  Perhaps this method
+    incurs overhead that manual blocking gather does not.
+
+  Input Function
+  
+    Two tests were performed.  Aside from input function, all tests were run in standard mode.
+    
+      Tests:
+        * Input function is x2
+        * Input function is sin(x)
+      Accuracy (average error):
+        * 0.0000005
+        * 0.0000100
+        
+    Conclusions: Some functions are more challenging to approximate the derivative for than others.
+    Our standard input function, sin(x), may be challenging because the slope increases
+    and decreases throughout our grid.  So, depending on step size and value of x, a very misleading
+    approximation can be made.  Our comparison function, x^2, is constantly increasing, providing fewer
+    opportunities for very misleading approximations.

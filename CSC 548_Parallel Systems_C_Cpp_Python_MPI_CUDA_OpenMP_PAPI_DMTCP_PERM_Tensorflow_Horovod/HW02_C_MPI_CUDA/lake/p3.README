@@ -1,0 +1,263 @@
+CSC 548 - Homework 2, Problem 3 Report
+
+Authors:
+
+attiffan    Aurora Therese Tiffany-Davis
+ssbehera    Subhendu Sekhar Behera
+wpmoore2    Wade Patrick Moore
+
+Execution
+
+    Non-MPI, CPU Mode, 5-point approximation
+        The compile flag "__FIVE_POINT" is needed to run in this mode,
+        and this is not included in our Makefile as it was only used during testing of V1
+    
+    Non-MPI, CPU Mode, 9-point approximation
+        srun -N1 -n1 -p opteron -x c[101,102] --pty /bin/bash
+        make -f p3.Makefile lake
+        prun ./lake [lake size] [# pebbles] [duration of simulation in seconds]
+
+    Non-MPI, GPU Mode, 9-point approximation
+        srun -N1 -n1 -p opteron -x c[101,102] --pty /bin/bash
+        make -f p3.Makefile lake
+        prun ./lake [lake size] [# pebbles] [duration of simulation in seconds] [# GPU threads]
+    
+    MPI, CPU Mode, 9-point approximation
+        srun -N4 -n4 -p opteron -x c[101,102] --pty /bin/bash
+        make -f p3.Makefile lake-mpi
+        prun ./lake [lake size] [# pebbles] [duration of simulation in seconds] [# GPU threads]
+
+Testing Parameters
+
+    Number of Pebbles
+        
+        Unofficial testing was done with various numbers of pebbles, 
+        but all specific results reported in this file are with 5 pebbles.
+   
+    Level of Approximation
+    
+        In V2 and after, all tests are with 9-point approximation.
+
+V0 - 5 Point Approximation
+
+    For this phase of the homework, we read, understood, and ran the code.
+    We also added code comments and gave variables more descriptive names, to assist us in our work.
+
+V1 - Nine Point Approximation
+
+    The program was updated so that the calculation included nine neighboring points instead of five.
+    This should in turn improve the accuracy of each point calculated, and potentially induce a slight
+    performance decrease.  The comparison of the two versions of the program, the nine point (v9pt)
+    and the five point (v5pt) was conducted with the following parameters:
+        - Grid sizes (128x128), (256x256), (512x512), and (1024x1024).
+        - Time for v9pt (0.9s)
+        - Time for v5pt (1.0s)
+    The nine point version was provided a slightly smaller end time because our team knew the simulation
+    would evolve faster than the five point.
+
+    Time Results:
+
+       Run ID    Version     Grid Size    CPU Time(s)
+      --------  ---------   -----------  -------------
+         1         9pt          128       0.092531
+         2         5pt          128       0.097873
+
+         3         9pt          256       0.546073
+         4         5pt          256       0.579379
+
+         5         9pt          512       4.693813
+         6         5pt          512       4.836530
+
+         7         9pt          1024      43.186257
+         8         5pt          1024      45.110804
+
+      As predicted, the performance difference between either version is rather negligible.
+      However surprisingly, the time for the nine point calculation was consistently less.
+      We expected to see the nine point version take longer than the five point calculation being
+      there are additional FLOPS. However, we already acknowledged the difference in FLOPS is
+      essentially negligible.  One thought was that the C compiler may be able to better optimize
+      the sequence of operations for the nine point calculation, despite having more operations.
+      Lastly, we also saw that the CPU time increases exponentially with the grid size.
+
+    Plot Results:
+
+      The was a distinct difference between the plots produced by each version of the program.
+      This was related to how the concentric circles created by each pebble converged into a
+      single point.
+      Regardless of the number of points used in the calculation, the converging circles always
+      become more of a square shape, rather than a circle, as the center approaches. As the grid
+      size increases the inner shape becomes a more refined hypoellipse with parabola edges.
+      To ensure a complete circle, the number of points used would need to approach infinity.
+      Furthermore the shape covers a proportionally consistent area of the radius.
+      However, this distinct square emerges at a smaller radius, and covers a smaller area of the
+      circle in the nine point calculation than the five point.
+      
+V2 - Integrating a GPU
+    
+    Run Times
+    
+        We got these results by running all V2 tests and all V4 tests in a batch file, 
+            so that we could compare results from the same ARC nodes (just to be on the safe side).
+
+        Grid size was not extended beyond 1024 for the CPU, 
+            because based on the rate at which job time was increasing with grid size, 
+            we expected such a test to take hours on the CPU.
+            
+        The maximum # threads per axis block in our tests is 32, 
+            because we ran a device query on one of the nodes and saw "Maximum threads per block: 1024".
+    
+        Grid Size   # Threads   Job Time CPU (s)    Job Time GPU (s)    CUDA Time (ms)
+        ---------   ---------   ----------------    ----------------    -------------
+            16           8            0.001705        0.530851               2.108096
+            32           8            0.005300        0.347676               3.006176
+            64           8            0.034214        0.288929              10.423136
+            128          8            0.280690        0.396286              77.145218
+            256          8            2.276646        1.009728             697.541992
+            512          8           19.547899        4.810877            4502.562988
+            1024         8          158.033541       24.222160           23885.476562
+            
+            2048         8          ----------      169.873266          167884.562500
+            1024         16         ----------      171.885059          169846.015625
+            1024         32         ----------      167.831002          165783.812500
+            
+        Analysis:
+            
+            Varying Grid Size
+            
+                As expected, increasing the grid size increases the run time for both the CPU and GPU modes of operation.
+                
+            Varying CPU / GPU Mode
+            
+                GPU run times are better (faster) at grid sizes of 256 and higher.
+                Below this point, the CPU outperforms the GPU, likely due to the extra overhead involved in orchestrating the GPU work.
+                Above this point, the GPU outperforms the CPU more and more as grid size is increased.
+                
+            Varying number of threads per block on the GPU
+            
+                As specified in the assignment, the total number of threads used on the GPU does not actually vary.
+                Rather, only threads per block is varied, while number of blocks adjusts to keep the total number of threads the same.
+                There is no clear trend in either "Job Time GPU" or "CUDA Time" as the number of threads per block is varied.
+                We are using global memory on the GPU.
+                Perhaps a clear trend would emerge, were we using faster shared memory within each block on the GPU.
+                In such a case, it may be expected that as the number of threads per block increases, the run time decreases.
+                
+            GPU Scaling
+            
+                Plotting Grid Size against Job Time for the GPU reveals that Job Time grows faster than Grid Size.
+                That is, this program runs in worse than O(n) time in GPU mode, 
+                    where n is expressed as the number of lake points along one axis.
+                However, the same plotting technique shows that the GPU clearly scales much better than the CPU
+                    (for the smaller grid sizes where CPU testing was feasible).
+                In this context, we find that the GPU scales very well.
+            
+            "Job Time GPU" versus "CUDA Time"
+            
+                "Job Time GPU" is timed on the CPU, in the same way that "Job Time CPU" is timed. 
+                "CUDA Time" is timed on the GPU itself, from before the first GPU-performed memcopy to after the last GPU-performed memcopy.
+                "CUDA Time" is always smaller than "Job Time GPU", which is a nice sanity check.
+                "CUDA Time" is a small portion of "Job Time GPU" for small grid sizes,
+                    and becomes a very large portion of "Job Time GPU" for large grid sizes.
+                At a grid size of 16, "CUDA Time" comprises ~ 0.4 % of "Job Time GPU".
+                At a grid size of 2048 (with 256 threads per block), "CUDA Time" comprises ~ 98.8 % of "Job Time GPU".
+                This trend shows the diminishing impact of the extra overhead involved in orchestrating the GPU work.
+            
+
+V3 - Not Assigned
+    
+V4 - Integrating MPI
+
+    Issues Encountered
+    
+        One of the issues we encountered was the question of how to divide the lake such that 4 nodes could perform part of the work.
+        
+        Our first approach was to split the lake into quadrants.
+            This requires the following boundary exchanges on each time step, at each node:
+                East-West (old energy values)
+                East-West (current energy values)
+                North-South (old energy values)
+                North-South (current energy values)
+                Corner cases (old energy values)
+                Corner cases (current energy values)
+     
+        We decided to change this to an approach where we split the lake into slices, 
+            where task rank 0 handles the bottom slice, and task rank 3 handles the top slice.
+            This requires the following boundary exchanges on each time step, at each node:
+                Top (old energy values)
+                Top (current energy values)
+                Bottom (old energy values)
+                Bottom (current energy values)
+            The corner cases are avoided, which is why we chose this approach.
+                However, there are three complications which this approach brings.
+                    Some boundary exchanges are skipped based on rank (e.g. rank 0 does not need to do a bottom exchange).
+                    The heat map printing needs to account for a non-square array of information.
+                    The allocation of blocks on the GPU, in order to keep 2D blocks and grids,
+                        may for some test scenarios result in some threads sitting idle.
+    
+        Knowing what boundary exchanges will be performed, we next discuss how those exchanges are performed.
+            We could use blocking sends and receives, 
+                since it is the case already that we must complete all exchanges before every time step of the simulation.
+            We could use non-blocking sends and receives instead.
+                This is the approach we chose.
+                Because each node must send up to 4 messages, and receive up to 4 messages, each time step,
+                we were concerned that blocking on every one of these 8 pieces of work would introduce a noticeable delay.
+                Furthermore, we would need to take care not to introduce a deadlock situation.
+                The non-blocking approach takes care of both of these concerns.
+      
+        Next, we discuss how to keep track of boundary exchange information.
+            Each node receives information from neighbor node(s) regarding lake energy at the boundaries.
+            We could keep this received information separate, and refer to it as needed.
+                This introduces the following complexity:
+                    Knowing, during each time step, when to refer to values in the node's lake energy array,
+                    and when to refer instead to the separate boundary exchange buffers.
+            We could make a node's lake energy array large enough to accommodate received boundary values.
+                This introduces the following complexity:
+                    Ensuring that we index appropriately when we only want the node's own lake energy values,
+                    for example when printing a heat map or sending boundary information out to a neighbor.
+            We chose the latter approach.
+            
+        Next, we discuss how to initialize the pebbles and the lake energies.
+            We decided to initialize the pebbles on the root node and scatter this information to all nodes.
+            All nodes then use this information to initialize lake energies in their own section of the lake.
+            This approach reduces communication needed when the program first starts up.
+
+        Finally, we discuss how the GPU code needed to change to accommodate an MPI layer.
+            The GPU code needed changes remove a loop, 
+                so that it could run just one time step of the simulation after each MPI boundary exchange. 
+            The GPU code needed changes to memory allocation and copying, to avoid doing these actions more than was necessary.
+            The GPU code needed changes to the calculation of block dimensions to account for non-square slices of the lake.
+         
+    Run Times  
+    
+        We got these results by running all V2 tests and all V4 tests in a batch file, 
+        so that we could compare results from the same ARC nodes (just to be on the safe side).
+    
+        Here, we repeat the GPU run times gathered in V2 as "Job Time Non-MPI", 
+        and add the GPU run times gathered in V4 as "Job Time MPI".
+        
+        Grid Size   # Threads   Job Time Non-MPI (s)    Job Time MPI (s)
+        ---------   ---------   --------------------    ----------------
+            16            8           0.530851               1.923099
+            32            8           0.347676               1.870989
+            64            8           0.288929               1.888886
+            128           8           0.396286               1.968857
+            256           8           1.009728               2.256432
+            512           8           4.810877               3.951970
+            1024          8          24.222160              13.863795
+            
+            2048          8         169.873266              79.501321
+            2048         16         171.885059              80.409835
+            2048         32         167.831002              80.218564
+            
+        Analysis:
+    
+            As expected, larger grid sizes led to larger run times for the MPI version of the code.
+            
+            We were not surprised to see that "Job Time MPI" exceeded "Job Time Non-MPI" for the smaller grid sizes, 
+                given the overhead of communication.
+                
+            We were surprised to see that at larger grid sizes, "Job Time MPI" was actually smaller than "Job Time Non-MPI"
+                We might have expected that the overhead of communication would continue to be a significant factor in performance.
+                One possibility is that we are simply reaching the limitations of the parallel performance of a single node,
+                since larger grid sizes involve so many calculations.
+            
+            

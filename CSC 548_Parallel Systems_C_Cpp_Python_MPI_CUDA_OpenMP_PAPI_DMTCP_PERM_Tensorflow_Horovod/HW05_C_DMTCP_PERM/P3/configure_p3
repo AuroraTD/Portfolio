@@ -1,0 +1,26 @@
+#!/bin/bash
+
+####################################################################################
+# FILE:         configure_p3
+#
+# AUTHORS:      attiffan    Aurora T. Tiffany-Davis
+#
+# DESCRIPTION:  A script to aid in testing for HW05, Problem 3
+#
+# TO RUN:       srun -N 1 -n 16 -p opteron -x c[53,101,102] --pty /bin/bash
+#               ./configure_p3
+#
+# ISSUES:       Getting this error when running this script:
+#               ./example-perm: error while loading shared libraries: libjemalloc.so.1: cannot open shared object file: No such file or directory
+#               Works fine if you issue each of the commands below manually
+####################################################################################
+
+# Download / Configure / Build PERM per https://pages.github.ncsu.edu/fmuelle/parsys18/hw/hw5/
+
+wget --no-check-certificate https://computation.llnl.gov/projects/memory-centric-architectures/download/perm-je-0.9.7.tgz
+tar xzvf perm-je-0.9.7.tgz
+cd perm-je-0.9.7/
+./configure
+make
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/lib
+cd ..

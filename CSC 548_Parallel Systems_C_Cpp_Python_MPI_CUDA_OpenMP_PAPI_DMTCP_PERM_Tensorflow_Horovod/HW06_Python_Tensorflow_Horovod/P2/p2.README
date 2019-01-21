@@ -1,0 +1,70 @@
+CSC 548     Homework 6, Problem 2 Report
+            Tensorflow
+
+Authors     attiffan    Aurora Therese Tiffany-Davis
+            ssbehera    Subhendu Sekhar Behera
+            wpmoore2    Wade Patrick Moore
+
+Execution Time (s) - Standard Case
+
+    Trial       Lake Size   Pebbles     Iterations      lake.py     lake.o
+    1            512        16          400              10.661      0.536
+
+Execution Time (s) - Vary Lake Size
+
+    Trial       Lake Size   Pebbles     Iterations      lake.py     lake.o
+     2           128        16           400              0.993      0.171
+     3           256        16           400              3.156      0.214
+     x           512        16           400             10.661      0.536
+     4          1024        16           400             37.350      2.583
+     5          2048        16           400            145.322     13.557
+
+Execution Time (s) - Vary Pebbles
+
+    Trial       Lake Size   Pebbles     Iterations      lake.py     lake.o
+     6           512         4           400             10.524      0.878
+     7           512         8           400             10.440      0.652
+     x           512        16           400             10.661      0.536
+     8           512        32           400             10.457      0.575
+     9           512        64           400             10.418      0.561
+
+Execution Time (s) - Vary Iterations
+
+    Trial       Lake Size   Pebbles     Iterations      lake.py     lake.o
+    10           512        16           100              2.628      0.394
+    11           512        16           200              5.250      0.337
+    x            512        16           400             10.661      0.536
+    12           512        16           800             20.906      1.073
+    13           512        16          1600             41.795      2.196
+
+Analysis
+
+    In every scenario tested, lake.py took longer to execute than lake.o.
+    Possible explanations for this:
+        - Tensorflow is optimized for distributed computation,
+            but in this exercise we run on just one compute node with only 16 active cores.
+        - Tensorflow is optimized for GPU assistance, but in this exercise we do not use a GPU.
+            As noted in the assignment, 
+                "Note: Tensorflow can only use a GPU with capability 3.0. 
+                We do not have many of these on the ARC cluster. We will use the GTX480, which is capability 2.0. 
+                This means that Tensorflow will execute on the CPU cores of the node."
+        - The Python programming language is itself is an additional cost compared to lake.o,
+            which is a compiled C binary.  Python is implemented with C as an interpretive language, 
+            therefore each statement must be parsed and converted into machine code during runtime.
+
+    All three input parameters were varied to see what effect this had on execution time.
+        - Lake Size
+            This has the most striking effect on execution time.
+            The execution time of the simulation dominates the overall execution time,
+                and any increase in lake size significantly increases
+                the execution time of every single iteration of the simulation.
+        - Number of Pebbles
+            This has no discernible effect on execution time.
+            The number of pebbles only affects one for loop, which executes prior to the simulation.
+            The number of pebbles would have to be quite large for this for loop's
+                execution time to have a discernible effect on overall execution time.
+        - Number of Iterations
+            This has a roughly linear effect on execution time.
+            The execution time of the simulation dominates the overall execution time,
+                so if you run the simulation for twice as many iterations,
+                you would naturally expect the overall execution time to roughly double.

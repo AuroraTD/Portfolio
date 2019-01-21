@@ -1,0 +1,20 @@
+#!/bin/bash
+
+####################################################################################
+# FILE:         run_p3
+#
+# AUTHORS:      attiffan    Aurora T. Tiffany-Davis
+#
+# DESCRIPTION:  A script to aid in testing for HW04, Problem 3
+#
+# TO RUN:       See setup_p3 directions
+####################################################################################
+
+# Run Lulesh
+mpirun -np 8 -bind-to core ./lulesh 70
+
+# Clean up
+make clean
+
+# Reset CPU Frequency
+sudo cpupower frequency-set -g ondemand

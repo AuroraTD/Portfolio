@@ -1,0 +1,36 @@
+################################################################################
+# FILE:			p1.makefile.debug
+#
+# AUTHORS:		attiffan	Aurora T. Tiffany-Davis
+#				ssbehera	Subhendu S. Behera
+#				wpmoore2	Wade P. Moore
+#
+# DESCRIPTION:	A TEST version of p2.makefile.
+#				See that file for more details.
+################################################################################
+
+p2: p2_mpi.c
+	mpicc -O3 -o p2 p2_mpi.c p2_func.c -lm
+
+p2-debug: p2_mpi.c
+	mpicc -D DEBUG -O3 -o p2 p2_mpi.c p2_func.c -lm
+
+p2-test: p2_mpi.c
+	mpicc -D TEST -O3 -o p2 p2_mpi.c p2_func_test.c -lm
+
+p2-debug-test: p2_mpi.c
+	mpicc -D DEBUG -D TEST -O3 -o p2 p2_mpi.c p2_func_test.c -lm
+
+# Use to compile program with different fucntions.
+# p2_func<number>  which is the number of function file to use>
+p2_func%: p2_mpi.c
+	mpicc -O3 -o p2 p2_mpi.c functions/$@.c -lm
+
+
+# Sync files over to dev directory in arc instance
+push-wpmoore2:
+	scp -r -i ~/.ssh/id_rsa ./* wpmoore2@arc.csc.ncsu.edu:/home/wpmoore2/hw1/p2/
+
+
+clean:
+	rm p2

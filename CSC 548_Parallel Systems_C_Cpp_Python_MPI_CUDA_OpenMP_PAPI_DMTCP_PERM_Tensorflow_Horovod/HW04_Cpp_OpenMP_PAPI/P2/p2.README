@@ -1,0 +1,151 @@
+CSC 548     Homework 4, Problem 2 Report
+
+Authors     attiffan    Aurora Therese Tiffany-Davis
+            ssbehera    Subhendu Sekhar Behera
+            wpmoore2    Wade Patrick Moore
+
+Results
+
+    Measure                 A           B           C           D
+    ----------------        -------     -------     -------     -------
+    Nodes                   1           1           4           4
+    MPI Tasks               8           8           8           8
+    OpenMP Threads          8           8           0           0
+    Bind to Core            y           n           y           n
+    Problem Size            45          45          60          60
+    ----------------        -------     -------     -------     -------
+    Elapsed Time (s)        16          39          37          38
+    Time in MPI (%)         1.77        3.72        1.80        1.88
+    Most Expensive Call     Waitall     Waitall     Waitall     Waitall
+    MEC Time in App (%)     0.85        2.24        1.07        1.11
+    MEC Time in MPI (%)     47.73       60.31       59.36       58.85
+
+Supplemental Results
+
+    MPI Time (seconds)      A           B           C           D
+    ----------------        -------     -------     -------     -------
+    Rank 0                  0.163       0.847       0.600       0.569
+    Rank 1                  0.270       1.330       0.499       0.411
+    Rank 2                  0.267       1.540       0.868       0.871
+    Rank 3                  0.263       1.370       0.704       0.870
+    Rank 4                  0.358       1.700       0.844       0.846
+    Rank 5                  0.362       1.500       0.655       0.839
+    Rank 6                  0.241       1.520       0.564       0.520
+    Rank 7                  0.286       1.730       0.626       0.669
+
+Analysis
+
+    The main variables varied to conduct this analysis were the following. The use of OpenMP
+    multi-threading on a single node, and then a lack of multi-threading on multiple nodes, with a
+    larger problem size. Both cases varied whether or not core-binding thread scheduling was enabled.
+    Use use of MPI was consistent throughout having always had 8 tasks (processors).
+
+    Most Expensive MPI Call
+
+        The most expensive call for every test case was "MPI WaitAll". In hindsight this is an
+        obvious answer given its blocking nature. Provided we used 8 tasks, this introduces the
+        potential to have to wait on 7 other tasks. As the number of tasks increases, the time for the
+        call would likely also increase, more so than any other call.
+
+    Test A versus Test B (Core binding multi-threading vs. default scheduling)
+
+        The only difference between these test cases is that A uses core binding and B does not.
+        A has lower elapsed time, lower time in MPI, and the most expensive MPI call takes up less time.
+        We submit that all of these performance advantages in A can be explained by the use of core
+        binding.  The core-binding specification guarantees that processes will be strictly scheduled on a single
+        core, and therefore all threads will be executed on this core.  In contrast, the default
+        linux or OpenMP mechanism is likely scheduling threads on different cores throughout each process.
+
+        This difference will require frequent context switching between cores as threads are run and
+        joined. The context switch is a costly operation itself, however we also believe that
+        this random scheduling pattern will minimize the benefits of caching.  The different threads
+        if using similar memory regions may be optimized by the processor level caches, especially
+        if threads of the same parallel region are run on the same core.  A single thread may utilize
+        the cache on one core, which could be used by the subsequent thread to leverage locality.
+        However, if the thread was scheduled on a different core, the two are not sharing the same cache,
+        and therefore causing cold misses.  The significant performance difference, over 2x faster
+        for the use of bind-to-core, suggests that the threads used in the LULESH program operate on
+        memory close in locality.
+
+        We believe the bind-to-core specification avoids additional costs from context switching and
+        delayed memory access that is seen with multi-core thread scheduling. This performance
+        difference can be seen by the difference in elapsed time for configurations A and B.
+        Furthermore, the most expensive MPI call, MPI WaitAll, will be potentially waiting on messages
+        from completed parallel regions. This explains the increase in the time spent for MPI WaitAll
+        in B, which has less performant parallel regions than A.
+
+
+    Test C versus Test D
+
+        The only difference between these test cases is that C uses core binding and D does not.
+        However, neither test case uses OpenMP threads - so we would not expect to see an advantage
+        in core binding. Indeed we do not see an advantage - C and D have roughly equal performance
+        measures.
+
+    Test A versus Test C
+
+        These test cases do use core binding.
+        A has a lower problem size, and only 1 compute node (MPI + OpenMP).
+        C has a larger problem size, and multiple compute nodes (MPI Only).
+        A outperforms C significantly in elapsed time. At first glance, this is obviously because of
+        the increase in problem size, which was 33% (45 to 60). However, the elapsed time between
+        respective runs increased 131% (16s to 37s).  We would expect the performance to be
+        inversely proportionate to the problem size. In other words the increase in elapsed time
+        should be proportionate to the increase in problem size; this was not the case.
+        Therefore, we believe more than just increase in problem size contributed to the performance
+        difference between the configurations of A and C. The LULESH program
+        appears to be optimized for multi-threading, because a single node with parallel regions
+        out performs the distributed load without bind-to-core threading.
+
+        We specifically call out the use of bind-to-core multi-threading, an efficient use of OpenMP
+        for this particular problem set.  The difference of not using it is seen below.
+
+    Test B versus Test D
+
+        These test cases do not use core binding.
+        B has a lower problem size, and only 1 compute node (MPI + OpenMP).
+        D has a larger problem size, and multiple compute nodes (MPI Only).
+        B and D have roughly equal performance measures.
+        Because the problem size of D is larger, and the elapsed time was nearly equal, we conclude
+        that the configuration used for D was more optimal than B.  That is the opposite of what was
+        seen above with A versus C.  In this case, the use of multiple nodes without multi-threading
+        was more performant than the single node with OpenMP.  The difference being the lack of
+        specifying "bind-to-core", which was observed as being more efficient if enabled.
+
+        This further emphasizes the importance of using bind-to-core thread scheduling to leverage
+        memory locality within the LULESH program.
+
+    Differences between Ranks
+
+        Parabolic Trend in Cost of MPI versus Task Rank
+
+            The results began to reveal one particular trend in respect to task rank.  The amount
+            of time spent using MPI calls for each task followed a roughly parabolic curve based on the
+            rank number.  The first and last ranks, had the least amount of time reported; while the
+            middle ranks consistently spent the most amount of time in MPI.
+
+            This is reflective of the communication pattern previously observed within the LULESH
+            program. Where the majority of inter-task communication was done between the mid-range
+            ranks.  This pattern implies additional MPI send and recv calls which would contribute
+            to the overall cost of using MPI for a particular task.  Therefore, we conclude this is
+            why the amount of time spent in MPI against the task rank creates a bell curve.  Where
+            the first and last rank numbers are the ends of the curve, and the middle rank is the
+            peak of the curve.
+
+            Of course if the program is only run with a single node, then all inter-task communication
+            will be simply between processors.  Consequently the delay of using MPI send or recv will
+            be decreased.  In this case, the communication pattern used within LULESH will not cause
+            as significant of a trend with elapsed time.  Furthermore, both cases which used a single
+            node (A and B), also used a smaller problem size.  This will result in less number of
+            MPI calls throughout the program providing less data to analyze its proportionate use.
+            Both points explains why this parabolic pattern is seen best by test cases C and D, and
+            less well with A and B.
+
+    Limits to Parallelization
+
+        One major limit of parallelization is dependent on the use of memory and how this effects the
+        use of various caching mechanisms.  Programs which use memory close in locality, can
+        guarantee cache benefits by running synchronously.  This would share the cache, and likely
+        follow the order in which memory is accessed.  If the benefit of using the cache is significant,
+        then parallelizing the program may hurt performance.  The use of distributed resources can
+        eliminate the benefits of locality in a program.

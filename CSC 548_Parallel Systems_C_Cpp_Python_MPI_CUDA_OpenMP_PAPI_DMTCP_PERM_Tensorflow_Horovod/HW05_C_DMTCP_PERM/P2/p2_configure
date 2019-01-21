@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# TO RUN: 
+# sbatch -p opteron -x c[53,101,102] p2_configure
+
+# Configuration per https://pages.github.ncsu.edu/fmuelle/parsys18/hw/hw5/
+srun -popteron --pty /bin/bash
+git clone https://github.com/dmtcp/dmtcp.git
+cd dmtcp
+./configure
+make
+export PATH=$PATH:$PWD/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PWD/lib/dmtcp
+cd ..
+tar xvzf CoMD.tar.gz
+cd CoMD/src-mpi
+make
+cd ../bin

@@ -1,0 +1,343 @@
+nvcc lakegpu.cu lake.cu -o lake -O3 -lm -Wno-deprecated-gpu-targets
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 16 5 1.0
+Running ./lake with -1 threads, with (16 x 16) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.001705 seconds
+Running ./lake with -1 threads, with (16 x 16) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.021815 seconds
+Running ./lake with -1 threads, with (16 x 16) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.021641 seconds
+Running ./lake with -1 threads, with (16 x 16) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.016756 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 32 5 1.0
+Running ./lake with -1 threads, with (32 x 32) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.005300 seconds
+Running ./lake with -1 threads, with (32 x 32) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.006700 seconds
+Running ./lake with -1 threads, with (32 x 32) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.005343 seconds
+Running ./lake with -1 threads, with (32 x 32) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.005326 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 64 5 1.0
+Running ./lake with -1 threads, with (64 x 64) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.034214 seconds
+Running ./lake with -1 threads, with (64 x 64) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.034145 seconds
+Running ./lake with -1 threads, with (64 x 64) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.034123 seconds
+Running ./lake with -1 threads, with (64 x 64) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.034098 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 128 5 1.0
+Running ./lake with -1 threads, with (128 x 128) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.280690 seconds
+Running ./lake with -1 threads, with (128 x 128) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.276446 seconds
+Running ./lake with -1 threads, with (128 x 128) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.277984 seconds
+Running ./lake with -1 threads, with (128 x 128) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 0.276079 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 256 5 1.0
+Running ./lake with -1 threads, with (256 x 256) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 2.276646 seconds
+Running ./lake with -1 threads, with (256 x 256) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 2.280041 seconds
+Running ./lake with -1 threads, with (256 x 256) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 2.286706 seconds
+Running ./lake with -1 threads, with (256 x 256) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 2.279585 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 512 5 1.0
+Running ./lake with -1 threads, with (512 x 512) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 19.547899 seconds
+Running ./lake with -1 threads, with (512 x 512) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 19.557912 seconds
+Running ./lake with -1 threads, with (512 x 512) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 19.579525 seconds
+Running ./lake with -1 threads, with (512 x 512) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 19.609516 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 1024 5 1.0
+Running ./lake with -1 threads, with (1024 x 1024) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 158.033541 seconds
+Running ./lake with -1 threads, with (1024 x 1024) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 158.396778 seconds
+Running ./lake with -1 threads, with (1024 x 1024) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 158.766845 seconds
+Running ./lake with -1 threads, with (1024 x 1024) grid, with 5 pebbles, until 1.000000
+Entire job on CPU took 162.950803 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 16 5 1.0 8
+Running ./lake with 8 threads, with (16 x 16) grid, with 5 pebbles, until 1.000000
+GPU computation: 2.108096 msec
+Entire job on GPU took 0.530851 seconds
+Running ./lake with 8 threads, with (16 x 16) grid, with 5 pebbles, until 1.000000
+GPU computation: 0.000000 msec
+Entire job on GPU took 1.800324 seconds
+Running ./lake with 8 threads, with (16 x 16) grid, with 5 pebbles, until 1.000000
+GPU computation: 2.234208 msec
+Entire job on GPU took 2.128721 seconds
+Running ./lake with 8 threads, with (16 x 16) grid, with 5 pebbles, until 1.000000
+GPU computation: 1.739648 msec
+Entire job on GPU took 2.161687 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 32 5 1.0 8
+Running ./lake with 8 threads, with (32 x 32) grid, with 5 pebbles, until 1.000000
+GPU computation: 3.006176 msec
+Entire job on GPU took 0.347676 seconds
+Running ./lake with 8 threads, with (32 x 32) grid, with 5 pebbles, until 1.000000
+GPU computation: 0.000000 msec
+Entire job on GPU took 1.586178 seconds
+Running ./lake with 8 threads, with (32 x 32) grid, with 5 pebbles, until 1.000000
+GPU computation: 3.175584 msec
+Entire job on GPU took 1.957250 seconds
+Running ./lake with 8 threads, with (32 x 32) grid, with 5 pebbles, until 1.000000
+GPU computation: 3.132832 msec
+Entire job on GPU took 1.959961 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 64 5 1.0 8
+Running ./lake with 8 threads, with (64 x 64) grid, with 5 pebbles, until 1.000000
+GPU computation: 10.423136 msec
+Entire job on GPU took 0.288929 seconds
+Running ./lake with 8 threads, with (64 x 64) grid, with 5 pebbles, until 1.000000
+GPU computation: 0.000000 msec
+Entire job on GPU took 1.628677 seconds
+Running ./lake with 8 threads, with (64 x 64) grid, with 5 pebbles, until 1.000000
+GPU computation: 13.133376 msec
+Entire job on GPU took 1.907221 seconds
+Running ./lake with 8 threads, with (64 x 64) grid, with 5 pebbles, until 1.000000
+GPU computation: 13.302912 msec
+Entire job on GPU took 1.972943 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 128 5 1.0 8
+Running ./lake with 8 threads, with (128 x 128) grid, with 5 pebbles, until 1.000000
+GPU computation: 77.145218 msec
+Entire job on GPU took 0.396286 seconds
+Running ./lake with 8 threads, with (128 x 128) grid, with 5 pebbles, until 1.000000
+GPU computation: 0.000000 msec
+Entire job on GPU took 1.655051 seconds
+Running ./lake with 8 threads, with (128 x 128) grid, with 5 pebbles, until 1.000000
+GPU computation: 63.432735 msec
+Entire job on GPU took 1.972381 seconds
+Running ./lake with 8 threads, with (128 x 128) grid, with 5 pebbles, until 1.000000
+GPU computation: 61.707394 msec
+Entire job on GPU took 2.026054 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 256 5 1.0 8
+Running ./lake with 8 threads, with (256 x 256) grid, with 5 pebbles, until 1.000000
+GPU computation: 697.541992 msec
+Entire job on GPU took 1.009728 seconds
+Running ./lake with 8 threads, with (256 x 256) grid, with 5 pebbles, until 1.000000
+GPU computation: 0.000000 msec
+Entire job on GPU took 1.676914 seconds
+Running ./lake with 8 threads, with (256 x 256) grid, with 5 pebbles, until 1.000000
+GPU computation: 410.769562 msec
+Entire job on GPU took 2.310295 seconds
+Running ./lake with 8 threads, with (256 x 256) grid, with 5 pebbles, until 1.000000
+GPU computation: 494.898773 msec
+Entire job on GPU took 2.409615 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 512 5 1.0 8
+Running ./lake with 8 threads, with (512 x 512) grid, with 5 pebbles, until 1.000000
+GPU computation: 0.000000 msec
+Entire job on GPU took 2.675553 seconds
+Running ./lake with 8 threads, with (512 x 512) grid, with 5 pebbles, until 1.000000
+GPU computation: 4502.562988 msec
+Entire job on GPU took 4.810877 seconds
+Running ./lake with 8 threads, with (512 x 512) grid, with 5 pebbles, until 1.000000
+GPU computation: 3063.587891 msec
+Entire job on GPU took 4.968351 seconds
+Running ./lake with 8 threads, with (512 x 512) grid, with 5 pebbles, until 1.000000
+GPU computation: 3429.619629 msec
+Entire job on GPU took 5.335184 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 1024 5 1.0 8
+Running ./lake with 8 threads, with (1024 x 1024) grid, with 5 pebbles, until 1.000000
+GPU computation: 0.000000 msec
+Entire job on GPU took 6.316687 seconds
+Running ./lake with 8 threads, with (1024 x 1024) grid, with 5 pebbles, until 1.000000
+GPU computation: 23885.476562 msec
+Entire job on GPU took 24.222160 seconds
+Running ./lake with 8 threads, with (1024 x 1024) grid, with 5 pebbles, until 1.000000
+GPU computation: 22430.052734 msec
+Entire job on GPU took 24.339599 seconds
+Running ./lake with 8 threads, with (1024 x 1024) grid, with 5 pebbles, until 1.000000
+GPU computation: 22873.074219 msec
+Entire job on GPU took 24.774756 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 2048 5 1.0 8
+Running ./lake with 8 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 0.000000 msec
+Entire job on GPU took 38.694166 seconds
+Running ./lake with 8 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 167884.562500 msec
+Entire job on GPU took 169.873266 seconds
+Running ./lake with 8 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 181341.671875 msec
+Entire job on GPU took 181.694341 seconds
+Running ./lake with 8 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 231465.000000 msec
+Entire job on GPU took 233.515401 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 2048 5 1.0 16
+Running ./lake with 16 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 0.000000 msec
+Entire job on GPU took 36.888829 seconds
+Running ./lake with 16 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 169846.015625 msec
+Entire job on GPU took 171.885059 seconds
+Running ./lake with 16 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 229618.703125 msec
+Entire job on GPU took 231.636395 seconds
+Running ./lake with 16 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 243466.750000 msec
+Entire job on GPU took 243.892347 seconds
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 2048 5 1.0 32
+Running ./lake with 32 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 0.000000 msec
+Entire job on GPU took 37.239961 seconds
+Running ./lake with 32 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 165783.812500 msec
+Entire job on GPU took 167.831002 seconds
+Running ./lake with 32 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 172110.906250 msec
+Entire job on GPU took 174.069271 seconds
+Running ./lake with 32 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+GPU computation: 231005.640625 msec
+Entire job on GPU took 231.436459 seconds
+rm -f lake *.o
+nvcc -c lakegpu_mpi.cu -O3 -lm -Wno-deprecated-gpu-targets -I/opt/ohpc/pub/mpi/mvapich2-gnu/2.2/include
+nvcc -c lake_mpi.cu -O3 -lm -Wno-deprecated-gpu-targets -I/opt/ohpc/pub/mpi/mvapich2-gnu/2.2/include
+mpicc lakegpu_mpi.o lake_mpi.o -o lake -O3 -lm -L/usr/local/cuda/lib64/ -lcudart
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 16 5 1.0 8
+Running ./lake on 4 nodes with 8 threads, with (16 x 16) grid, with 5 pebbles, until 1.000000
+
+Lake size (points along one axis): 16
+Number of pebbles: 5
+Duration of simulation (s): 1.000000
+Number of GPU threads along one axis of each thread block: 8
+Total job run time (s): 1.923099
+
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 32 5 1.0 8
+Running ./lake on 4 nodes with 8 threads, with (32 x 32) grid, with 5 pebbles, until 1.000000
+
+Lake size (points along one axis): 32
+Number of pebbles: 5
+Duration of simulation (s): 1.000000
+Number of GPU threads along one axis of each thread block: 8
+Total job run time (s): 1.870989
+
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 64 5 1.0 8
+Running ./lake on 4 nodes with 8 threads, with (64 x 64) grid, with 5 pebbles, until 1.000000
+
+Lake size (points along one axis): 64
+Number of pebbles: 5
+Duration of simulation (s): 1.000000
+Number of GPU threads along one axis of each thread block: 8
+Total job run time (s): 1.888886
+
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 128 5 1.0 8
+Running ./lake on 4 nodes with 8 threads, with (128 x 128) grid, with 5 pebbles, until 1.000000
+
+Lake size (points along one axis): 128
+Number of pebbles: 5
+Duration of simulation (s): 1.000000
+Number of GPU threads along one axis of each thread block: 8
+Total job run time (s): 1.968857
+
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 256 5 1.0 8
+Running ./lake on 4 nodes with 8 threads, with (256 x 256) grid, with 5 pebbles, until 1.000000
+
+Lake size (points along one axis): 256
+Number of pebbles: 5
+Duration of simulation (s): 1.000000
+Number of GPU threads along one axis of each thread block: 8
+Total job run time (s): 2.256432
+
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 512 5 1.0 8
+Running ./lake on 4 nodes with 8 threads, with (512 x 512) grid, with 5 pebbles, until 1.000000
+
+Lake size (points along one axis): 512
+Number of pebbles: 5
+Duration of simulation (s): 1.000000
+Number of GPU threads along one axis of each thread block: 8
+Total job run time (s): 3.951970
+
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 1024 5 1.0 8
+Running ./lake on 4 nodes with 8 threads, with (1024 x 1024) grid, with 5 pebbles, until 1.000000
+
+Lake size (points along one axis): 1024
+Number of pebbles: 5
+Duration of simulation (s): 1.000000
+Number of GPU threads along one axis of each thread block: 8
+Total job run time (s): 13.863795
+
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 2048 5 1.0 8
+Running ./lake on 4 nodes with 8 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+
+Lake size (points along one axis): 2048
+Number of pebbles: 5
+Duration of simulation (s): 1.000000
+Number of GPU threads along one axis of each thread block: 8
+Total job run time (s): 79.501321
+
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 2048 5 1.0 16
+Running ./lake on 4 nodes with 16 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+
+Lake size (points along one axis): 2048
+Number of pebbles: 5
+Duration of simulation (s): 1.000000
+Number of GPU threads along one axis of each thread block: 16
+Total job run time (s): 80.409835
+
+[prun] Master compute host = c59
+[prun] Resource manager = slurm
+[prun] Launch cmd = mpiexec.hydra -bootstrap slurm ./lake 2048 5 1.0 32
+Running ./lake on 4 nodes with 32 threads, with (2048 x 2048) grid, with 5 pebbles, until 1.000000
+
+Lake size (points along one axis): 2048
+Number of pebbles: 5
+Duration of simulation (s): 1.000000
+Number of GPU threads along one axis of each thread block: 32
+Total job run time (s): 80.218564
+
+rm -f lake *.o

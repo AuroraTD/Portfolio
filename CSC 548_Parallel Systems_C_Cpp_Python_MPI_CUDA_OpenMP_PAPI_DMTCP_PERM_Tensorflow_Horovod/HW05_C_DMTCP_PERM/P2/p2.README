@@ -1,0 +1,81 @@
+CSC 548     Homework 5, Problem 2 Report
+            DMTCP: Distributed MultiThreaded CheckPointing
+
+Authors     attiffan    Aurora Therese Tiffany-Davis
+            ssbehera    Subhendu Sekhar Behera
+            wpmoore2    Wade Patrick Moore
+            
+Results
+
+    Note "CoMD Execution" is from "Timing Statistics Across 1 Ranks" / "total" / "Avg (s)"
+    
+    Time (s)        Case A      Case B      Case C
+    ----            --------    --------    --------
+    real            139.0590    146.5730    021.2420
+    user            138.5710    144.4980    019.0870
+    sys             000.4320    001.3870    000.2330
+    CoMD Execution  139.0531    146.4679    215.9585
+
+Analysis
+
+    Overhead of Performing One Checkpoint
+    
+        The assignment noted that the code was expected to run for ~53 seconds, yielding 1 checkpoint.
+        However, our results differed.  All three team mates ran the code and we all saw similar times.
+        We had run times indicative of 3 checkpoints (considering that a checkpoint is taken every 40s).
+    
+        Overhead (s)    = (Case B Real Time - Case A Real Time) / # Checkpoints
+                        = (146.5730 - 139.0590) / 3
+                        = 7.514 / 3
+                        = 2.504667
+   
+    Overhead of Performing One Restart
+    
+        As noted above, we had run times indicative of 3 checkpoints.
+        Therefore the last checkpoint was written after 120s of execution.
+        
+        Overhead (s)    = (Case C Real Time + 120) - Case A Real Time
+                        = (21.2420 + 120) - 139.0590
+                        = 141.242 - 139.0590
+                        = 2.183
+                        
+    Comparison of "Real" Times to CoMD Output
+    
+        In Case A, Real is 139.0590, while CoMD Output is 139.0531.
+        In Case B, Real is 146.5730, while CoMD Output is 146.4679.
+        In Case C, Real is 021.2420, while CoMD Output is 215.9585.
+        
+        In Cases A & B, the Real time is just slightly more than the CoMD Output time.
+            CoMD can only measure time based on timers accessed from within its own code.
+            However, the Real time looks at the time from before CoMD started to after it finished.
+            So, it makes sense that this broader time envelope would result in a slightly higher reported run time.
+            
+        In Case C, the results are less obvious.  This is discussed in the section below.
+        
+    Large Execution Time Reported by CoMD for Case C
+    
+        It is likely CoMD is measuring elapsed time by doing something like this:
+            Peek at the system clock at the start of the code, and save that value.
+            Peek at the system clock at the end of the code, and save that value.
+            Comparing and time to start time to calculate elapsed time.
+        CoMD and DMTCP are ignorant of each other:
+            The CoMD code is ignorant of the fact that it is being checkpointed.
+            DMTCP is ignorant of the details of the CoMD code.
+        When CoMD is restarted from a checkpoint:
+            Peek at the system clock at the end of the code, and save that value.
+            Comparing and time to start time to calculate elapsed time.
+            However in this case, "start" time was recorded in the checkpoint, 
+                and not during the current execution of CoMD.
+            We could have restarted from the checkpoint immediately, or after any arbitrary delay.
+            The large the delay, the larger the reported elapsed time from CoMD.
+        We tested this theory by restarting CoMD from the checkpoint again after our discussion.
+            Indeed, we found that the reported elapsed time from CoMD had grown even larger.
+
+    Extra Test
+    
+        We ran another test with checkpointing every 120s, to see what would happen with only one checkpoint.
+        In this case, we saw checkpoint overhead of 4.183 s for 1 checkpoint.
+        Compare this to our normal (checkpointing every 40s) overhead of 7.514 s for 3 checkpoints.
+        We consider it likely that there is some higher cost to creating the first checkpoint, 
+        and additional checkpoints thereafter are "cheaper" (likely due to caching).
+    

@@ -1,0 +1,44 @@
+CSC 548     Homework 4, Problem 3 Report
+
+Authors     attiffan    Aurora Therese Tiffany-Davis
+            ssbehera    Subhendu Sekhar Behera
+            wpmoore2    Wade Patrick Moore
+
+Results
+
+    See plots.png
+    
+Analysis
+    
+    Frequency vs. Power
+        
+        As CPU frequency increases, so does average power consumption.
+        Per https://superuser.com/questions/163567/why-does-the-heat-production-increase-as-the-clockrate-of-a-cpu-increases,
+        P = 1/2*C*V^2*f, showing that power (P) increases linearly with frequency (f).
+        As expected, our results show a very clear straight line upwards with increasing frequency.
+        
+    Frequency vs. Elapsed Time
+    
+        As CPU frequency increases, elapsed time to complete LULESH decreases.
+        This is an expected result, as every core is working faster to perform the calculations needed in the program.
+        
+    Frequency vs. PAPI_RES_STL
+        
+        As CPU frequency increases, so does the PAPI_RES_STL count.
+        PAPI_RES_STL counts cycles stalled on any resource.
+        It makes sense that there will be more cycles stalled on resources, with increased CPU frequency,
+        as (for example) memory access instructions are issued more rapidly, 
+        but memory cannot be returned from distant caches or disk any faster.
+        This situation will lead to cycles which are stalled waiting for memory.
+        This result is just one example of the guidance given in lectures that everything in parallel computing is a tradeoff.
+        With increased CPU frequency, we get lower elapsed time, but a less efficient use of our cores.
+        
+    Frequency vs. PAPI_STL_ICY
+    
+        As CPU frequency increases, so does the PAPI_RES_STL count.
+        PAPI_STL_ICY counts cycles with no instruction issue.
+        It makes sense that there will be more cycles with no instruction issue, with increased CPU frequency,
+        for similar reasons as noted above for PAPI_RES_STL.
+        As increased CPU frequency leads to resource stalls, instruction dependencies will not be satisfied,
+        and eventually we will reach a point when no threads can perform any meaningful work (issue instructions).
+    

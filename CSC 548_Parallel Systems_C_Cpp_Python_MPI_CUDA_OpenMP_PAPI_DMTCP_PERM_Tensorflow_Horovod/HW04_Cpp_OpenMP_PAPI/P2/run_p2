@@ -1,0 +1,49 @@
+#!/bin/bash
+
+####################################################################################
+# FILE:         run_p2
+#
+# AUTHORS:      attiffan    Aurora T. Tiffany-Davis
+#
+# DESCRIPTION:  A script to aid in testing for HW04, Problem 2
+#
+# TO RUN:       A: sbatch -N 1 -n 8 -p opteron -x c[53,101,102] run_p2 A
+#               B: sbatch -N 1 -n 8 -p opteron -x c[53,101,102] run_p2 B
+#               C: sbatch -N 4 -n 8 -p opteron -x c[53,101,102] run_p2 C
+#               D: sbatch -N 4 -n 8 -p opteron -x c[53,101,102] run_p2 D
+####################################################################################
+
+# TEST SCENARIOS
+#       (nodes X,   OpenMP threads T,   MPI tasks P,    Problem Size S)
+# A:    (1,         8,                  8,              45) -- Combination of MPI and OpenMP
+# B:    Same as A but without core binding
+# C:    (4,         0,                  8,              60) -- MPI Only
+# D:    Same as C but without core binding
+
+# A
+if [ $1 == "A" ]; then
+    make MPI_OPENMP
+    export OMP_NUM_THREADS=8
+    mpirun -np 8 -bind-to core ./lulesh 45
+    mv lulesh*.mpiP A.mpiP
+    make clean
+# B
+elif [ $1 == "B" ]; then
+    make MPI_OPENMP
+    export OMP_NUM_THREADS=8
+    mpirun -np 8 ./lulesh 45
+    mv lulesh*.mpiP B.mpiP
+    make clean
+# C
+elif [ $1 == "C" ]; then
+    make MPI_ONLY
+    mpirun -np 8 -bind-to core ./lulesh 60
+    mv lulesh*.mpiP C.mpiP
+    make clean
+# D
+elif [ $1 == "D" ]; then
+    make MPI_ONLY
+    mpirun -np 8 ./lulesh 60
+    mv lulesh*.mpiP D.mpiP
+    make clean
+fi

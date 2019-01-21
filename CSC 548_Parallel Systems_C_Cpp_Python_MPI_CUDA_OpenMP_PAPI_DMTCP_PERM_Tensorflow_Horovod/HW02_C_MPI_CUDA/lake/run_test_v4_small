@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# TO RUN: 
+#   sbatch -N4 -n4 -p opteron -x c[53,101,102] run_test_v4_small
+
+make -f p3.Makefile lake-mpi
+
+prun ./lake 128 5 1.0 8
+
+gnuplot heatmap.gnu
+
+make -f p3.Makefile clean
+
+exit

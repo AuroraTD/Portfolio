@@ -1,0 +1,66 @@
+CSC 548:    Homework 2, Problem 2 Report
+
+Author:     attiffan    Aurora Therese Tiffany-Davis
+
+Introduction
+
+    This problem takes a serial program to approximate a value for PI using Monte Carlo methods,
+    and parallelizes it into a CUDA program that achieves the same goal by using a GPGPU.
+    
+Design
+
+    Code Structure
+    
+        The structure of the code is straightforward, with one GPU kernel function, and a main function.
+    
+    Threads and Blocks
+    
+        The assignment does not specify how many threads and blocks to use.
+        In order to get practice using both multiple threads and multiple blocks,
+        I used 32k threads (64 blocks with 512 threads per block).
+        These numbers were chosen because this was the final scenario discussed in the 9/19/18 lecture.
+
+        The assignment does not specify how threads and blocks should be arranged (1D, 2D, 3D).
+        I chose the most simple approach, 1D threads and blocks,
+        because there was nothing in the PI approximation problem that conceptually aligned with 2D or 3D.
+        
+        The serial version of PI approximation uses srand and rand methods for random number generation.
+        The parallelized version uses curand_init and curand_uniform instead,
+        as these can be executed in the kernel function.
+        
+    Counting Raindrops
+    
+        The parallelized code, like the serial code, works by randomizing "raindrops" within a square,
+        and counting those "raindrops" which fall within an inscribed circle.
+        
+        Each thread is responsible for some portion of the Monte Carlo iterations.
+        Each thread maintains its own count of "raindrops" and finally stores this count in an array.
+        When the array has been populated by each thread, the array is copied back to the CPU.
+        The CPU then iterates over the array, producing a total count and calculating the approximation of PI.
+
+Testing
+
+    Executed p2 with Monte Carlo iteration quantities between 1 and 1,000,000,000.
+    Results show, as expected, that the approximation of PI gets 
+    closer and closer to reality as the iteration quantity increases.
+
+    [attiffan@c49 ~]$ ./p2 1
+    # of trials= 1, estimate of pi is 4.0000000000000000
+    [attiffan@c49 ~]$ ./p2 10
+    # of trials= 10, estimate of pi is 2.7999999999999998
+    [attiffan@c49 ~]$ ./p2 100
+    # of trials= 100, estimate of pi is 3.2799999999999998
+    [attiffan@c49 ~]$ ./p2 1000
+    # of trials= 1000, estimate of pi is 3.1680000000000001
+    [attiffan@c49 ~]$ ./p2 10000
+    # of trials= 10000, estimate of pi is 3.1560000000000001
+    [attiffan@c49 ~]$ ./p2 100000
+    # of trials= 100000, estimate of pi is 3.1350799999999999
+    [attiffan@c49 ~]$ ./p2 1000000
+    # of trials= 1000000, estimate of pi is 3.1424080000000001
+    [attiffan@c49 ~]$ ./p2 10000000
+    # of trials= 10000000, estimate of pi is 3.1404747999999998
+    [attiffan@c49 ~]$ ./p2 100000000
+    # of trials= 100000000, estimate of pi is 3.1418311200000000
+    [attiffan@c49 ~]$ ./p2 1000000000
+    # of trials= 1000000000, estimate of pi is 3.1416569120000002

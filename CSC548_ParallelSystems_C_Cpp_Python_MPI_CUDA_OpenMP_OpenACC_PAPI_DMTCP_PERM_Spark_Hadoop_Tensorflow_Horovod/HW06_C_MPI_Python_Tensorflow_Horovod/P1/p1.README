@@ -1,0 +1,96 @@
+CSC 548:    Homework 6, Problem 1 Report
+Author:     attiffan    Aurora Therese Tiffany-Davis
+
+Implementation
+    
+    Work Distribution
+    
+        The Master counts the total number of documents.
+        The Master figures out how to distribute work to Workers.
+        This information is expressed for each rank as the first document for which the rank is responsible, 
+            and the number of documents for which the rank is responsible.
+        
+        The Master broadcasts (MPI_Bcast) the total number of broadcasts to all ranks.
+        The Master scatters (MPI_Scatter) the work distribution (described above) to all ranks.
+    
+    TF Job
+    
+        Workers perform the TF job in the same way as the serial version of the program.
+        The TF job can be performed using just the information within a document, 
+            so no communication is needed with other ranks.
+    
+    IDF Job
+    
+        In order to do the IDF calculation, all Workers need to know, 
+            for all of their words, how many documents the word was found in.
+        Therefore, they must exchange information with each other.
+        It is not known how many words each Worker will have found.
+        Each Worker sends (MPI_Isend) two arrays to other Workers.
+            One array holds the words the Worker found.
+            The other array hold the counts of how many documents each word was found in by the Worker.
+        Each Worker then waits to receive (MPI_Recv) like messages from other Workers.
+        The receiving Worker looks to see how many unique words were sent (MPI_Get_count),
+            and then loops over the information,
+            updating counts for the words which the Worker is interested in.
+        After receiving messages, the Worker waits (MPI_Wait) to make sure its own messages have been sent.
+    
+    TFIDF Results
+    
+        At this point, every Worker has all the information they need to calculate TFIDF results.
+        As they do so, they store these results locally in an array.
+        The Master needs all TFIDF strings from the Workers so that it can sort them before printing to file.
+        It is not known how many TFIDF strings each Worker will have produced.
+        Each Worker sends (MPI_Send) one array of TFIDF strings to the Master.
+        The Master then waits to receive (MPI_Recv) TFIDF strings from all Workers.
+        The Master looks to see how many TFIDF strings were sent (MPI_Get_count),
+            and stores them in an array,
+            before finally sorting them and printing to file.
+    
+
+How to Add More Parallelism
+
+    In order to use all of the processors on each MPI node instead of only one processor per MPI node,
+        we could add OpenMP pragmas to process one file per thread, 
+        in cases where a compute node is responsible for multiple files.
+    It would be necessary to take care to be thread-safe in the 
+        handling of the data structures used to keep track of word counts.
+
+Comparison to Previous Implementations
+
+    In homework 4, we implemented TFIDF using MapReduce.
+    In homework 5, we implemented TFIDF using Spark.
+    In homework 6, we implement TDIDF using MPI.
+    
+    In each case, the basic concept of TFIDF is the same.
+        - Calculate TF values
+        - Calculate IDF values
+        - Calculate TFIDF values
+        
+    A key difference in the MPI implementation is that the responsibility of each compute node is much more explicit.
+    We have knowledge and control of exactly which computations each node is responsible for, 
+        and how these nodes communicate with each other.
+    In the MapReduce and Spark implementations, this was implicit / transparent to the developer.
+    
+    It may be informative to compare lines of code between these three implementations.
+    Here we use cloc v1.74 to calculate lines of code (blank / comment lines excluded).
+
+    Homework    Implementation      Lines of Code
+    --------    --------------      -------------
+    4           MapReduce           236
+    5           Spark               193
+    6           MPI                 367
+    
+    The MPI implementation required more lines of code than either of the other implementations,
+        which highlights the level of explicit control required by the developer in the implementation.
+    
+    While the MPI implementation was more explicit with regard to compute node responsibilities,
+        the MapReduce and Spark implementations were more explicit with regard to the phases inherent in TFIDF calculation.
+    That is, the MapReduce implementation had classes related to each phase of the job, 
+        and the Spark implementation had RDDs related to each phase of the job.
+    In my opinion this makes the MapReduce and Spark implementations more "clean" from a readability and maintainability standpoint.
+    
+    Although the assignment guides us to compare implementations, comparison of run times was considered as a point of interest.
+    However, this was not done as upon further reflection it seemed that this comparison would not be particularly enlightening.
+        - The MapReduce implementation uses file I/O between every phase which may be unrealistic at scale
+        - The input size (3 documents) is unrealistically small for the real world
+        - The MPI test cases use an unrealistically small number of nodes for the real world

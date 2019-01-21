@@ -1,0 +1,149 @@
+CSC 548:    Homework 3, Problem 3 Report
+
+Author:     attiffan    Aurora Therese Tiffany-Davis
+
+Design / Testing
+
+    "Serial"
+       
+        This test simply runs the program in serial mode.
+        
+    "OpenMP"
+    
+        This test simply runs the program in OpenMP mode (see problem 2).
+
+    "OpenACC No Optimization"
+    
+        Compiled with Makefile.acc, but no other changes versus problem 2.
+        Keep in mind that problem 2 introduced one optimization that applies 
+        regardless of whether the program is run in Serial, OpenMP, or OpenACC mode: 
+        the "Memory Copy" optimization from problem 2, V1.
+
+    "OpenACC Simple Loop"
+    
+        As directed in the assignment, placed "#pragma acc kernels loop copy(un[:n*n],uc[:n*n],uo[:n*n],pebbles[:n*n])" 
+        on the outer finite differencing loop in run_sim().
+        
+        In order to avoid "Accelerator region ignored", it was necessary to add the following to function declarations 
+        for functions called from the parallel region:
+        #ifdef _OPENACC
+            #pragma acc routine seq
+        #endif
+        
+    "OpenACC Copy Outside While"
+    
+        In the previous test, there were 16388 copy in data transfers taking an average of 370 us, 
+        and 16388 copy out data transfers taking an average of 329 us.
+        
+        This next optimization keeps the previous optimization "OpenACC Simple Loop", 
+        and moves the CPU / GPU data transfers to outside of the run_sim() while loop.
+        In order to support this, we need to do the old / current / new energy level swap on the GPU.
+        This is the swap that is done either by literally copying memory, or by pointer switching.
+        Pointer switching was introduced in problem 2 and is kept for problem 3.
+        
+        Attempting to do this pointer switching after the finite differencing loops led to 
+        "Scalar last value needed after loop for..." errors which I am not yet knowledgeable enough to debug.
+        Therefore, in OpenACC mode, the pointer switching is accomplished by varying what pointers are 
+            provided to the finite differencing code based upon the iteration of the run_sim() while loop.
+        
+    "OpenACC Initial Array Ptrs"
+    
+        In run_sim(), before the while loop begins, the lake energy at time 0 and time 1 
+        are copied into new arrays to be used during calculation.
+        This is not necessary, because the lake energy at time 0 and time 1 never changes.
+        
+        This next optimization keeps the previous optimization "OpenACC Copy Outside While", 
+        and simply points at the existing arrays, rather than copying them.
+    
+    Checking Results Along the Way
+    
+        For each tested scenario noted in the Results section below, the following checks were run:
+            - Is the produced lake_i.dat file identical for Serial, OpenMP, and OpenACC modes?
+            - Is the produced lake_f.dat file identical for Serial, OpenMP, and OpenACC modes?
+            - Does the produced lake_f.png image look correct?
+            - Does the PGI Compiler output indicate that all expected accelerator kernels are generated for OpenACC mode?
+        For each test scenario, these checks passed.
+        
+    Benchmark
+        
+        All tests run the program as: ./lake 512 4 4.0 1
+        
+    Meaning of "Time (s)"
+
+        The table below shows the total recorded time ("Init+Simulation" from the logfile), 
+        expressed in seconds, for each optimization.
+    
+Results
+
+    Test Scenario               Time (s)    Speed
+    -------------               ---------   -----
+    Serial                      66.040065    1x
+    OpenMP                       4.562631   14x
+    OpenACC No Optimization     66.042379    1x
+    OpenACC Simple Loop         30.477914    2x
+    OpenACC Copy Outside While   1.679954   39x
+    OpenACC Initial Array Ptrs   1.438721   45x
+    
+Supplemental Results
+
+    These tests were all run with the cumulative optimizations reflected in "OpenACC Initial Array Ptrs",
+    and examine the effect of problem size.
+    
+    The rows show a change in grid size.
+    The columns show a change in simulation time.
+    The data in each location shows the total recorded time ("Init+Simulation" from the logfile), 
+        expressed in seconds.
+    
+                    Sim Time: 1.0   Sim Time: 2.0   Sim Time: 4.0
+                    -------------   -------------   -------------
+    Grid: 512        0.804150        0.846741        1.320730
+    Grid: 1024       1.848491        3.195289        5.889428
+    Grid: 2048      11.177531       21.488154       42.329710
+    
+    A nice sanity check is seeing that a grid size of 512 and a simulation time of 4.0 seconds took 1.320730 seconds 
+        (compare to 1.438721 seconds in previous "Results" section).
+    
+Analysis
+
+    Biggest OpenACC Optimization Impact
+
+        While there were speed improvements in the simple loop optimization, 
+        and in the use of pointers to get the lake energy at time 0 and time 1, 
+        by far the biggest improvement in speed for OpenACC came from performing the 
+        CPU --> GPU copy of lake energy arrays just once, outside the while loop in run_sim().
+        This makes sense because these CPU --> GPU copies of large arrays take significant time.
+        
+        Explicit thread scheduling was not explored, as sufficient speed increases were seen with prior optimizations.
+        Unfortunately, my other obligations do not afford me the time to explore this interesting topic.
+        
+        I did, at various times during this assignment, try screaming at the screen.
+        Unfortunately, this appeared to have little to no effect on correctness of results or on efficiency.
+        I was forced to abandon this strategy and instead fix my code.
+  
+    Effect of Problem Size
+    
+        As seen in "Supplemental Results" above:
+            - If you look across each row, you can see a moderate increase in job time as simulation time increases.
+            - If you look down each column, you can see a dramatic increase in job time as grid size increases.
+            
+        Grid size has much more of an impact than simulation time.
+        
+        This makes sense because doubling grid size causes the number of calculations to quadruple,
+            while doubling simulation time causes the number of calculations merely to double.
+            
+        Additionally, increasing grid size causes many more threads to be spawned, 
+            and at some point we can expect a degradation of performance 
+            due to threads waiting for their turn to run,
+            or due to fewer blocks able to concurrently run on one GPU SM.
+    
+    Other Possible Optimizations
+    
+        These possible optimizations were not coded or tested.
+            
+        1 - Use single for loop to iterate through lake energy array in run_sim()
+            Rather than using a nested for loop, perhaps we could use a single for loop to facilitate easier parallelization.
+            
+        2 - Explicit thread scheduling could yield additional speed, as discussed in https://devblogs.nvidia.com/openacc-example-part-2/.
+            As noted previously in this report, my other obligations do not afford me the time to explore this interesting topic.
+            
+            

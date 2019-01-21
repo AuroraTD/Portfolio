@@ -1,0 +1,300 @@
+CSC 548:    Homework 3, Problem 2 Report
+
+Author:     attiffan    Aurora Therese Tiffany-Davis
+
+V0
+
+    Makefile: Makefile.serial
+
+    The serial version of the lake program outputs the following:
+    
+    running ./lake with (1024 x 1024) grid, until 2.000000, with 1 threads
+    Initialization took 0.028539 seconds
+    Simulation took 254.056424 seconds
+    Init+Simulation took 254.084963 seconds
+    
+V1, V2, V3 General Notes
+
+    Several arguments are supported in lake.c, beyond those arguments that were already present.
+        Each of these is a flag meant to have the value of 0 or of 1.
+        Each flag supports testing in some way.
+        Each flag is totally optional and has a reasonable default value, 
+            to support the grader running the program without these arguments.
+        These flags translate into more complex code (if/else statements).
+        This extra level of complexity would not be defensible if this code was to be maintained into the future.
+        However, for a project whose explicit goal is to vary the operation of the code to hone in one the most efficient options, 
+            this is quite advantageous, as the flags support this variation and testing, 
+            and importantly, also support RE-testing to ensure recent work hasn't messed up older work.
+            
+    As noted in the assignment, "By default OpenMP uses static scheduling".
+        To make the code more explicit, if/else branches which use the default static scheduling 
+        actually include the OMP directive clause "schedule(static)".
+    
+V1 Design
+
+    "Memory Copy"
+    
+        This code change optimizes away memcpy operations at the end of each run_sim() while loop iteration.
+        The optimization uses pointer switching.  
+        There are 3 lake energy arrays - new, current, and old.  
+        These 3 arrays have pointers, initialized at the time of malloc.  
+        Additionally, 3 "extra" pointers are created to facilitate the optimization.
+        At the end of each iteration of the run_sim() while loop, the "extra" pointers are switched around so that:
+            - the pointer named "...New" points to the array previously pointed to by "...Old"
+            - the pointer named "...Current" points to the array previously pointed to by "...New"
+            - the pointer named "...Old" points to the array previously pointed to by "Current"
+        In this way, the lake energy values effectively cycled through New --> Current --> Old, the same results we get from the memcpy.
+        Extra care must be taken, after the while loop is stopped, to copy the correct array (among our 3 choices) out.
+        
+        The column titled "Memory Copy" in the results table below shows the results from this optimization.
+
+    "FD Inner Loop" / "FD Outer Loop"
+    
+        This code change optimizes finite differencing loops.
+        The optimization uses OpenMP parallelization of for loops.
+        When both the outer and the inner loop are optimized, the "collapse" clause is used to simplify the code
+            (versus multiple "parallel for" directives).
+        In the case where only the outer loop is optimized, the "j" variable,
+            which conceptually should be private to each thread,
+            will be treated as shared by default by OpenMP.
+            So, this variable is made private explicitly using the appropriate directive clause.
+        
+        The columns titled "FD Inner Loop" and "FD Outer Loop" in the results table below show the results from this optimization.
+    
+V2 Design
+
+    "Energy Init Values"
+    
+        This code change optimizes setting initial values in lake energy arrays.
+        The optimization uses OpenMP parallelizations of for loops.
+        The fastest loop optimization method from V1 was found to be optimization of outer loop only, so that is duplicated here.
+        In the case where only the outer loop is optimized, the "j" and "idx" variables,
+            which conceptually should be private to each thread,
+            will be treated as shared by default by OpenMP.
+            So, these variables are made private explicitly using the appropriate directive clause.
+        
+        The column titled "Energy Init Values" in the results table below shows the results from this optimization.
+
+    "Energy Init Copy"
+    
+        This code change optimizes the lake energy array memcpy operations at the start of run_sim().
+        The optimization uses OpenMP parallel sections, with one thread for each of the two memcpy operations.
+        
+        The column titled "Energy Init Copy" in the results table below shows the results from this optimization.
+
+V3 Design
+
+    "Dynamic Scheduling"
+    
+        This code change optimizes the scheduling of all OpenMP directives, 
+        by using dynamic instead of static scheduling.
+        
+        The column titled "Dynamic Scheduling" in the results table below shows the results from this optimization.
+
+V1, V2, V3 Testing
+
+    For each tested combination of optimizations noted in the Results section below,
+    the following checks were run:
+        - Is the produced lake_i.dat file identical to that produced in V0?
+        - Is the produced lake_f.dat file identical to that produced in V0?
+        - Does the produced lake_f.png image look correct?
+        - Does the PGI Compiler output indicate that all expected parallel regions are created?
+    For each tested combination of optimizations, these checks passed.
+
+V1, V2, V3 Results
+
+    Makefile: Makefile.omp
+
+    The table below shows the total recorded time ("Init+Simulation" from the logfile), 
+    expressed in seconds, for each tested combination of optimizations.
+    
+    Initial testing showed inconsistent results between multiple runs of the same test scenario.
+    The intention was to bring forward an optimization only if it was helpful, per the assignment guidance 
+        "Choose the fastest method and use this method for the rest of the assignment... 
+        Revert your code back to the fastest version. Keep this code as is for the next problem."
+    Inconsistent results were causing thrashing in testing and coding, so a new strategy was used: 
+        simply test all possible combinations, and make the determination from this as to which is the fastest combination.
+    The additional supported arguments discussed in "V1, V2, V3 General Notes" were very helpful in performing this testing.
+    
+    After several tests where optimization of "FD Inner Loop" and "Dynamic Scheduling" were both used,
+        it became clear that this combination was deadly for performance.
+        All tests with this combination took > 2000 seconds to complete.
+        Thus, all tests results with this combination were excluded from consideration, and are not shown in the table below.
+        Those that were actually performed are shown as "n/a" to indicate that their time was measured,
+        but will not be included in the analysis.
+        They are retained in the table to keep my analysis sane (because test results were put in files named by test scenario #).
+    
+    Test Scenario   Memory Copy     FD Inner Loop   FD Outer Loop   Energy Init       EnergyInit Copy     Dynamic Scheduling      Time (s)
+                    (V1)            (V1)            (V1)            Values (V2)       (V2)                (V3)
+    -------------   -----------     -------------   -------------   ------------      ---------------     ------------------      -----------
+        1               0               0               0                   0               0                   0                  310.409894
+        2               0               0               0                   0               0                   1                  292.504233
+        3               0               0               0                   0               1                   0                  302.365971
+        4               0               0               0                   0               1                   1                  294.036417
+        5               0               0               0                   1               0                   0                  294.273441
+        6               0               0               0                   1               0                   1                  294.894473
+        7               0               0               0                   1               1                   0                  292.737621
+        8               0               0               0                   1               1                   1                  303.352076
+        9               0               0               1                   0               0                   0                   49.867511
+       10               0               0               1                   0               0                   1                   47.524184
+       11               0               0               1                   0               1                   0                   46.368857
+       12               0               0               1                   0               1                   1                   51.763880
+       13               0               0               1                   1               0                   0                   43.310893
+       14               0               0               1                   1               0                   1                   45.767400
+       15               0               0               1                   1               1                   0                   44.686996
+       16               0               0               1                   1               1                   1                   47.937874
+       17               0               1               0                   0               0                   0                   84.812773
+       18               0               1               0                   0               0                   1                         n/a
+       19               0               1               0                   0               1                   0                   91.267623
+       20               0               1               0                   0               1                   1                         n/a
+       21               0               1               0                   1               0                   0                   89.723062
+       22               0               1               0                   1               0                   1                         n/a
+       23               0               1               0                   1               1                   0                   85.078801
+       24               0               1               0                   1               1                   1                         n/a
+       25               0               1               1                   0               0                   0                   58.453497
+       26               0               1               1                   0               1                   0                   60.484745
+       27               0               1               1                   1               0                   0                   61.130914
+       28               0               1               1                   1               1                   0                   59.093384
+       29               1               0               0                   0               0                   0                  276.486770
+       30               1               0               0                   0               0                   1                  276.898152
+       31               1               0               0                   0               1                   0                  276.663168
+       32               1               0               0                   0               1                   1                  276.581895
+       33               1               0               0                   1               0                   0                  277.068703
+       34               1               0               0                   1               0                   1                  277.417664
+       35               1               0               0                   1               1                   0                  276.813475
+       36               1               0               0                   1               1                   1                  276.674388
+       37               1               0               1                   0               0                   0                   18.609310
+       38               1               0               1                   0               0                   1                   19.303218
+       39               1               0               1                   0               1                   0                   18.585320
+       40               1               0               1                   0               1                   1                   20.248603
+       41               1               0               1                   1               0                   0                   18.606167
+       42               1               0               1                   1               0                   1                   19.305415
+       43               1               0               1                   1               1                   0                   19.162603
+       44               1               0               1                   1               1                   1                   19.220243
+       45               1               1               0                   0               0                   0                   61.239483
+       46               1               1               0                   0               1                   0                   61.343465
+       47               1               1               0                   1               0                   0                   64.200484
+       48               1               1               0                   1               1                   0                   59.965744
+       49               1               1               1                   0               0                   0                   31.330404
+       50               1               1               1                   0               1                   0                   31.330956
+       51               1               1               1                   1               0                   0                   31.401031
+       52               1               1               1                   1               1                   0                   31.307495
+    
+    Analysis
+        
+    "Memory Copy" (V1)
+    
+        The average run time of tests WITHOUT this optimization was 139.6602717 seconds.
+        The average run time of tests WITH this optimization was 114.1568398 seconds.
+        Therefore this optimization can be considered a helpful one.
+        
+        Copying memory naturally takes more time than simply switching a pointer to a different memory location.
+
+    "FD Inner Loop" / "FD Outer Loop" (V2)
+    
+        The average run time of tests WITHOUT any FD loop optimization was 287.4486463 seconds.
+        The average run time of tests WITH optimization of the inner loop alone was 74.70392938 seconds.
+        The average run time of tests WITH optimization of the outer loop alone was 33.14177963 seconds.
+        The average run time of tests WITH optimization of both the inner and outer loops was 45.56655325 seconds.
+        Therefore the optimization of the outer loop alone can be considered the most helpful one.
+        
+        We are performing calculations on a large number of data points which represents a 2D space but is stored contiguously in memory in 1D.
+        Optimizing the inner loop alone may take advantage of temporal locality, 
+            because threads will split up the work of a single iteration of the outer loop,
+            which iterates over non-contiguous portions of the lake energy array.
+        Optimizing the outer loop alone may take advantage of spatial locality,
+            because a single thread will execute an entire iteration of the inner loop, 
+            which iterates over lake energy points along a contiguous portion of the lake energy array.
+        Optimizing both the inner and outer loops using "collapse" may cause memory accesses which result in more cache misses,
+            as different threads are repeatedly trying to access non-contiguous and not-just-accessed portions of the lake energy array.
+            Additionally, this approach will create a very large number of threads, each of which needs stack space, 
+            and which cannot all run in parallel on a CPU.  
+            This could be causing inefficiencies.
+    
+    "Energy Init Values" (V2)
+    
+        The average run time of tests WITHOUT this optimization was 127.4366804 seconds.
+        The average run time of tests WITH this optimization was 126.3804311 seconds.
+        Therefore this optimization perhaps can be considered a helpful one - but it's quite close.
+        
+        This initialization was parallelized on only the outer loop
+            (the fastest method as noted in "FD Inner Loop" / "FD Outer Loop" above).
+        The initialization in question is of two fairly large arrays.
+            We may expect a performance increase with parallelization because the arrays are large.
+            We may not expect a performance increase because of incurring overhead to parallelize a relatively small amount of work.
+            In the end, it seems not to be very helpful.
+
+    "Energy Init Copy" (V2)
+    
+        The average run time of tests WITHOUT this optimization was 126.8557948 seconds.
+        The average run time of tests WITH this optimization was 126.961317 seconds.
+        Therefore this optimization perhaps cannot be considered a helpful one - but it's quite close.
+        
+        The memory copy in question is of two fairly large arrays.
+            We may expect a performance increase with parallelization because the arrays are large.
+            We may not expect a performance increase because of incurring overhead to parallelize a relatively small amount of work.
+            In the end, it seems not to be very helpful.
+        
+    "Dynamic Scheduling" (V3)
+    
+        The average run time of tests WITHOUT this optimization was 110.2556425 seconds.
+        The average run time of tests WITH this optimization was 160.2143822 seconds.
+            These results exclude (very long run time) tests where only the inner FD loop was parallelized - as noted previously.
+        Therefore this optimization cannot be considered a helpful one.
+    
+        Dynamic scheduling defaults to using a chunk size of 1 if not explicitly given a chunk size.
+        This may offer benefits if the iterations take a broadly varying amount of execution time.
+        However, in our application, this is unlikely, as each execution performs the same work,
+        with the only likely source of variation being memory access times.
+        The overhead incurred by orchestrating dynamic scheduling is apparently more than any benefit we see, at the default chunk size.
+        
+    Fastest Version
+    
+        The fastest (18.585320 s) combination of attempted optimizations is:
+            "Memory Copy" (V1)          YES
+            "FD Inner Loop" (V2)        NO
+            "FD Outer Loop" (V2)        YES
+            "Energy Init Values" (V2)   NO
+            "Energy Init Copy" (V2)     YES
+            "Dynamic Scheduling" (V3)   NO
+        The second fastest (18.606167) combination is:
+            "Memory Copy" (V1)          YES
+            "FD Inner Loop" (V2)        NO
+            "FD Outer Loop" (V2)        YES
+            "Energy Init Values" (V2)   YES
+            "Energy Init Copy" (V2)     NO
+            "Dynamic Scheduling" (V3)   NO
+        The fastest combination does NOT agree with the run time averages observed for the individual optimizations tested, as noted above.
+            However, it only "disagrees" for "Energy Init Values" (V2) and "Energy Init Copy" (V2).
+            As noted above, both of these optimizations were very borderline in whether or not they could be considered helpful.
+        The second fastest combination agrees with the run time averages observed for the individual optimizations tested, as noted above.
+        The fastest combination will be used by default if none of the optional optimization flags are included when running the program.
+  
+    Ease of Parallelization
+    
+        This program is particularly easy to parallelize because the most time-consuming work is iterating over all lake energy points,
+        which happens on every time step of the simulation.
+        These lake energy points are stored contiguously in memory, which has memory access time benefits (spatial locality).
+        Additionally, points are calculated nearby in time (temporal locality).
+        Finally, every time step of the simulation touches all the same lake energy points, 
+        in the same order, and performs the same work on each point.
+        This high degree of predictability helps tremendously with load balancing.
+        
+    Other Possible Optimizations
+    
+        These possible optimizations were not coded or tested.
+        
+        1 - Experiment with dynamic scheduling, with a chunk size > 1
+            As noted above, the default chunk size of 1 led to poor performance.
+            If chunk size were larger, in a way that lined up nicely with the conceptual "rows" of a lake inside our 1D lake energy array,
+            we may see a performance benefit.
+            
+        2 - Consolidate duplicated arrays u_i0 and u_i1
+            These arrays store initialized energy levels in them, and are then copied into new arrays in run_sim().
+            These new arrays are acted upon, and u_i0 and u_i1 are not used further.
+            Perhaps this duplication could be avoided by referring to these existing arrays within run_sim().
+            
+        3 - Use single for loop to iterate through lake energy array in run_sim()
+            Rather than using a nested for loop, perhaps we could use a single for loop to facilitate easier parallelization.
+
+    

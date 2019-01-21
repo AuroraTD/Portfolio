@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# TFIDF: term frequency-inverse document frequency
+
+# TO RUN: 
+# sbatch -N4 -p opteron -x c[53,101,102] run_tfidf
+
+# TO RUN EACH STEP MANUALLY:
+# srun -N4 -popteron -x c[53,101,102] --pty /bin/bash
+# (run each step manually)
+
+# Load Java
+module load java
+
+# Set up Hadoop and put setup results in a file
+# source is a Unix command that evaluates the file following the command, 
+# as a list of commands, executed in the current context
+# Expected results described at: https://pages.github.ncsu.edu/fmuelle/parsys18/hw/hw4/
+source hadoop-setup.sh &> setup_output.txt
+
+# Print more info about how this went to the terminal
+# Expected results: drwxr-xr-x   - attiffan supergroup          0 2018-10-23 11:18 /user/attiffan
+hdfs dfs -ls /user
+
+# Copy input files to the Hadoop Distributed File System (HDFS)
+hdfs dfs -put input /user/attiffan/input
+
+# Compile TFIDF code
+javac TFIDF.java
+
+# Create a jar file from *.class files
+jar cf TFIDF.jar TFIDF*.class
+
+# Run with Hadoop
+hadoop jar TFIDF.jar TFIDF input &> hadoop_output.txt
+
+# Replace the output folder with the output from this run
+rm -rf output
+hdfs dfs -get /user/attiffan/output .
+
+# Shut down the HDFS
+hadoop/sbin/stop-dfs.sh

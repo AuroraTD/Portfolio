@@ -1,0 +1,61 @@
+################################################################################################################
+# FILE:            my_prun
+#
+# AUTHOR:          attiffan    Aurora T. Tiffany-Davis
+#
+# DESCRIPTION:     A bash script that connects to reserved nodes using ssh and runs the same code on each.
+#
+# SOURCE:          https://pages.github.ncsu.edu/fmuelle/parsys18/hw/hw2/simple_mpi.tar
+#                  Modified to suit homework 2
+#
+# TO RUN:          ./my_prun [CMD]
+#                  TA confirmed during office hours that it is okay if my_prun does not accept any argument 
+#                      other than the command to run on the reserved nodes.
+################################################################################################################
+
+#!/bin/bash
+
+[ $# -ne 1 ] && { echo "Usage: $0 [cmd]"; exit 1; }
+
+# Set some variables
+CMD=$1
+NODEFILE=nodefile.txt
+PORTFILE=portfile.txt
+PWD=$(pwd)
+
+# Parse $SLURM_NODELIST into an iterable list of node names
+# $SLURM_NODELIST example: "c[59-66]"
+# Node file example:
+# c59
+# c60
+# // etc.
+echo $SLURM_NODELIST | tr -d c | tr -d [ | tr -d ] | perl -pe 's/(\d+)-(\d+)/join(",",$1..$2)/eg' | awk 'BEGIN { RS=","} { print "c"$1 }' > $NODEFILE
+
+# Get number of nodes
+numNodes=0
+for curNode in `cat $NODEFILE`; do
+  (( numNodes++ ))
+done
+
+# For each item in the nodefile, connect via ssh and run the cmd
+# The -n parameter is important or ssh will consume the rest of the loop list in stdin
+# Increment rank passed to the code for each node
+# Arguments to the command we run on each node:
+#   Task rank
+#   Number of tasks
+#   Name of port list file
+rank=0
+for curNode in `cat $NODEFILE`; do
+  ssh -n $curNode "cd $PWD;$CMD $rank $numNodes $PORTFILE" & pid[$rank]=$!
+  (( rank++ ))
+done
+
+# Wait for each ssh / corresponding CMD to finish executing before exiting
+rank=0
+for curNode in `cat $NODEFILE`; do
+  wait ${pid[$rank]}
+  (( rank++ ))
+done
+
+# Clean up
+rm $NODEFILE

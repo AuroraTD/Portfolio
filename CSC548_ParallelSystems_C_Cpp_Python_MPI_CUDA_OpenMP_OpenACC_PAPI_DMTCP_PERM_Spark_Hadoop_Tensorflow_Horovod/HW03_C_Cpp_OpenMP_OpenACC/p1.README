@@ -1,0 +1,91 @@
+CSC 548:    Homework 3, Problem 1 Report
+
+Author:     attiffan    Aurora Therese Tiffany-Davis
+
+Compiling and Executing Lulesh v2.0.3
+
+    After running the provided commands, the output produced is as follows:
+    
+        Warning: Process to core binding is enabled and OMP_NUM_THREADS is set to non-zero (1) value
+        If your program has OpenMP sections, this can cause over-subscription of cores and consequently poor performance
+        To avoid this, please re-run your application after setting MV2_ENABLE_AFFINITY=0
+        Use MV2_USE_THREAD_WARNING=0 to suppress this message
+        Running problem size 80^3 per domain until completion
+        Num processors: 64
+        Num threads: 1
+        Total number of elements: 32768000
+        
+        To run other sizes, use -s <integer>.
+        To run a fixed number of iterations, use -i <integer>.
+        To run a more or less balanced region set, use -b <integer>.
+        To change the relative costs of regions, use -c <integer>.
+        To print out progress, use -p
+        To write an output file for VisIt, use -v
+        See help (-h) for more options
+        
+        Run completed:  
+           Problem size        =  80 
+           MPI tasks           =  64 
+           Iteration count     =  20 
+           Final Origin Energy = 5.316142e+09 
+           Testing Plane 0 of Energy Array on rank 0:
+                MaxAbsDiff   = 2.980232e-07
+                TotalAbsDiff = 3.026954e-07
+                MaxRelDiff   = 1.633415e-12
+        
+        Elapsed time         =      38.39 (s)
+        Grind time (us/z/c)  =  3.7493074 (per dom)  (0.058582928 overall)
+        FOM                  =   17069.82 (z/s)
+    
+Profiling Lulesh v2.0.3
+
+    After writing the PMPI wrappers and running Lulesh again, the output produced is much the same as before.
+    Here, the output is compared as a sanity check:
+    
+            Output Type         Lulesh without PMPI Wrappers    Lulesh with PMPI Wrappers
+        -------------------     ----------------------------    -------------------------
+        Final Origin Energy         5.316142e+09                    5.316142e+09
+        MaxAbsDiff                  2.980232e-07                    2.980232e-07
+        TotalAbsDiff                3.026954e-07                    3.026954e-07
+        MaxRelDiff                  1.633415e-12                    1.633415e-12
+        Elapsed Time (s)                   38.39                           38.47
+        Grind Time per dom             3.7493074                       3.7564103
+        Grind Time overall           0.058582928                     0.058693911
+        FOM (z/s)                       17069.82                       17037.542
+        
+Explanation of Matrix Graph
+
+    According to the paper "Communication Characterization and Optimization of
+        Applications Using Topology-Aware Task Mapping on Large Supercomputers",
+        found at https://www.osti.gov/servlets/purl/1261293,
+        the matrix graph produced is as expected (sanity check).
+        
+    In a program that partitions a domain to solve a problem with parallelization,
+        we will expect to see a very regular pattern in communication between ranks.
+        
+        It would be reasonable to expect that there is a small set of send counts.
+            That is, the domain is likely decomposed such that ranks need to send 
+            a predictable number of messages to each other to collaborate to solve the problem.
+            So we would expect not to see a huge number of unique send counts in the matrix.
+            
+        It would be reasonable to expect that ranks numbered near each other 
+            will work on parts of the problem that are "near" each other,
+            and so specifically we might expect that most of the communication 
+            will happen between ranks that are near each other,
+            as these ranks collaborate to solve part of the domain.
+         
+        It would be reasonable (but certainly not guaranteed) to expect a sparsely populated send count matrix.
+            A parallelized program should minimize and coalesce messaging wherever possible 
+            to avoid undue messaging overhead.
+        
+    The matrix graph does exhibit all of these expected patterns.
+    
+        Send counts from one rank to another belong to a small set are very predictable (0, 21, 41, or 62).
+        
+        Most of the communication is happening between ranks that are "near" each other.
+            A bit of calculation shows that the maximum rank distance for sent messages is 21.
+            That is, no rank sends a message to a rank whose number differs from its own by more than 21.
+        
+        The matrix is sparse.
+       
+

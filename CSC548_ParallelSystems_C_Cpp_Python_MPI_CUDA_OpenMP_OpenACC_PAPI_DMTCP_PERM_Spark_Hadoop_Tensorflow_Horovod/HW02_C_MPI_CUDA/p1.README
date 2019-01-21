@@ -1,0 +1,142 @@
+CSC 548:    Homework 2, Problem 1 Report
+
+Author:     attiffan    Aurora Therese Tiffany-Davis
+
+
+INTRODUCTION
+
+    The goals of HW02, Problem 01 were to:
+        - Write your own version of prun called my_prun
+        - Create a custom "message passing" library for MPI function calls using C Socket programming
+        - Test your library using HW1 problem 2 to measure the RTT
+
+DESIGN NOTES
+
+    Necessary changes from HW01 code to my_rtt.c:
+        Arguments to "main":
+            Accept task rank, number of tasks, and name of port list file as arguments to "main",
+                and pass these arguments to MPI_Init.
+            Strictly speaking, passing the name of the port list file was not necessary,
+                as this could have been hard-coded, but that seemed fragile.
+        Correction to MPI_Gatherv function call:
+            Ensure that sendcount argument to MPI_Gatherv is ZERO
+                if the calling node doesn't need to send data.
+            In C socket MPI implementation, we only have this info to go on,
+                to decide whether a node needs to actually perform a send.
+    
+    my_mpi.c
+        Basic design goals:
+            A very basic implementation of MPI using C Socket programming.
+            Implements all functions used in my_rtt.c.
+            Does not implement tags used in my_rtt.c
+                because those tags are not functionally necessary.
+        Who talks to who:
+            Every even node talks to the root to support my_rtt.c functionality.
+            Every node talks to the root to support barrier.
+            Every odd node talks to partner even node.
+            To support these communication needs, every even node (0, 2, etc.) acts as a server.
+        Use of port list file:
+            A port list file is written to by every node.
+            Each node writes one line to the file.
+            Each line has [node rank] \t [host name] \t [port number].
+            Lines are written out of order with respect to rank.
+            After a node has written its information to the file,
+                it repeatedly polls the file until it sees a line for every node rank,
+                and because each node does the same, this effectively is a barrier in the code.
+            This barrier is very useful because it ensures that 
+                a client connect() always comes after a server listen().
+            After the port list file is fully populated,
+                each node reads the file and tracks for every node rank, the host name and port number.
+            This is how each node knows how to establish communication with other nodes.
+        MPI_Ssend wrapper:
+            my_rtt.c uses both MPI_Ssend and MPI_Send.
+            This basic implementation of MPI just wraps MPI_Ssend around MPI_Send, 
+                so they function identically.
+        MPI_Recv blocking functionality:
+            This function uses read(), which reads either the total number of bytes in the socket,
+                or the number of bytes specified as desired, whichever is less, 
+                and returns the number of bytes that were actually read.
+            This function uses the number of characters actually read to 
+                continue reading (and blocking) until all desired bytes are read.
+        MPI_Gatherv strategy:
+            This function gathers messages of varying counts from multiple nodes to the root node
+            It does this by using multiple blocking receives at the root node,
+                so there is no expectation that this is efficient.
+        MPI_Barrier strategy:
+            Steps
+                1 - Everyone reports to root that they have reached the barrier
+                2 - Root waits to hear that everyone has reached the barrier
+                3 - Root reports back out to everyone that all have reached the barrier
+                4 - Everyone waits to hear back from root that everyone has reached the barrier
+            A message with a specific value is interpreted uniquely as a barrier message (tags are ignored).
+            This is just one way in which this very basic implementation of MPI
+                is not extendible beyond my_rtt.c.
+
+PERFORMANCE EVALUATION
+
+    HW01 Results
+    
+        Size (Bytes)    Pair 0 RTT (s)  StDev (s)   Pair 1 RTT (s)  StDev (s)   Pair 2 RTT (s)  StDev (s)   Pair 3 RTT (s)  StDev (s)
+        32              0.000010        0.000005    0.000014        0.000014    0.000023        0.000046    0.000010        0.000016
+        64              0.000007        0.000000    0.000010        0.000009    0.000006        0.000000    0.000005        0.000000
+        128             0.000008        0.000001    0.000008        0.000001    0.000009        0.000005    0.000006        0.000000
+        256             0.000013        0.000009    0.000012        0.000010    0.000009        0.000000    0.000007        0.000000
+        512             0.000010        0.000001    0.000010        0.000000    0.000010        0.000000    0.000010        0.000005
+        1024            0.000015        0.000009    0.000013        0.000001    0.000012        0.000001    0.000010        0.000000
+        2048            0.000016        0.000001    0.000016        0.000000    0.000015        0.000001    0.000013        0.000002
+        4096            0.000019        0.000000    0.000021        0.000001    0.000020        0.000002    0.000018        0.000005
+        8192            0.000032        0.000001    0.000034        0.000001    0.000030        0.000001    0.000026        0.000000
+        16384           0.000042        0.000003    0.000044        0.000006    0.000041        0.000005    0.000037        0.000003
+        32768           0.000058        0.000002    0.000061        0.000006    0.000060        0.000012    0.000053        0.000002
+        65536           0.000092        0.000003    0.000092        0.000003    0.000089        0.000003    0.000085        0.000002
+        131072          0.000159        0.000005    0.000159        0.000005    0.000156        0.000004    0.000153        0.000006
+        262144          0.000287        0.000003    0.000284        0.000002    0.000286        0.000002    0.000283        0.000004
+        524288          0.000556        0.000020    0.000545        0.000002    0.000544        0.000002    0.000542        0.000002
+        1048576         0.001084        0.000039    0.001071        0.000003    0.001069        0.000002    0.001068        0.000004
+        2097152         0.002123        0.000008    0.002123        0.000008    0.002122        0.000007    0.002115        0.000008
+
+    HW02 Results
+    
+        Size (Bytes)    Pair 0 RTT (s)  StDev (s)   Pair 1 RTT (s)  StDev (s)   Pair 2 RTT (s)  StDev (s)   Pair 3 RTT (s)  StDev (s)
+        32              0.000232        0.000034    0.000256        0.000022    0.000217        0.000024    0.000141        0.000022
+        64              0.000236        0.000025    0.000260        0.000014    0.000237        0.000017    0.000167        0.000017
+        128             0.000230        0.000011    0.000264        0.000014    0.000245        0.000018    0.000177        0.000002
+        256             0.000241        0.000003    0.000244        0.000042    0.000260        0.000035    0.000188        0.000009
+        512             0.000206        0.000034    0.000249        0.000025    0.000191        0.000018    0.000194        0.000013
+        1024            0.000238        0.000017    0.000260        0.000017    0.000194        0.000013    0.000212        0.000032
+        2048            0.000242        0.000022    0.000253        0.000026    0.000260        0.000005    0.000245        0.000026
+        4096            0.000430        0.000097    0.000459        0.000088    0.000524        0.000074    0.000423        0.000094
+        8192            0.000507        0.000051    0.000570        0.000076    0.000586        0.000038    0.000512        0.000059
+        16384           0.000602        0.000053    0.000593        0.000034    0.000595        0.000029    0.000617        0.000066
+        32768           0.001025        0.000035    0.001036        0.000023    0.001009        0.000089    0.001020        0.000037
+        65536           0.001756        0.000066    0.001718        0.000071    0.001683        0.000077    0.001641        0.000092
+        131072          0.002701        0.000085    0.002723        0.000097    0.002687        0.000138    0.002712        0.000087
+        262144          0.004806        0.000025    0.004803        0.000033    0.004776        0.000029    0.004838        0.000051
+        524288          0.009377        0.000019    0.009423        0.000030    0.009374        0.000021    0.009361        0.000031
+        1048576         0.018249        0.000027    0.018259        0.000019    0.018223        0.000019    0.018224        0.000049
+        2097152         0.036044        0.000104    0.035963        0.000062    0.035997        0.000093    0.036040        0.000064
+
+    Comparison
+    
+        There are several observations made about mean round trip time (RTT) in HW01 that can also be seen in HW02:
+            As expected, it is generally the case that a larger message size 
+                results in a larger round trip time between nodes.
+            Looking at the raw data, this trend is messy and unclear below a message size of 2048 bytes, 
+                but for message sizes of 2048 bytes and more, the trend is quite clear.
+            Perhaps the messy trend for smaller messages can be explained by variation in the time taken 
+                to perform overhead tasks associated with messaging.
+        The observations made about standard deviation in round trip time in HW02 are not so apparent in HW02:
+            In HW01, standard deviation was largest for a message size of 32 bytes, but above that,
+                although the trend line was messy, it pretty clearly trended upward as message size grew.
+            In HW02, standard deviation appears to be "all over the place".
+        The biggest difference in performance between HW01 and HW 02 of course is that the HW02 code is much slower.
+            I'm sure the developers of MPICH were very careful and clever to get the best performance possible.
+                In HW02 we were aiming for a basically functional limited subset of the MPI standard.
+            Some of the most obvious reasons for HW02's relatively poor performances are:
+                The HW02 MPI functions were written for readability and debuggability, rather than for speed.
+                    There are "extra" variables / variable assignments that are useful for readability.
+                    There are explicit checks for situations that were of interest during debug.
+                The HW02 implementation of MPI_Gatherv uses blocking receives 
+                    on every node from which messages are expected, one after the other.
+                    
+    

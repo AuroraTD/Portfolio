@@ -1,0 +1,126 @@
+CSC 548:    Homework 5, Problem 1 Report
+Author:     attiffan    Aurora Therese Tiffany-Davis
+
+General Design
+
+    This program fills in the skeleton provided at:
+    https://pages.github.ncsu.edu/fmuelle/parsys18/hw/hw5/TFIDF.tar
+
+TF Job
+        
+    Map
+    
+        Function:   .mapToPair(new PairFunction <Tuple2<String, Integer>, String, String> () {...})
+                    .mapToPair() is used because the output needs to be a new RDD pair.
+                    
+        Input:      ( (word@document) , docSize )
+        
+        Output:     ( (word@document) , (1/docSize) )
+                    The first element in the output comes straight from the input.
+                    The second element in the output comes straight from the input 
+                        (with some simple string manipulation).
+                        
+    Reduce
+    
+        Function:   .reduceByKey(new Function2 <String, String, String> () {...})
+                    .reduceByKey() is used because we are performing an operation 
+                        on all values associated with a single input key.
+        
+        Input:      ( (word@document) , (1/docSize) )
+        
+        Output:     ( (word@document) , (wordCount/docSize) ) 
+                    The first element in the output is implicit in .reduceByKey().
+                    The second element in the output is a sum over the input values
+                        (with some simple string manipulation).
+                    
+IDF Job
+
+    Map
+    
+        Function:   .mapToPair(new PairFunction <Tuple2<String, String>, String, String> () {...})
+                    .mapToPair() is used because the output needs to be a new RDD pair.
+        
+        Input:      ( (word@document) , (wordCount/docSize) )
+        
+        Output:     ( word , (1/document) )
+                    The first element in the output comes straight from the input
+                        (with some simple string manipulation).
+                    The second element in the output comes straight from the input
+                        (with some simple string manipulation).
+    
+    Reduce
+    
+        Function:   .reduceByKey(new Function2 <String, String, String> () {...})
+                    .reduceByKey() is used because we are performing an operation 
+                        on all values associated with a single input key.
+        
+        Input:      ( word , (1/document) )
+        
+        Output:     ( word , (numDocsWithWord/document1,document2...) )
+                    The first element in the output is implicit in .reduceByKey().
+                    The second element in the output has two parts.
+                        One part is a sum over the input values
+                            (with some simple string manipulation).
+                        One part is a concatenation over the input values
+                            (with some simple string manipulation).
+                        
+    Map
+    
+        Function:   .flatMapToPair(new PairFlatMapFunction <Tuple2<String, String>, String, String> () {...})
+                    .flatMapToPair() is used because we may need to produce 
+                        multiple output tuples for any given input tuple.
+        
+        Input:      ( word , (numDocsWithWord/document1,document2...) )
+        
+        Output:     ( (word@document) , (numDocs/numDocsWithWord) )
+                    The first element in the output comes straight from the input
+                        (with some simple string manipulation).
+                    The second element in the output has two parts.
+                        One part is the total number of document, 
+                            which was stored in a variable before any Spark job was run.
+                        One part some straight from the input
+                            (with some simple string manipulation).
+                           
+TFIDF Job
+
+    Map
+    
+        The first map in the job is already coded in the skeleton code, 
+            so there was nothing to add here.
+        
+    Map
+    
+        Function:   .mapToPair(new PairFunction <Tuple2<String, String>, String, Double> () {...})
+                    .mapToPair() is used because the output needs to be a new RDD pair.
+        
+        Input:      ( (word@document) , (numDocs/numDocsWithWord) )
+        
+        Output:     ( (word@document) , IDF )
+                    The first element in the output comes straight from the input.
+                    The second element in the output is a natural log of the input (cast to doubles).
+    
+    Reduce
+    
+        Function:   .reduceByKey(new Function2 <Double, Double, Double> () {...})
+                    .reduceByKey() is used because we are performing an operation 
+                        on all values associated with a single input key.
+        
+        Input:      ( (word@document) , TF )  U  ( (word@document) , IDF )
+        
+        Output:     ( (word@document) , TFIDF )
+                    The first element in the output is implicit in .reduceByKey().
+                    The second element in the output is a product over the input values.
+    
+    Map
+
+        Function:   .mapToPair(new PairFunction <Tuple2<String, Double>, String, Double> () {...})
+                    .mapToPair() is used because the output needs to be a new RDD pair.
+                    
+        Input:      ( (word@document) , TFIDF )
+        
+        Output:     ( (document@word) , TFIDF )
+                    The first element in the output comes straight from the input
+                        (with some simple string manipulation).
+                    The second element in the output comes straight from the input.
+
+                        

@@ -1,0 +1,96 @@
+CSC 548:    Homework 4, Problem 1 Report
+
+Author:     attiffan    Aurora Therese Tiffany-Davis
+
+General Design
+
+    Generally, the design of this program is based upon the tutorial at 
+    https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html
+
+    Because each job depends upon the input documents or upon documents produced by the previous job.
+    Therefore, the types consumed by every mappers are (Object, Text), 
+    regardless of the types produced by the previous job's reducer.
+
+Creating and Executing Jobs
+
+    The program handles Word Count, Document Size, and TFIDF jobs in the same way.
+        - Create a new job and give it an arbitrary job name.
+        - Tell Hadoop which jar it should send to nodes to perform Map and Reduce tasks.
+        - Set mapper and reducer classes.
+        - Set (reducer) result key and value classes.
+        - Set input and output paths.
+        - Execute job, waiting for completion 
+            (important, as each job depends upon the results of the previous job).
+        
+Note about format of remainder of report:
+
+    Below, for each function, I discuss how each part of the output is produced.
+    Formatting these parts into "document@word", "document=wordCount/docSize", etc. 
+    is trivial string manipulation and so is not discussed.
+
+Word Count
+        
+    WCMapper
+
+        The input is lines from the input documents. 
+        The output includes knowledge of each word, document name, and a count of 1.
+            - We the document name from the MapReduce context.
+            - We get the word by iterating over the document line using a tokenizer.
+            - We produce the count of 1 trivially.
+        
+    WCReducer
+    
+        The input includes knowledge of each word, document name, and a count of 1.
+        The output includes knowledge of each word, document name, and word count per document.
+            - We get the word from the input
+            - We get the document name from the input
+            - We calculate the word count per document in a simple sum operation in a loop.
+
+Document Size
+        
+    DSMapper
+    
+        The input includes knowledge of each word, document name, and word count per document.
+        The output includes knowledge of each word, document name, and word count per document.
+            - We simply rearrange the information via string manipulation.
+        
+    DSReducer
+
+        The input includes knowledge of each word, document name, and word count per document.
+        The output includes knowledge of each word, document name, word count per document, and document size.
+            - We get the word from the input
+            - We get the document name from the input
+            - We get the word count per document from the input
+            - We calculate the document size in a simple sum operation in a loop.
+                Because the document size is needed for every (key,value) pair written to the MapReduce context,
+                conceptually we wish to iterate over the input values twice.
+                However, the MapReduce Iterable will be empty after the first iteration,
+                so we cache the values on the first iteration 
+                (being careful to cache the values themselves rather than a changing reference),
+                and use this cache for the second iteration.
+
+TFIDF
+        
+    TFIDFMapper
+        
+        The input includes knowledge of each word, document name, word count per document, and document size.
+        The output includes knowledge of each word, document name, word count per document, and document size.
+            - We simply rearrange the information via string manipulation.
+        
+    TFIDFReducer
+        
+        The input includes knowledge of each word, document name, word count per document, and document size.
+        The output includes knowledge of each word, document name, and TFIDF value.
+            - We get the word from the input.
+            - We get the document name from the input.
+            - We calculate the TFIDF using a straightforward formula.
+                This formula involves the # of documents containing each word.
+                    Because the # of documents containing each word is needed for every (key,value) pair 
+                    written to the MapReduce context, conceptually we wish to iterate over the input values twice.
+                    This is done in the same way discussed in the "DSReducer" section of this report.
+                The (key,value) pairs are first put into a map, and after the map is populated, 
+                    the pairs are written to the MapReduce context.
+                    Care is taken to create new text values for each (key,value) pair
+                    so that we actually populate the map with many unique key-value pairs 
+                    (rather than duplicated references).
+            

@@ -1,0 +1,62 @@
+/*************************************************************************************************************
+ * FILE:            p1.README
+ *
+ * AUTHOR:          attiffan    Aurora T. Tiffany-Davis
+ *
+ * DESCRIPTION:     An analysis of the results of an MPI program that determines 
+ *                      the point-to-point message latency for pairs of nodes.
+ *                  The analysis is based upon:
+ *                      17 different message sizes
+ *                      4 different pairs of nodes
+ *                      10 trials for each size / pair combination
+ *
+ * TO RUN CODE:     srun -N8 -n8 -p opteron --pty /bin/bash
+ *                  make -f p1.makefile
+ *                  prun ./p1
+ *************************************************************************************************************/
+ 
+ 1. Analysis of p1.PNG
+ 
+    The horizontal blue lines in the graph are the mean round trip times for each pair, at each message size.
+    The vertical blue lines in the graph are error bars expressing the standard deviation for that pair, at that message size.
+ 
+    As expected, it is generally the case that a larger message size results in a larger round trip time between nodes.
+    
+    It appears that pair 0 (task rank 0 & 1) consistently has a relatively long round trip time, 
+        and that pair 3 (task rank 6 & 7) consistently has a relatively short round trip time.
+    These results could be indicative of the underlying network configuration.
+        Whichever physical computing nodes were allocated to me as task ranks 0 & 1 are likely relatively "far apart".
+        Whichever physical computing nodes were allocated to me as task rank 6 & 7 are likely relatively "close together".
+        The concepts of "far apart" and "close together" may relate to physical distance, 
+            but more likely to "hop" distance in the underlying network topology.
+ 
+ 2. Analysis of details not apparent in p1.PNG
+
+    As noted above, it is generally the case that a larger message size results in a larger round trip time between nodes.
+        Looking at the raw data, this trend is messy and unclear below a message size of 2048 bytes, 
+            but for message sizes of 2048 bytes and more, the trend is quite clear.
+        Perhaps the messy trend for smaller messages can be explained by variation in the time taken 
+            to perform overhead tasks associated with messaging.
+        Plotting overall mean round trip time (regardless of pair) versus message size 
+            reveals that there is a strikingly linear relationship at 2048 bytes and above.
+        That is, round trip time appears to depend more heavily on message size than on any other factor, 
+            with no "step" apparent in the message size range analyzed that would hint at 
+            some message size upper boundary condition affecting how nodes pass messages.
+
+    As expected, it is generally the case that a larger message size results in a larger standard deviation in round trip time.
+        Looking at the raw data, this trend is messy throughout the whole message size range, 
+            but standard deviation generally trends upward.
+        Interestingly, there is an outlier at the smallest message size, 32 bytes, 
+            which has the largest average standard deviation, 0.2 ms.
+        Perhaps this, like the messy trend in round trip time for smaller messages,
+            can be explained by variation in the time taken to perform overhead tasks associated with messaging.
+ 
+ 3. Miscellaneous comments
+ 
+    For each pair and message size combination, 10 timed trials are performed,
+        but for each, there is first one un-timed trial.
+    This keeps any overhead associated with starting communication in a pair for the first time,
+        or with resizing buffers behind the scenes, from skewing the results.
+ 
+    This problem was an excellent way to stimulate thought about how message passing works, 
+        to get familiar with the MPI API, and to brush off rusty skills in C programming.

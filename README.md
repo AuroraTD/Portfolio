@@ -23,6 +23,6 @@ Description
         
 Organization
 
-    Top-level directories are named as "[Course Number]_[Course Name]_[Software Languages and Libraries]".
-    Sub directories are named as "[Assignment Name]_[Software Languages and Libraries]".
+    Top-level directories are named as "[Course Number]_[(possibly shortened) Course Name]_[Software Languages and Libraries]".
+    Where applicable, 2nd-level directories are named as "[Assignment Name]_[Software Languages and Libraries]".
     Files are not further organized, curated, or explained yet.

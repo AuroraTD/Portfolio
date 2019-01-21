@@ -1,0 +1,5 @@
+#!/bin/bash
+
+./HW04_Clean
+javac -classpath .:./core.jar HW04_Server.java
+javac -classpath .:./core.jar HW04_Client.java

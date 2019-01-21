@@ -1,0 +1,7 @@
+#!/bin/bash
+
+rm *.class
+javac -classpath .:./core.jar HW01_Server_Sync.java
+javac -classpath .:./core.jar HW01_Client_Sync.java
+javac -classpath .:./core.jar HW01_Server_Async.java
+javac -classpath .:./core.jar HW01_Client_Async.java

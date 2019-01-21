@@ -1,0 +1,5 @@
+#!/bin/bash
+
+xterm -hold -e java -classpath .:./core.jar HW03_Client $1 $2 $3 $4 $5 &
+xterm -hold -e java -classpath .:./core.jar HW03_Client $1 $2 $3 $4 $5 &
+xterm -hold -e java -classpath .:./core.jar HW03_Client $1 $2 $3 $4 $5

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+xterm -e java -classpath .:./core.jar HW02_Client &
+xterm -e java -classpath .:./core.jar HW02_Client &
+xterm -e java -classpath .:./core.jar HW02_Client &
+xterm -e java -classpath .:./core.jar HW02_Client &
+xterm -e java -classpath .:./core.jar HW02_Client &
+xterm -e java -classpath .:./core.jar HW02_Client &
+xterm -e java -classpath .:./core.jar HW02_Client &
+xterm -e java -classpath .:./core.jar HW02_Client &
+xterm -e java -classpath .:./core.jar HW02_Client &
+xterm -e java -classpath .:./core.jar HW02_Client

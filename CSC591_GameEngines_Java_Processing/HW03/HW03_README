@@ -1,0 +1,44 @@
+CSC591
+Homework 3
+Aurora Tiffany-Davis
+(attiffan)
+
+TO COMPILE:
+
+    Manually
+
+        javac -classpath .:./core.jar HW03_Server.java
+        javac -classpath .:./core.jar HW03_Client.java
+    
+    Using Bash Script
+    
+        ./HW03_Recompile
+
+TO RUN SERVER:
+
+    Manually
+
+        java -classpath .:./core.jar HW03_Server [frame rate] [event management protocol] [performance test] [game loop iterations] [number static platforms] [number moving platforms]
+    
+    Using Bash Script (runs in default configuration)
+    
+        ./HW03_RunServer
+        
+    Using JAR (runs in default configuration)
+    
+        java -jar HW03_Server.jar
+    
+TO RUN CLIENT:
+
+    Manually
+
+        java -classpath .:./core.jar HW03_Client [frame rate] [event management protocol] [performance test] [number of performance test events]
+    
+    Using Bash Script (runs in default configuration)
+    
+        ./HW03_RunClient
+        
+    Using JAR (runs in default configuration)
+    
+        java -jar HW03_Client.jar
+

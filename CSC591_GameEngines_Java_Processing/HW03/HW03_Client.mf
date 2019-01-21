@@ -1,0 +1,2 @@
+Main-Class: HW03_Client
+Class-Path: ./core.jar

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rm *.class
+javac -classpath .:./core.jar HW02_Server.java
+javac -classpath .:./core.jar HW02_Client.java

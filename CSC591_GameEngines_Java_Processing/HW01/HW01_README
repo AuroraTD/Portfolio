@@ -1,0 +1,24 @@
+CSC591
+Homework 1
+Aurora Tiffany-Davis
+(attiffan)
+
+SYNCHRONOUS VERSION:
+
+    TO COMPILE:
+        javac -classpath .:./core.jar HW01_Server_Sync.java
+        javac -classpath .:./core.jar HW01_Client_Sync.java
+    
+    TO RUN:
+        java -classpath .:./core.jar HW01_Server_Sync
+        java -classpath .:./core.jar HW01_Client_Sync
+
+ASYNCHRONOUS VERSION:
+
+    TO COMPILE:
+        javac -classpath .:./core.jar HW01_Server_Async.java
+        javac -classpath .:./core.jar HW01_Client_Async.java
+    
+    TO RUN:
+        java -classpath .:./core.jar HW01_Server_Async
+        java -classpath .:./core.jar HW01_Client_Async

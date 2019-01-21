@@ -1,0 +1,68 @@
+CSC591
+Homework 4
+Aurora Tiffany-Davis
+(attiffan)
+
+SIMPLE INSTRUCTIONS:
+
+    TO RUN PLATFORMER:
+    
+        java -jar HW04_Server.jar 0
+        java -jar HW04_Client.jar 0
+    
+    TO RUN BUBBLE SHOOTER:
+    
+        java -jar HW04_Server.jar 1
+        java -jar HW04_Client.jar 1
+    
+    TO RUN SPACE INVADERS:
+
+        java -jar HW04_Server.jar 2
+        java -jar HW04_Client.jar 2
+
+MORE DETAILS:
+
+    TO COMPILE:
+    
+        Manually
+    
+            javac -classpath .:./core.jar HW04_Server.java
+            javac -classpath .:./core.jar HW04_Client.java
+        
+        Using Bash Script
+        
+            ./HW04_Recompile
+            
+    TO CREATE JAR FILES (AFTER COMPILING):
+    
+        jar cvfm HW04_Server.jar HW04_Server.mf *.class core.jar
+        jar cvfm HW04_Client.jar HW04_Client.mf *.class core.jar
+    
+    TO RUN SERVER:
+    
+        Manually
+    
+            java -classpath .:./core.jar HW04_Server [game: 0 platformer, 1 bubble shooter, 2 space invaders]
+        
+        Using Bash Script
+        
+            ./HW04_RunServer [game: 0 platformer, 1 bubble shooter, 2 space invaders]
+            
+        Using JAR
+        
+            java -jar HW04_Server.jar [game: 0 platformer, 1 bubble shooter, 2 space invaders]
+        
+    TO RUN CLIENT:
+    
+        Manually
+    
+            java -classpath .:./core.jar HW04_Client [game: 0 platformer, 1 bubble shooter, 2 space invaders]
+        
+        Using Bash Script
+        
+            ./HW04_RunClient [game: 0 platformer, 1 bubble shooter, 2 space invaders]
+            
+        Using JAR
+        
+            java -jar HW04_Client.jar [game: 0 platformer, 1 bubble shooter, 2 space invaders]
+

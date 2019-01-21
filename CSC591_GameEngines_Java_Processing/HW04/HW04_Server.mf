@@ -1,0 +1,2 @@
+Main-Class: HW04_Server
+Class-Path: ./core.jar

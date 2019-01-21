@@ -1,0 +1,2 @@
+Main-Class: HW04_Client
+Class-Path: ./core.jar

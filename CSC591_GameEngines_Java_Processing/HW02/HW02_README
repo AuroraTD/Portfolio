@@ -1,0 +1,32 @@
+CSC591
+Homework 2
+Aurora Tiffany-Davis
+(attiffan)
+
+TO COMPILE:
+
+    javac -classpath .:./core.jar HW02_Server.java
+    javac -classpath .:./core.jar HW02_Client.java
+    
+    OR run ./HW02_Recompile
+
+TO RUN SERVER:
+
+    java -classpath .:./core.jar HW02_Server [# iterations for performance test] [network protocol] [# static platforms] [# moving platforms]
+    
+    All arguments are optional - defaults:
+    - do not execute performance test
+    - run with network protocol 0 (send game objects)
+    - use 3 static platforms
+    - use 6 moving platforms
+    
+    OR run ./HW02_RunServer
+    
+TO RUN CLIENT:
+
+    java -classpath .:./core.jar HW02_Client [network protocol]
+    
+    Argument is optional - default:
+    - run with network protocol 0 (send game objects)
+    
+    OR run ./HW02_RunClient

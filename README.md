@@ -18,7 +18,7 @@ Description
 
     This repo is a  portfolio of work that I have done while pursuing my Masters of Computer Science.
     It is not complete.
-        - It excludes work (mostly small assignments) that was not under source control and is now difficult to retrieve.
+        - It excludes work (mostly small assignments) that were not under source control and are now difficult to retrieve.
         - It excludes work that I have done for employers, out of concern for intellectual property rights.
         
 Organization

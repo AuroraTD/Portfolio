@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  # This will mimic the seeded pre-configured admin password
+  # So that we can use this fixture to fake a legit log-in during automated tests
+  name: <%= User.find_by(admin: true).read_attribute("name") %>
+  email: <%= User.find_by(admin: true).read_attribute("email") %>
+  password_digest: <%= User.find_by(admin: true).read_attribute("password_digest") %>
+  # Also include password itself to be able to fake a log-in with this user
+  password: <%= User.find_by(admin: true).read_attribute("password") %>
+  admin: true
+  agent: false
+  customer: false
+
+two:
+  email: dummy_2@dummy.com
+  name: Jason Bourne Two
+  admin: false
+  agent: true
+  customer: false
+  # Create password digest
+  # https://www.railstutorial.org/book/basic_login
+  password_digest: <%= User.digest('password') %>
+
+three:
+  email: dummy_3@dummy.com
+  name: Jason Bourne Three
+  admin: false
+  agent: false
+  customer: true
+  # Create password digest
+  # https://www.railstutorial.org/book/basic_login
+  password_digest: <%= User.digest('password') %>
+
+four:
+  email: dummy_4@dummy.com
+  name: Jason Bourne Four
+  admin: false
+  agent: true
+  customer: true
+  # Create password digest
+  # https://www.railstutorial.org/book/basic_login
+  password_digest: <%= User.digest('password') %>

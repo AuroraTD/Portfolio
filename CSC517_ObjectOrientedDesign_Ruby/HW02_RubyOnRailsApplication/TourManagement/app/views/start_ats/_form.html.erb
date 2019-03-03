@@ -1,0 +1,28 @@
+<%= form_with(model: start_at, local: true) do |form| %>
+  <% if start_at.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(start_at.errors.count, "error") %> prohibited this
+        start from being saved:</h2>
+
+      <ul>
+      <% start_at.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tour_id %>
+    <%= form.text_field :tour_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location_id %>
+    <%= form.text_field :location_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

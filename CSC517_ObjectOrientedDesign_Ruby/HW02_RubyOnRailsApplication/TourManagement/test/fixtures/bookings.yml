@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# A booking for which there is a corresponding waitlist
+one:
+  num_seats: 1
+  user: one
+  tour: one
+
+# A booking for which there is no corresponding waitlist
+two:
+  num_seats: 2
+  user: three
+  tour: two

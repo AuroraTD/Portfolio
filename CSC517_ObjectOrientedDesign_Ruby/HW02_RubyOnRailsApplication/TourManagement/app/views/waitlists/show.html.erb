@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<!-- Render a common view between booking and waitlist -->
+<%= render 'booking_waitlist_show', booking: @waitlist.booking_same_user_same_tour, waitlist: @waitlist %>
+
+<% if current_user_can_modify_given_booking?(@waitlist) %>
+  <%= link_to 'Edit Booking', edit_booking_path(@waitlist, waitlist_override: true) %>
+  <%= button_to 'Cancel Booking', @waitlist, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

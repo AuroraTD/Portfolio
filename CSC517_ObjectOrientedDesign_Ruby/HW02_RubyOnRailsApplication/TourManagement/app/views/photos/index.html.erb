@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<!-- This is the index view for photos -->
+<!-- UNLIKE most index views it does NOT support showing ALL photos -->
+<!-- Rather, it is intended to show all the photos for a given tour -->
+<!-- So, we MUST have a valid @tour defined whenever we come here -->
+
+<h1><%= @tour.name %> Photos</h1>
+
+<% if @photos.empty? %>
+  <%= render 'no_results' %>
+<% else %>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @photos.each do |photo| %>
+      <tr>
+        <td><%= photo.name %></td>
+        <td><%= link_to 'Show', photo %></td>
+        <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
+        <td><%= button_to 'Delete Photo', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
+<!-- Provide a link to add a photo specifically for this tour -->
+<%= link_to "New #{@tour.name} Photo", new_photo_path(tour_id: @tour.id) %>

@@ -1,0 +1,12 @@
+<h1>New <%= @tour.name %> Booking</h1>
+
+<p>
+  <strong># Seats:</strong>
+  <%= @tour.num_seats %>
+</p>
+<p>
+  <strong># Available Seats:</strong>
+  <%= Booking.get_available_seats_for_tour(@tour) %>
+</p>
+
+<%= render 'form', form_model: @booking %>

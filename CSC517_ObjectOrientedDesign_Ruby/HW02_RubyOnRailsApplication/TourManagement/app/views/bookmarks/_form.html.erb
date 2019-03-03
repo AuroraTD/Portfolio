@@ -1,0 +1,28 @@
+<%= form_with(model: bookmark, local: true) do |form| %>
+  <% if bookmark.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+
+      <ul>
+      <% bookmark.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Display tour name -->
+  <h2>
+    <%= @tour.name %>
+  </h2>
+
+  <!-- Hidden fields, prepopulated with necessary data (user and tour) -->
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.hidden_field :tour_id, value: @tour.id %>
+
+  <!-- Submit -->
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

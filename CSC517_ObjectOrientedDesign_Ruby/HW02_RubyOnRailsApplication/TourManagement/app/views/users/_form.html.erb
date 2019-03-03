@@ -1,0 +1,50 @@
+
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Always show name and allow edits to name -->
+  <!-- (for users who were allowed to come to this page in the first place) -->
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <!-- Nobody is allowed to modify an existing user account email / password -->
+  <!-- But of course these field need to be enabled for a new user signup -->
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, :disabled => !@user.new_record? %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.text_field :password, :disabled => !@user.new_record? %>
+  </div>
+
+  <!-- Always show name and allow edits to user role -->
+  <!-- (for users who were allowed to come to this page in the first place) -->
+  <div class="field">
+    <%= form.label :agent %>
+    <%= form.check_box :agent %>
+  </div>
+  <div class="field">
+    <%= form.label :customer %>
+    <%= form.check_box :customer %>
+  </div>
+
+  <!-- Submit -->
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

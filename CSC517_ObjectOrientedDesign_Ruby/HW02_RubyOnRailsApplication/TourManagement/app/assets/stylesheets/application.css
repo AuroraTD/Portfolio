@@ -1,0 +1,49 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* Style flash messages */
+.flash {
+    font-weight: bold;
+    background-color: #eee;
+}
+.flash.error {
+    background-color: #ff7777;
+}
+/* Do not auto-collapse white space in table cells (tour itineraries have newlines) */
+table:not(.links) td {
+    white-space: pre;
+}
+/* Borders are helpful when we might have multi-line content in tables */
+table:not(.links) tbody > tr:first-child > td {
+    border-top: 1pt solid #2E2F30;
+}
+table:not(.links) tbody > tr > td {
+    border-bottom: 1pt solid #2E2F30;
+}
+/* Make links and buttons look the same */
+/* To support "button_to" when we need the HTTP request to use the DELETE method */
+:not(.links) a, a:visited, input[type=submit] {
+    font: bold 14px Arial;
+    text-decoration: none;
+    background-color: #EEEEEE;
+    color: #333333;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+    border-radius: 3px;
+}

@@ -1,0 +1,114 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @page_title %></h1>
+
+<% if @tours.empty? %>
+  <%= render 'no_results' %>
+<% else %>
+
+  <!-- Show the basics - not enough room to show everything here -->
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Itinerary</th>
+      <th>Price</th>
+      <th>Booking Deadline</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Status</th>
+      <th># Seats</th>
+      <th># Available</th>
+      <th>Agent</th>
+      <th colspan="4"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @tours.each do |tour| %>
+      <tr>
+        <td><%= tour.name %></td>
+        <td><%= tour.itinerary %></td>
+        <td><%= number_to_currency(tour.price_in_dollars) %></td>
+        <td><%= tour.deadline %></td>
+        <td><%= tour.start_date %></td>
+        <td><%= tour.end_date %></td>
+        <td><%= tour.status_description %></td>
+        <td><%= tour.num_seats %></td>
+        <td><%= Booking.get_available_seats_for_tour(tour) %></td>
+        <td><%= Listing.get_agent_name_for_tour(tour) %></td>
+        <td><%= link_to 'Show', tour %></td>
+        <% if current_user_can_book_given_tour?(tour) %>
+          <td><%= link_to 'Book', new_booking_path(tour_id: tour.id) %></td>
+        <% end %>
+        <% if current_user_can_modify_given_tour?(tour) %>
+          <td><%= link_to 'Edit', edit_tour_path(tour) %></td>
+        <% end %>
+        <% if current_user_can_modify_given_tour?(tour) %>
+          <td><%= button_to 'Delete Tour', tour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <!-- Provide search filters -->
+  <h2>Filter Results</h2>
+
+  <!-- Make sure to submit the form "local" so that it actually returns the updated HTML -->
+  <!-- https://guides.rubyonrails.org/form_helpers.html -->
+  <!-- https://m.patrikonrails.com/rails-5-1s-form-with-vs-old-form-helpers-3a5f72a8c78a -->
+  <!-- https://www.engineyard.com/blog/using_form_with-vs-form_for-vs-form_tag -->
+  <%= form_with model: @tour, local: true, method: "get" do |form| %>
+
+    <!-- Select tour names including given string -->
+    <%= form.label "Tour Name Includes" %>
+    <%= form.text_field :tour_name, value: user_selected_tour_name %>
+
+    <!-- Drop down for selecting location: https://guides.rubyonrails.org/form_helpers.html -->
+    <%= form.label "Desired Location" %>
+    <%= form.select(:desired_location) do %>
+      <!-- The first option has a special value so that we can see if there is no desired location -->
+      <%= content_tag(:option, "", value: -1) %>
+      <% Location.all.each do |loc| -%>
+        <%= content_tag(
+                :option,
+                loc.user_friendly_description,
+                value: loc.id,
+                selected: user_selected_location?(loc)
+            ) %>
+      <% end %>
+    <% end %>
+
+    <!-- Select maximum price -->
+    <%= form.label "Max Price ($)" %>
+    <%= form.number_field number_with_precision(:max_price_dollars, precision: 2),
+                          step: 0.01,
+                          value: user_selected_maximum_price
+    %>
+
+    <!-- Select earliest start date -->
+    <%= form.label "Earliest Start" %>
+    <%= form.date_field :earliest_start, value: user_selected_earliest_start %>
+
+    <!-- Select latest end date -->
+    <%= form.label "Latest End" %>
+    <%= form.date_field :latest_end, value: user_selected_latest_end %>
+
+    <!-- Select minimum # available seats -->
+    <%= form.label "Min # Available Seats" %>
+    <%= form.number_field :min_seats, value: user_selected_min_seats %>
+
+    <!-- Submit search filters -->
+    <div class="actions">
+      <%= form.submit "Search" %>
+    </div>
+
+  <%end %>
+
+<% end %>
+
+<% if current_user_can_create_tour? %>
+  <br>
+  <%= link_to 'New Tour', new_tour_path %>
+<% end %>

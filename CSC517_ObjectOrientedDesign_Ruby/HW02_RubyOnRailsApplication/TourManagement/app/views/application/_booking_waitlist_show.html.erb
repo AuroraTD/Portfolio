@@ -1,0 +1,58 @@
+<!-- This partial can be rendered from any view -->
+<!-- https://richonrails.com/articles/partials-in-ruby-on-rails -->
+
+<!-- Tour name -->
+<h1>
+  <% if booking %>
+    <%= booking.tour.name %>
+  <% else %>
+    <%= waitlist.tour.name %>
+  <% end %>
+   Booking
+</h1>
+
+<!-- Total seats on tour -->
+<p>
+
+    The tour has
+    <% if booking %>
+      <%= booking.tour.num_seats %>
+    <% else %>
+      <%= waitlist.tour.num_seats %>
+    <% end %>
+     total seats.
+
+</p>
+
+<!-- User name -->
+<% if booking %>
+  <%= booking.user_name %>:
+<% else %>
+  <%= waitlist.user_name %>:
+<% end %>
+
+<!-- What the user booked -->
+<li>
+   has booked
+  <% if booking %>
+    <%= booking.num_seats %>
+  <% else %>
+    0
+  <% end %>
+  seats.
+
+</li>
+
+<!-- What you waitlisted -->
+<li>
+
+  <!-- Seats you waitlisted -->
+   has waitlisted
+  <% if waitlist %>
+    <%= waitlist.num_seats %>
+  <% else %>
+    0
+  <% end %>
+  seats.
+
+</li>

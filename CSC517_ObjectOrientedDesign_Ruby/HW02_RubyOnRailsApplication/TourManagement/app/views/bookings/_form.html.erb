@@ -1,0 +1,63 @@
+<%= form_with(model: form_model, local: true) do |form| %>
+
+  <!-- Auto generated error handling -->
+  <% if form_model.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(form_model.errors.count, "error") %> prohibited this booking from being saved:</h2>
+      <ul>
+      <% form_model.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Do not allow the user to select the user -->
+  <!-- We should already know who the user is, from the sessions helper -->
+  <%= form.hidden_field :user_id, :value => current_user.id %>
+
+  <!-- Do not allow the user to select the tour -->
+  <!-- We should already know what tour we are booking -->
+  <%= form.hidden_field :tour_id, :value => @tour.id %>
+
+  <!-- Select # seats to book -->
+  <!-- Since this form is used to manage booking AND waitlisting, show total seats as default value -->
+  <div class="field">
+    <%= form.label "# Seats to Book" %>
+    <% if @booking %>
+      <% if @booking.num_seats %>
+        <%= form.number_field :num_seats, :value => @booking.num_seats + @booking.seats_waitlisted_same_user_same_tour %>
+      <% else %>
+        <%= form.number_field :num_seats %>
+      <% end %>
+    <% else %>
+      <% if @waitlist.num_seats %>
+        <%= form.number_field :num_seats, :value => @waitlist.num_seats %>
+      <% else %>
+        <%= form.number_field :num_seats %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <!-- Select booking / waitlisting strategy -->
+  <div class="field">
+    <%= form.label "Book or Waitlist?" %>
+    <%= form.select(:strategy, options_for_select([
+      ['Book All Seats', 1],
+      ['Book Available Seats, Waitlist Remaining Seats', 2],
+      ['Waitlist All Seats', 3]
+    ])) %>
+  </div>
+
+  <!-- If this is a waitlist edit, form will be submitted to waitlist controller -->
+  <!-- Make sure that the controller gets the waitlist override parameter from the outset -->
+  <% unless @booking %>
+    <%= form.hidden_field :waitlist_override, :value => true %>
+  <% end %>
+
+  <!-- Submit the form to create a new booking -->
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

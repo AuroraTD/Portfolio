@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @page_title %></h1>
+
+<% if @bookmarks.empty? %>
+  <%= render 'no_results' %>
+<% else %>
+
+  <table>
+    <thead>
+    <tr>
+      <th>User</th>
+      <th>Tour</th>
+      <th colspan="2"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @bookmarks.each do |bookmark| %>
+      <tr>
+        <td><%= bookmark.user.name %></td>
+        <td><%= bookmark.tour.name %></td>
+        <td><%= link_to 'Show', bookmark %></td>
+        <% if current_user_can_modify_given_bookmark?(bookmark) %>
+          <td><%= button_to 'Delete Bookmark', bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
+<!-- NO LINK to new bookmark - bookmarks must be created from tour -->

@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @page_title %></h1>
+
+<% if @bookings.empty? && @lonely_waitlists.empty? %>
+  <%= render 'no_results' %>
+<% else %>
+
+  <table>
+
+    <!-- Header Row -->
+    <thead>
+    <tr>
+      <th>Tour</th>
+      <th>User</th>
+      <th># Seats Booked</th>
+      <th># Seats Waitlisted</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <!-- Data Rows -->
+    <tbody>
+    <!-- Bookings & associated waitlists -->
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.tour.name %></td>
+        <td><%= booking.user.name %></td>
+        <td><%= booking.num_seats %></td>
+        <td><%= booking.seats_waitlisted_same_user_same_tour %></td>
+        <td><%= booking.tour.start_date %></td>
+        <td><%= booking.tour.end_date %></td>
+        <td><%= link_to 'Show Tour', booking.tour %></td>
+        <td><%= link_to 'Show Booking', booking %></td>
+        <% if current_user_can_modify_given_booking?(booking) %>
+          <td><%= link_to 'Edit Booking', edit_booking_path(booking) %></td>
+          <td><%= button_to 'Cancel Booking', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    <!-- Waitlists that are not associated with any booking -->
+    <% @lonely_waitlists.each do |waitlist| %>
+      <tr>
+        <td><%= waitlist.tour.name %></td>
+        <td><%= waitlist.user.name %></td>
+        <td>0</td>
+        <td><%= waitlist.num_seats %></td>
+        <td><%= waitlist.tour.start_date %></td>
+        <td><%= waitlist.tour.end_date %></td>
+        <td><%= link_to 'Show Tour', waitlist.tour %></td>
+        <td><%= link_to 'Show Booking', waitlist %></td>
+        <% if current_user_can_modify_given_booking?(waitlist) %>
+          <!-- Send to booking edit page (double-duty page) -->
+          <td><%= link_to 'Edit Booking', edit_booking_path(waitlist, waitlist_override: true) %></td>
+          <td><%= button_to 'Cancel Booking', waitlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
+<!-- There is no link to create a new booking because you do that from tours show or index view -->

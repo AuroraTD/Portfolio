@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All Users</h1>
+
+<% if @users.empty? %>
+  <%= render 'no_results' %>
+<% else %>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.name %></td>
+        <td><%= user.user_type %></td>
+        <td><%= link_to 'Show Profile', user %></td>
+        <td><%= link_to 'Edit Profile', edit_user_path(user) %></td>
+        <% unless user.admin %>
+          <td><%= button_to 'Cancel Account', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% end %>
+
+<br>
+
+<%= link_to 'New User', new_user_path %>

@@ -1,0 +1,86 @@
+<%= form_with(model: tour, local: true) do |form| %>
+  <% if tour.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tour.errors.count, "error") %> prohibited this tour from being saved:</h2>
+
+      <ul>
+      <% tour.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price_in_dollars %>
+    <%= form.number_field number_with_precision(:price_in_dollars, precision: 2),
+                          step: 0.01 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline %>
+    <%= form.date_field :deadline, selected: Date.today, min: Date.today %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date, selected: Date.today, min: Date.today %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.date_field :end_date, selected: Date.today, min: Date.today %>
+  </div>
+
+  <div class="field">
+    <%= form.label :operator_contact %>
+    <%= form.text_field :operator_contact %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cancelled %>
+    <%= form.check_box :cancelled %>
+  </div>
+
+  <div class="field">
+    <%= form.label :num_seats %>
+    <%= form.number_field :num_seats %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Itinerary" %>
+    <% (1..10).each do |i| %>
+      <!-- Drop down for selecting location: https://guides.rubyonrails.org/form_helpers.html -->
+      <%= form.select("location" + i.to_s) do %>
+        <!-- The first option has a special value so that we can see which itinerary slots have no location -->
+        <%= content_tag(:option, "", value: -1) %>
+        <% Location.all.each do |loc| -%>
+          <!-- Set existing locations: https://api.rubyonrails.org/v5.1/classes/ActionView/Helpers/TagHelper.html -->
+          <%= content_tag(
+            :option,
+            loc.user_friendly_description,
+            value: loc.id,
+            selected: Visit.get_ith_location_id_for_tour(@tour, i-1) == loc.id
+          ) %>
+        <% end %>
+      <% end %>
+      <br>
+    <% end %>
+  </div>
+
+  <!-- Submit the form -->
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

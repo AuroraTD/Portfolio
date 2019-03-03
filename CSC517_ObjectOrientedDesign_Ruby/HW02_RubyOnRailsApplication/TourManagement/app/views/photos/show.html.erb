@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<!-- Tour name, photo name, photo itself -->
+<p>
+  <strong>Tour:</strong>
+  <%= @photo.tour.name %>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @photo.name %>
+</p>
+<!-- https://evilmartians.com/chronicles/rails-5-2-active-storage-and-beyond -->
+<% if @photo.image.attached? %>
+  <p>
+    <strong>Image:</strong>
+    <br>
+    <%= image_tag @photo.image, width: '500' %>
+  </p>
+<% end %>
+
+<!-- Links -->
+<%= link_to 'Edit', edit_photo_path(@photo) %>

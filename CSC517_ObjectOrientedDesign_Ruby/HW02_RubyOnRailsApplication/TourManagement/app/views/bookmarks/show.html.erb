@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  Bookmark
+</h1>
+
+<p>
+  <strong>User:</strong>
+  <%= @bookmark.user.name %>
+</p>
+
+<p>
+  <strong>Tour:</strong>
+  <%= @bookmark.tour.name %>
+</p>
+
+<% if current_user_can_modify_given_bookmark?(@bookmark) %>
+  <td><%= button_to 'Delete Bookmark', @bookmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>

@@ -1,0 +1,114 @@
+<p id="notice"><%= notice %></p>
+
+<!-- Tour name -->
+<h1>
+  <%= @tour.name %>
+</h1>
+
+<!-- Display the basics -->
+<strong>Details:</strong>
+<ul>
+  <li>Description: <%= @tour.description %></li>
+  <li>Price: <%= number_to_currency(@tour.price_in_dollars) %></li>
+  <li>Booking Deadline: <%= @tour.deadline %></li>
+  <li>Start Date: <%= @tour.start_date %></li>
+  <li>End Date: <%= @tour.end_date %></li>
+  <li>Agent: <%= Listing.get_agent_name_for_tour(@tour) %></li>
+  <li>Operator Contact: <%= @tour.operator_contact %></li>
+  <li>Status: <%= @tour.status_description %></li>
+  <li># Seats: <%= @tour.num_seats %></li>
+  <li># Seats Booked: <%= Booking.get_booked_seats_for_tour(@tour) %></li>
+  <li># Seats Available: <%= Booking.get_available_seats_for_tour(@tour) %></li>
+  <li># Seats Waitlisted: <%= Waitlist.get_waitlisted_seats_for_tour(@tour) %></li>
+
+</ul>
+
+<!-- Display the itinerary -->
+<p>
+  <strong>Itinerary:</strong>
+</p>
+<% @locations.each do |location| %>
+  <li><%= location.user_friendly_description %></li>
+<% end %>
+<br>
+
+<!-- Guests -->
+<% unless @guests.empty? %>
+  <p>
+    <strong>Guests:</strong>
+  </p>
+  <% @guests.each do |guest| %>
+    <li><%= guest.name %></li>
+  <% end %>
+  <br>
+<% end %>
+
+<!-- Display any photos that exist for this tour -->
+<% unless @photos.empty? %>
+  <p>
+    <strong>Photos:</strong>
+  </p>
+  <% @photos.each do |photo| %>
+    <!-- https://evilmartians.com/chronicles/rails-5-2-active-storage-and-beyond -->
+    <% if photo.image.attached? %>
+      <%= photo.name %>
+      <br>
+      <%= image_tag photo.image, width: '300' %>
+      <br>
+    <% end %>
+  <% end %>
+<% end %>
+
+<!-- Links -->
+<!-- Protect against unpermitted users -->
+<% if current_user_can_bookmark_given_tour?(@tour) %>
+  <%= link_to 'Bookmark', new_bookmark_path(tour_id: @tour.id) %>
+<% end %>
+<% if current_user_can_book_given_tour?(@tour) %>
+  <%= link_to 'Book', new_booking_path(tour_id: @tour.id) %>
+<% end %>
+<% if current_user_can_modify_given_tour?(@tour) %>
+  <%= link_to 'Edit', edit_tour_path(@tour) %>
+<% end %>
+<% if current_user_can_modify_given_tour?(@tour) %>
+  <%= button_to 'Delete', @tour, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<% if current_user_can_create_tour? %>
+  <%= link_to 'New Tour', new_tour_path %>
+<% end %>
+
+<!-- Also display any reviews that exist for this tour -->
+<!-- This comes after the edit link because you edit reviews elsewhere -->
+<% unless @reviews.empty? %>
+
+  <p>
+    <strong>Reviews:</strong>
+  </p>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Content</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.subject %></td>
+        <td><%= review.content %></td>
+        <td><%= review.get_user_name %></td>
+        <td><%= link_to 'Show', review %></td>
+        <% if current_user_can_modify_given_review?(review) %>
+        <td><%= link_to 'Edit', edit_review_path(review) %></td>
+        <td><%= button_to 'Delete Review', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+<% end %>

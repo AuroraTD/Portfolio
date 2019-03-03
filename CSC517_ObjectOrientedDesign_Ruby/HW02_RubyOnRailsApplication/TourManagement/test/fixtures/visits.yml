@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tour: one
+  location: one
+
+two:
+  tour: two
+  location: one
+
+three:
+  tour: two
+  location: two

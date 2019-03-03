@@ -1,0 +1,60 @@
+<%= form_with(model: review, local: true) do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <!-- https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/options_from_collection_for_select -->
+    <!-- http://zittlau.ca/ruby-on-rails-disabling-a-select-tag-using-the-select-helper/ -->
+    <%= form.select :user_id,
+      options_from_collection_for_select(
+        User.all,
+        :id,
+        :name,
+        selected: (@review.new_record? ? current_user.id : @review.user_id)
+      ),
+      {},
+      disabled: true
+    %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tour_id %>
+    <!-- Drop down for selecting tour: https://guides.rubyonrails.org/form_helpers.html -->
+    <!-- https://apidock.com/rails/ActionView/Helpers/FormOptionsHelper/options_from_collection_for_select -->
+    <%= form.select :tour_id,
+      options_from_collection_for_select(
+        tours_taken_by_given_user_id( @review.new_record? ? current_user.id : @review.user_id ),
+        :id,
+        :name,
+        selected: @review.tour_id
+      ),
+      {},
+      disabled: !@review.new_record?
+    %>
+  </div>
+
+  <div class="field">
+    <%= form.label :subject %>
+    <%= form.text_field :subject %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

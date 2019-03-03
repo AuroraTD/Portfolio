@@ -1,0 +1,168 @@
+<!--
+################################################################################
+# This file contains application code to help control displays.
+#
+# Fix lang attribute.
+# Fix punctation
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TourManagement</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <!-- Application Title -->
+    <h1>Tour Management System</h1>
+
+    <!-- Note current user's name -->
+    <!-- Do this up at the top so that it remains in the same place regardless
+         of the page-specific content. Fix punctuation. -->
+    <% if logged_in? %>
+      <h2>Welcome
+         <%= current_user.user_type %>,  <%= current_user.name %>!
+      </h2>
+
+    <% end %>
+
+    <!-- https://stackoverflow.com/questions/9390778/best-practice-method-of-displaying-flash-messages -->
+    <% flash.each do |key, value| %>
+      <!-- We use flash to keep track of search filters (don't show that stuff onscreen -->
+      <% if key != "filters" %>
+        <%= content_tag :div, value, class: "flash #{key}" %>
+      <% end %>
+    <% end %>
+
+    <!-- Specific view content -->
+    <%= yield %>
+
+    <!-- Links to other views -->
+    <!-- IMPORTANT!!! Logic for who gets which links is defined in app/helpers/sessions_helper.rb -->
+    <!-- Please ONLY CHANGE THE LOGIC within app/helpers/sessions_helper.rb -->
+
+    <h2>Links:</h2>
+
+    <table class="links">
+      <thead>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          Home
+        </td>
+        <td>
+          <%= link_to "Go to Home Page", "/" %>
+        </td>
+      </tr>
+        <tr>
+          <td>
+            Users
+          </td>
+          <td>
+            <% if current_user_can_see_all_users? %>
+              <%= link_to "Show All Users", users_url %>
+            <% end %>
+            <% if current_user_can_see_own_profile? %>
+              <%= link_to 'Show My Profile', current_user %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Bookmarks
+          </td>
+          <td>
+            <% if current_user_can_see_all_bookmarks? %>
+              <%= link_to 'Show All Bookmarks', bookmarks_path %>
+            <% end %>
+            <% if current_user_can_see_bookmarks_for_their_tours? %>
+              <%= link_to 'Show Bookmarks for My Tours', bookmarks_path(listing_user: current_user) %>
+            <% end %>
+            <% if current_user_can_see_their_bookmarks? %>
+              <%= link_to 'Show My Bookmarks', bookmarks_path(bookmarks_user: current_user) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Tours
+          </td>
+          <td>
+            <% if current_user_can_see_all_tours? %>
+              <%= link_to "Show All Tours", tours_url %>
+            <% end %>
+            <% if current_user_can_see_their_tours? %>
+              <%= link_to 'Show My Tours', tours_path(listing_user_id: current_user) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Reviews
+          </td>
+          <td>
+            <% if current_user_can_see_all_reviews? %>
+              <%= link_to "Show All Reviews", reviews_url %>
+            <% end %>
+            <% if current_user_can_see_reviews_for_their_tours? %>
+              <%= link_to 'Show Reviews for My Tours', reviews_path(listing_user_id: current_user.id) %>
+            <% end %>
+            <% if current_user_can_see_their_reviews? %>
+              <%= link_to 'Show My Reviews', reviews_path(reviewing_user_id: current_user) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Bookings
+          </td>
+          <td>
+            <% if current_user_can_see_all_bookings? %>
+              <%= link_to "Show All Bookings", bookings_url %>
+            <% end %>
+            <% if current_user_can_see_bookings_for_their_tours? %>
+              <%= link_to 'Show Bookings for My Tours', bookings_path(listing_user_id: current_user.id) %>
+            <% end %>
+            <% if current_user_can_see_their_bookings? %>
+              <%= link_to 'Show My Bookings', bookings_path(booking_user_id: current_user.id) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Locations
+          </td>
+          <td>
+            <% if current_user_can_see_all_locations? %>
+              <%= link_to "Show All Locations", locations_url %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Log In / Log Out
+          </td>
+          <td>
+            <% if logged_in? %>
+              <%= button_to "Log Out", logout_path, method: :delete %>
+            <% else %>
+              <%= link_to "Go To Login Page", login_path %>
+              <%= link_to "Sign up now!", new_user_url %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Debug per https://www.railstutorial.org/book/sign_up -->
+    <%= debug(params) if Rails.env.development? %>
+
+  </body>
+</html>

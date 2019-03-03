@@ -1,0 +1,93 @@
+CREATE PROJECT
+
+Open RubyMine
+File, New Project
+Rails Application
+Location ...\TourManagement
+Select Ruby SDK
+Select Rails version 5.2.2
+Leave Rails Template blank
+Preconfigure for selected database: sqlite3
+Create
+Wait for "Generating..." stuff to finish
+
+RESOLVE ERROR
+
+# Error:[rake --prereqs] rake aborted!
+# Selenium::WebDriver::Error::WebDriverError: not executable: "C:/RailsInstaller/Ruby2.3.3/lib/ruby/gems/2.3.0/gems/chromedriver-helper-2.1.0/bin/chromedriver-helper"...
+Per https://stackoverflow.com/questions/52630480/rails-seleniumwebdrivererrorwebdrivererror-not-executable-chromedriver,
+In Gemfile, change "gem 'chromedriver-helper'" to "gem 'chromedriver-helper', '1.2.0'"
+Tools, Bundler, Install, Install
+Tools, Bundler, Update, Update
+
+RESOLVE ERROR
+
+# Installing sqlite3 1.4.0 (was 1.3.13) with native extensions
+# Gem::Ext::BuildError: ERROR: Failed to build gem native extension.
+In Gemfile, change "gem 'sqlite3'" to "gem 'sqlite3', '1.3.13'"
+Tools, Bundler, Install, Install
+Tools, Bundler, Update, Update
+
+RUN EMPTY APPLICATION
+
+At the top of the screen, select "Development: TourManagement", and click run icon
+In browser, http://localhost:3000
+Should see "Yay! You’re on Rails!"
+
+GENERATE SKELETON APPLICATION
+
+Tools, Run Rails Generator, scaffold
+[scaffold command]
+OK
+
+scaffold commands:
+User email:string password:string name:string admin:boolean agent:boolean customer:boolean
+Tour name:string description:string price_in_cents:integer deadline:date start_date:date end_date:date operator_contact:string status:string num_seats:integer
+Listing user:references tour:references
+Bookmark user:references tour:references
+Booking num_seats:integer user:references tour:references
+Waitlist num_seats:integer user:references tour:references
+Review subject:string content:string user:references tour:references
+Photo name:string tour:references
+Location country:string state:string
+Start tour:references location:references
+Visit tour:references location:references
+
+FILL IN MODEL CODE
+
+(too much to type out here - see all *.rb files under "models" for what got filled in)
+
+MIGRATE DATABASE
+
+Tools, Run Rake Task, db:migrate, OK
+
+RUN SKELETON APPLICATION
+
+At the top of the screen, select "Development: TourManagement", and click run icon
+In browser, http://localhost:3000
+Should see "Yay! You’re on Rails!"
+
+FIX SOME AUTO-GENERATED TESTS
+
+In test\fixtures\users.yml, change "email: MyString" to "email: fake@fake.com", and the other one to "dummy@dummy.com"
+Tools, Run Rake Task, db:migrate, test, OK
+
+RUN AUTO-GENERATED TESTS
+
+At the top of the screen, select "test: TourManagement", and click run icon
+All tests should pass (currently they do not all pass - we need some debug here)
+
+ADD ROOT ROUTE
+
+Add "root 'users#index'" to routes.db
+
+ADD LINKS
+
+In app\views\layouts\application.html.erb, before the yield, add "<h1>Online Cookbook</h1>"
+In app\views\layouts\application.html.erb, after the yield, add "<%= link_to "Users", users_url %> <%= link_to "Tours", tours_url %> <%= link_to "Reviews", reviews_url %> <%= link_to "Locations", locations_url %>"
+
+RUN SKELETON APPLICATION
+
+At the top of the screen, select "Development: TourManagement", and click run icon
+In browser, http://localhost:3000
+Should see "Users... Email... Password... Name... Admin... Agent... Customer... New User"

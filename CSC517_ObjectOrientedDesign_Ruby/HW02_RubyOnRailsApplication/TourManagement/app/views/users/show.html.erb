@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  User Profile
+</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  (hidden)
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @user.user_type %>
+</p>
+
+<!-- Any user go to the edit page for their profile -->
+<!-- If the user is admin, then they will not be allowed to modify login / password -->
+<!-- But that is enforced on the edit page itself -->
+<%= link_to 'Edit Profile', edit_user_path(@user) %>
+<!-- Any user (except an admin) may cancel their account -->
+<% unless @user.admin %>
+  <td><%= button_to 'Cancel Account', @user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<% end %>

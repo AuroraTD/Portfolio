@@ -2,16 +2,14 @@
  * 
  * A simple Node.js REST server for returning the value of a used car
  * 
- * Used information from: 
- *  https://www.thepolyglotdeveloper.com/2015/10/create-a-simple-restful-api-with-node-js/
- * 
  * TO RUN:  Open terminal in directory containing app.js
- *          Run "npm install"
+ *          Execute "npm install"
  *          Execute "node app.js"
  * 
- * TO TEST: TODO update these instructions for fully testing via browser AND via JSON
- *          Open a browser
- *          Navigate to localhost:3000
+ * TO TEST: Open a browser
+ *          TODO complete test instructions (manually / automated)
+ *          TODO methodically test every part of the requirements
+ *          TODO methodically test everything that could be messed up in routes.js
  *******************************************************************************************/
 
 // Require

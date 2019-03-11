@@ -6,10 +6,16 @@
  *          Execute "npm install"
  *          Execute "node app.js"
  * 
- * TO TEST: Open a browser
- *          TODO complete test instructions (manually / automated)
- *          TODO methodically test every part of the requirements
- *          TODO methodically test everything that could be messed up in routes.js
+ * TO TEST: 
+ * 
+ *  MANUAL:     Open a browser
+ *              Navigate to http://localhost:3000/value?value=[x]&make=[x]&model=[x]&age=[x]&owners=[x]&mileage=[x]&collisions=[x]
+ *              (replace each [x] with the value of your choice)
+ * 
+ *  AUTOMATED:  Open terminal in directory containing test.js
+ *              Execute "node test.js"
+ *              (created a simple roll-your-own test instead of Mocha or similar due to time constraints)
+ * 
  *******************************************************************************************/
 
 // Require

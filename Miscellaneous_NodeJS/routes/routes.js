@@ -1,6 +1,8 @@
-// TODO add block comment here
-// TODO reduce level of indentation
-// TODO truncate final value to 2 decimal places
+/*******************************************************************************************
+ * 
+ * ROUTES for a simple Node.js REST server for returning the value of a used car
+ * 
+ *******************************************************************************************/
 
 // Require
 var https = require("https");
@@ -148,7 +150,7 @@ var appRouter = function (app) {
                             }
 
                             // Respond with the adjusted value of the car
-                            return response.status(200).send({"status": "success", "value": carValue_dollars});
+                            return response.status(200).send({"status": "success", "value": carValue_dollars.toFixed(2)});
 
                         }
                     }

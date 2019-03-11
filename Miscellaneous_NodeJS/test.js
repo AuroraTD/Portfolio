@@ -1,5 +1,9 @@
-// TODO MAKE THIS A COMPREHENSIVE TEST
-// TODO establish an array of pairs - URL & expected response (compare with stringify)
+/*******************************************************************************************
+ * 
+ * TEST for a simple Node.js REST server for returning the value of a used car
+ * (created a simple roll-your-own test instead of Mocha or similar due to time constraints)
+ * 
+ *******************************************************************************************/
 
 // Require
 var http = require("http");
@@ -60,63 +64,63 @@ var testResponsePairs = [
     // Owned by many people - final value 25% lower than initial value
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=0&owners=3",
-        expectedResponse:   {"status":"success","value":7500}
+        expectedResponse:   {"status":"success","value":"7500.00"}
     },
     // 10 months old - final value 5% lower than initial value
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=10&owners=1",
-        expectedResponse:   {"status":"success","value":9500}
+        expectedResponse:   {"status":"success","value":"9500.00"}
     },
     // Very old - final value 60% lower than initial value
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=1000&owners=1",
-        expectedResponse:   {"status":"success","value":4000}
+        expectedResponse:   {"status":"success","value":"4000.00"}
     },
     // 10k miles - final value 2% lower than initial value
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=0&owners=1&mileage=10000",
-        expectedResponse:   {"status":"success","value":9800}
+        expectedResponse:   {"status":"success","value":"9800.00"}
     },
     // Many miles - final value 30% lower than initial value
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=0&owners=1&mileage=1000000",
-        expectedResponse:   {"status":"success","value":7000}
+        expectedResponse:   {"status":"success","value":"7000.00"}
     },
     // 1 collision - final value 2% lower than initial value
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=0&owners=1&collisions=1",
-        expectedResponse:   {"status":"success","value":9800}
+        expectedResponse:   {"status":"success","value":"9800.00"}
     },
     // Many collisions - final value 10% lower than initial value
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=0&owners=1&collisions=10",
-        expectedResponse:   {"status":"success","value":9000}
+        expectedResponse:   {"status":"success","value":"9000.00"}
     },
     // No previous owners - final value 10% higher than initial value
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=0&owners=0",
-        expectedResponse:   {"status":"success","value":11000}
+        expectedResponse:   {"status":"success","value":"11000.00"}
     },
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=0&owners=0&mileage=0",
-        expectedResponse:   {"status":"success","value":11000}
+        expectedResponse:   {"status":"success","value":"11000.00"}
     },
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=0&owners=0&mileage=0&collisions=0",
-        expectedResponse:   {"status":"success","value":11000}
+        expectedResponse:   {"status":"success","value":"11000.00"}
     },
     // All together now
     {
         url:                "http://localhost:3000/value?value=35692&make=toyota&model=corolla&age=99&owners=3&mileage=50877&collisions=5",
-        expectedResponse:   {"status":"success","value":8117.66}
+        expectedResponse:   {"status":"success","value":"8117.59"}
     },
     {
         url:                "http://localhost:3000/value?value=22980&make=toyota&model=corolla&age=28&owners=1&mileage=82141&collisions=6",
-        expectedResponse:   {"status":"success","value":13689.81}
+        expectedResponse:   {"status":"success","value":"13689.60"}
     },
     {
         url:                "http://localhost:3000/value?value=42818&make=toyota&model=corolla&age=132&owners=0&mileage=100228&collisions=4",
-        expectedResponse:   {"status":"success","value":6572.56}
+        expectedResponse:   {"status":"success","value":"5630.50"}
     }
 ];
 
@@ -146,12 +150,14 @@ function testOnePair () {
                 console.log("GOT", JSON.stringify(JSON.parse(data)));
                 console.log("");
             }
-            else if (testResponsePairs.length > 0) {
-                console.log("test passed", nextPair.url);
-                testOnePair();
-            }
             else {
-                console.log("ALL TESTS PASS!");
+                console.log("test passed", nextPair.url);
+                if (testResponsePairs.length > 0) {
+                    testOnePair();
+                }
+                else {
+                    console.log("\nALL TESTS PASS!\n");
+                }
             }
         });
 

@@ -47,19 +47,19 @@ var appRouter = function (app) {
 
         // Check for query parameter sanity
         if (errorMessage.length === 0) {
-            if (request.query.value <= 0) {
+            if (Number(request.query.value) <= 0) {
                 errorMessage = "initial value of car must be greater than zero";
             }
-            else if (request.query.age <= 0) {
-                errorMessage = "age of car (months) must be greater than zero";
+            else if (Number(request.query.age) < 0) {
+                errorMessage = "age of car (months) must be greater than or equal to zero";
             }
-            else if (request.query.owners < 0) {
+            else if (Number(request.query.owners) < 0) {
                 errorMessage = "number of previous owners must be greater than or equal to zero";
             }
-            else if (request.query.mileage && request.query.mileage < 0) {
+            else if (request.query.mileage && Number(request.query.mileage) < 0) {
                 errorMessage = "mileage of car must be greater than or equal to zero";
             }
-            else if (request.query.collisions && request.query.collisions < 0) {
+            else if (request.query.collisions && Number(request.query.collisions) < 0) {
                 errorMessage = "number of collisions must be greater than or equal to zero";
             }
         }
@@ -103,7 +103,7 @@ var appRouter = function (app) {
 
                     // Check response data for model
                     responseData = JSON.parse(data);
-                    if (!responseData.Results) {
+                    if (!responseData.Results || responseData.Results.length === 0) {
                         errorMessage = "DOT did not return any models for the make '" + request.query.make + "'";
                         return response.status(500).send({"status": "error", "message": errorMessage});
                     }
@@ -126,23 +126,23 @@ var appRouter = function (app) {
                             valueAdjustment_percent = 0;
 
                             // Adjust for owners (if more than 2 previous owners - apply to initial value)
-                            if (request.query.owners > 2) {
+                            if (Number(request.query.owners) > 2) {
                                 carValue_dollars *= 0.75;
                             }
 
                             // Adjust for age
-                            ageUsedForAdjustment = Math.min(MAX_AGE_MONTHS, request.query.age);
+                            ageUsedForAdjustment = Math.min(MAX_AGE_MONTHS, Number(request.query.age));
                             valueAdjustment_percent -= ageUsedForAdjustment * 0.5;
 
                             // Adjust for mileage (optional parameter)
                             if (request.query.mileage) {
-                                mileageUsedForAdjustment = Math.min(MAX_MILEAGE, request.query.mileage);
+                                mileageUsedForAdjustment = Math.min(MAX_MILEAGE, Number(request.query.mileage));
                                 valueAdjustment_percent -= (mileageUsedForAdjustment / 1000) * 0.2;
                             }
 
                             // Adjust for collisions (optional parameter)
                             if (request.query.collisions) {
-                                collisionsUsedForAdjustment = Math.min(MAX_COLLISIONS, request.query.collisions);
+                                collisionsUsedForAdjustment = Math.min(MAX_COLLISIONS, Number(request.query.collisions));
                                 valueAdjustment_percent -= collisionsUsedForAdjustment * 2;
                             }
 
@@ -150,7 +150,7 @@ var appRouter = function (app) {
                             carValue_dollars *= (1 + (valueAdjustment_percent / 100));
 
                             // Adjust for owners (if no previous owners - apply to final value)
-                            if (request.query.owners === 0) {
+                            if (Number(request.query.owners) === 0) {
                                 carValue_dollars *= 1.1;
                             }
 

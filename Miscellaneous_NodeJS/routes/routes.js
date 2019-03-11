@@ -8,13 +8,6 @@ var https = require("https");
 // Define Routes
 var appRouter = function (app) {
 
-    /* HOME
-        Nothing supported at "/" so just tell the visitor what endpoint is supported
-    */
-    app.get("/", function (request, response) {
-        response.send("Please use endpoint /value");
-    });
-
     /* VALUE
         Required query parameters:
             VALUE -         Initial value of car, in dollars

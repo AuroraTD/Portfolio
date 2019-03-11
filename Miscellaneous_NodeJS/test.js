@@ -2,15 +2,10 @@
 // TODO establish an array of pairs - URL & expected response (compare with stringify)
 
 // Require
-var https = require("https");
+var http = require("http");
 
 // Establish pairs of test URLs & expected responses
 var testResponsePairs = [
-    // Wrong endpoint
-    {
-        url:                "http://localhost:3000/",
-        expectedResponse:   "Please use endpoint /value"
-    },
     // Missing parameters
     {
         url:                "http://localhost:3000/value",
@@ -105,45 +100,62 @@ var testResponsePairs = [
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=0&owners=0&mileage=0",
         expectedResponse:   {"status":"success","value":11000}
-    }
-    ,
+    },
     {
         url:                "http://localhost:3000/value?value=10000&make=toyota&model=corolla&age=0&owners=0&mileage=0&collisions=0",
         expectedResponse:   {"status":"success","value":11000}
+    },
+    // All together now
+    {
+        url:                "http://localhost:3000/value?value=35692&make=toyota&model=corolla&age=99&owners=3&mileage=50877&collisions=5",
+        expectedResponse:   {"status":"success","value":8117.66}
+    },
+    {
+        url:                "http://localhost:3000/value?value=22980&make=toyota&model=corolla&age=28&owners=1&mileage=82141&collisions=6",
+        expectedResponse:   {"status":"success","value":13689.81}
+    },
+    {
+        url:                "http://localhost:3000/value?value=42818&make=toyota&model=corolla&age=132&owners=0&mileage=100228&collisions=4",
+        expectedResponse:   {"status":"success","value":6572.56}
     }
-    // All together now TODO ADD 3 TESTS WITH RANDOMLY CHOSEN PARAMETERS
 ];
 
-// Check that make & model is valid
-testURL = "https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/" + request.query.make + "?format=json";
-https.get(testURL, function(testResponse) {
+// Kick off testing of all URL-Response pairs
+testOnePair();
 
-    // Declare variables
-    var data;
-
-    // Gather data returned from DOT API
-    data = "";
-    testResponse.on('data', function(chunk) {
-        data += chunk;
-    });
-
-    // When all data returned, check for model
-    testResponse.on('end', function() {
+// Method to test a single pair (calls itself when done)
+function testOnePair () {
+    var nextPair = testResponsePairs.shift();
+    http.get(nextPair.url, function(testResponse) {
 
         // Declare variables
-        var responseData;
+        var data;
 
-        // Check response data for model
-        responseData = JSON.parse(data);
-        if (!responseData.Results) {
-            errorMessage = "DOT did not return any models for the make '" + request.query.make + "'";
-            return response.status(500).send({"status": "error", "message": errorMessage});
-        }
-        else {
+        // Gather data returned from test
+        data = "";
+        testResponse.on('data', function(chunk) {
+            data += chunk;
+        });
 
-        }
+        // When all data returned, check for expected response
+        testResponse.on('end', function() {
+            if (JSON.stringify(JSON.parse(data)) !== JSON.stringify(nextPair.expectedResponse)) {
+                console.log("\nTEST FAILED!");
+                console.log("URL", nextPair.url);
+                console.log("EXPECTED", JSON.stringify(nextPair.expectedResponse));
+                console.log("GOT", JSON.stringify(JSON.parse(data)));
+                console.log("");
+            }
+            else if (testResponsePairs.length > 0) {
+                console.log("test passed", nextPair.url);
+                testOnePair();
+            }
+            else {
+                console.log("ALL TESTS PASS!");
+            }
+        });
+
+    }).on("error", function(error) {
+        console.log(error.message);
     });
-
-}).on("error", function(error) {
-    console.log(error.message);
-});
+}

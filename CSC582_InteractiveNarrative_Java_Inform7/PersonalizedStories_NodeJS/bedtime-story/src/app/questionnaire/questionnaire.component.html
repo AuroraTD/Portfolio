@@ -1,0 +1,51 @@
+<div *ngIf="displayError; else elseBlock">
+  <h2>Oops, something went wrong! Time to pull a bedtime story off of the bookshelf...try again tomorrow night!</h2>
+  <button type="button" class="btn btn-primary" (click)="onClickStartOver()">Start over?</button>
+</div>
+
+<ng-template #elseBlock>
+    
+  <div class="center-container">
+    <h2 class="font-weight-light">Pick your favorites - or don't pick, and we'll surprise you!</h2>
+    <hr class="mt-2 mb-5">
+   
+    <!-- Each prompt in own div section -->
+    <div *ngFor="let prompt of promptOptions">
+      
+      <div class="container">
+        <!-- <div class="card border-0 shadow my-5" style="padding: 20px"> -->
+            <h3 class="font-weight-light">{{prompt.prompt}}</h3>
+            <br>
+            <div id="{{prompt.promptName}}" class="btn-group btn-group-toggle flex-container" data-toggle="buttons">
+              <a *ngFor="let option of prompt.options" (click)="onClickOption(prompt.promptName, option.name)" class="row justify-content-center">
+                <div id="{{option.name}}" class="card mb-3 text-center" style="width: 75%"
+                  [style.background-color]="option.value.includes('#') ? option.value : undefined"
+                  [style.color]="option.value.includes('#') ? complementaryColor(option.value) : undefined">
+                  <!-- Include an image if there is one -->
+                  <img *ngIf="option.value.includes('jpg');" class="card-img-top" crossorigin="anonymous" src="{{option.value}}"
+                    alt="Card image cap">
+                  <!-- Include text always -->
+                    <!-- Text label is colored if this is a color option -->
+                    <!-- <div class="align-self-center">{{option.name}}</div> -->
+                    <span class="align-middle" style="padding: 5%">
+                      <h4>{{option.name}}</h4>
+                    </span>
+                </div>
+              </a>
+            </div>
+
+        <!-- </div> -->
+      </div>
+
+    </div>
+  </div>
+  <div class="navigation-row">
+      <button type="button" class="btn btn-primary btn-xl" (click)="onClickTellMeAStory()"><h5>Tell me a story!</h5></button>
+  </div>
+  <div class="text-center" style="display: none" id="loadingSpinner">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    
+</ng-template>

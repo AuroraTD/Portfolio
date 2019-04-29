@@ -1,0 +1,9 @@
+<h2 class="font-weight-light">How old are you?</h2>
+
+<br>        
+<button type="button" *ngFor="let age of ages" class="btn btn-outline-secondary btn-lg focus" (click)="onClickAge(age)">{{age}}</button>
+
+<!-- Navigation buttons are all in a flex container for smooth styling as buttons are added -->
+<div class="navigation-row">
+    <button #nextButton type="button" class="btn btn-primary" (click)="onClickNext()">Next</button>
+</div>

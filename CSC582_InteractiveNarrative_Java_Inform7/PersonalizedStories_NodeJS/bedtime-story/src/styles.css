@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* MISCELLANEOUS */
+
+.container {
+    margin-top: 7%;
+    margin-bottom: 5%;
+}
+.center-container {
+    text-align: center;
+}
+.btn-xl {
+    padding: 1.75% !important;
+}
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* NAVIGATION BUTTONS */
+
+/* https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+.navigation-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+.navigation-row > button {
+    width: 200px;
+    margin: 5px;
+}
+
+/* OPTION BUTTONS / QUESTIONNAIRE CARDS */
+
+div.btn-group-toggle,
+div.btn-group-toggle a {
+    width: 100%;
+}
+div.selected-option {
+    border-color: #444444;
+    border-width: 5px;
+    border-radius: 9px;
+}
+label.btn-light.focus {
+    box-shadow: none;
+}
+div.card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}

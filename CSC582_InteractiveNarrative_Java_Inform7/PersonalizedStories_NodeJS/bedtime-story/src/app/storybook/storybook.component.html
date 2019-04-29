@@ -1,0 +1,19 @@
+<h2 class="font-weight-light">It's Storytime!</h2>
+
+<div class="container flex-container">
+    <div class="card border-0 shadow my-5">
+        <div class="card-body p-5">
+            <div class="d-flex flex-wrap" *ngFor="let sentence of story; index as i">
+                <img src="{{images[i]}}" class="story-img mx-auto d-block">
+                <p class="lead font-weight-normal" style="color: #000;">{{sentence}}</p>
+            </div>
+            <!-- <p class="lead font-weight-normal" style="color: #000;">{{story}}</p> -->
+        </div>
+    </div>
+</div>
+<!-- Navigation buttons are all in a flex container for smooth styling as buttons are added -->
+<h3>Do you want to make another story?</h3>
+<div class="navigation-row">
+  <button type="button" class="btn btn-primary" (click)="onClickStartOver()">Yes</button>
+  <button type="button" class="btn btn-primary" (click)="onClickQuit()">No</button>
+</div>

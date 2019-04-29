@@ -1,0 +1,13 @@
+<h2 class="font-weight-light">Do you want to answer questions that will help build your story?</h2>
+
+
+<!-- Navigation buttons are all in a flex container for smooth styling as buttons are added -->
+<div class="navigation-row">
+  <button type="button" class="btn btn-primary" (click)="onClickYes()">Yes</button>
+  <button type="button" class="btn btn-primary" (click)="onClickNo()">No</button>
+</div>
+<div class="text-center" style="display: none" id="loadingSpinner">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
